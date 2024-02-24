@@ -1,0 +1,18 @@
+query AllPage {
+  header {
+    heading
+    id
+    navigationBar {
+      id
+      heading
+    }
+    backgroundAnimation {
+      alt
+      size
+      height
+      width
+      title
+      tags
+    }
+  }
+}

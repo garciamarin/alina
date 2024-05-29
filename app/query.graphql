@@ -1,20 +1,56 @@
-query AllPage {
-  header {
+fragment HeadingFragment on HeaderRecord {
+  heading
+  id
+  navigationBar {
+    id
+    section
+    heading
+  }
+  backgroundAnimation {
+    url
+    alt
+    size
+    height
+    width
+    title
+    tags
+  }
+}
+
+fragment AboutMeFragment on AboutMeRecord {
+  title
+  subtitle
+  introText
+  id
+  displayName
+  image {
+    height
+    width
+    url
+    title
+    alt
+  }
+  meanings {
     heading
     id
-    navigationBar {
-      id
-      section
-      heading
-    }
-    backgroundAnimation {
-      url
+    backgroundImage {
       alt
-      size
-      height
+      url
       width
-      title
-      tags
+      height
     }
+    meanings {
+      description
+      id
+    }
+  }
+}
+
+query AllPage {
+  header {
+    ...HeadingFragment
+  }
+  aboutMe {
+    ...AboutMeFragment
   }
 }

@@ -4,9 +4,11 @@ query AllPage {
     id
     navigationBar {
       id
+      section
       heading
     }
     backgroundAnimation {
+      url
       alt
       size
       height

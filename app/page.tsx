@@ -11,17 +11,21 @@ export const metadata: Metadata = {
 }
 
 export default async function Page() {
-  const { header, aboutMe, trainingBlock, servicesBlock } = await getDato(AllPageDocument)
+  const { header, aboutMe, trainingBlock, servicesBlock, kontactBlock, footer } = await getDato(AllPageDocument)
   if (!header) {
     return <div>Page not found</div>
   }
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between px-4">
+    <>
       <Header data={header} />
-      <AboutMe data={aboutMe} />
-      <Experience data={trainingBlock} />
-      <Services data={servicesBlock} />
-    </main>
+      <main className="flex min-h-screen flex-col items-center justify-between px-4 overflow-hidden">
+        <AboutMe data={aboutMe} />
+        <Experience data={trainingBlock} />
+        <Services data={servicesBlock} />
+      </main>
+      <footer className="flex items-center justify-center w-full h-20 bg-gray-800 text-white mt-8">
+        {footer?.title && <p>{footer?.title} </p>}
+      </footer>    </>
+
   )
 }
-

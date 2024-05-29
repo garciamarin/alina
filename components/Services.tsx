@@ -16,7 +16,7 @@ export default function Services({ data }: { data: AllPageQuery['servicesBlock']
                 </div>
             }
             <ul
-                className="flex flex-col gap-4 items-center w-screen"
+                className="flex flex-col gap-4 items-center"
                 style={{ background: `url(${data?.serviceList[0].animationImages[0].url}) no-repeat center/cover` }}
             >
                 {

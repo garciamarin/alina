@@ -44,6 +44,13 @@ fragment AboutMeFragment on AboutMeRecord {
       id
     }
   }
+  profilePicture {
+    width
+    url
+    title
+    height
+    alt
+  }
 }
 
 fragment ExperienceFragment on TrainingBlockRecord {
@@ -104,6 +111,24 @@ fragment ServicesFragment on ServicesBlockRecord {
   }
 }
 
+fragment ContactFragment on KontactBlockRecord {
+  displayName
+  basicContent {
+    animation {
+      url
+      width
+      title
+      height
+    }
+    image {
+      url
+      width
+      height
+      alt
+    }
+  }
+}
+
 query AllPage {
   header {
     ...HeadingFragment
@@ -116,5 +141,17 @@ query AllPage {
   }
   servicesBlock {
     ...ServicesFragment
+  }
+  kontactBlock {
+    ...ContactFragment
+  }
+  footer {
+    title
+    links {
+      link
+      id
+      displayTitle
+    }
+    introText
   }
 }

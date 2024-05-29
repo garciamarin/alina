@@ -46,11 +46,75 @@ fragment AboutMeFragment on AboutMeRecord {
   }
 }
 
+fragment ExperienceFragment on TrainingBlockRecord {
+  displayName
+  id
+  experience {
+    year
+    id
+    events
+    backgroundImage {
+      url
+      width
+      height
+      alt
+    }
+  }
+}
+
+fragment ServicesFragment on ServicesBlockRecord {
+  title
+  serviceList {
+    name
+    id
+    description
+    audioList {
+      audio {
+        url
+        title
+      }
+    }
+    animationImages {
+      url
+      title
+      width
+      height
+    }
+  }
+  id
+  basicContent {
+    introText
+    image {
+      url
+      title
+      width
+      height
+    }
+    id
+    heading
+    backgroundImages {
+      image {
+        url
+        width
+        title
+        height
+      }
+      id
+    }
+  }
+}
+
 query AllPage {
   header {
     ...HeadingFragment
   }
   aboutMe {
     ...AboutMeFragment
+  }
+  trainingBlock {
+    ...ExperienceFragment
+  }
+  servicesBlock {
+    ...ServicesFragment
   }
 }

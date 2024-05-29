@@ -1,16 +1,17 @@
 import { getDato } from "@/lib/datocms"
-import { AllPageDocument, AllPageQuery } from '@/.graphql/datoTypes'
+import { AllPageDocument } from '@/.graphql/datoTypes'
 import { Metadata } from 'next'
 import Header from "@/components/Header"
 import AboutMe from "@/components/AboutMe"
 import Experience from "@/components/Experience"
 
+import Services from "@/components/Services"
 export const metadata: Metadata = {
   title: 'Alina Salzer',
 }
 
 export default async function Page() {
-  const { header, aboutMe, trainingBlock } = await getDato(AllPageDocument)
+  const { header, aboutMe, trainingBlock, servicesBlock } = await getDato(AllPageDocument)
   if (!header) {
     return <div>Page not found</div>
   }
@@ -19,8 +20,8 @@ export default async function Page() {
       <Header data={header} />
       <AboutMe data={aboutMe} />
       <Experience data={trainingBlock} />
-      <div id="services">Services Section</div>
-      <div id="contact">Contact Section</div>
+      <Services data={servicesBlock} />
     </main>
   )
 }
+

@@ -13,8 +13,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${urbanist.variable} ${bahnSchrift.variable} font-sans text-justify`}>
+    <html lang="en" className="text-justify">
+      <body className={`${urbanist.variable} ${bahnSchrift.variable} font-sans`}>
         {children}
       </body >
     </html >

@@ -1,13 +1,12 @@
 import { AllPageQuery } from "@/.graphql/datoTypes"
 import Link from "next/link"
 import Image from "next/image"
-import { bahnSchrift } from "@/lib/fonts"
 
 export default function Header({ data }: { data: AllPageQuery['header'] }) {
     const lastAnimationImage = data?.backgroundAnimation.find((image) => image.title === "final")
     return (
-        <header className="px-4 lg:px-10 flex justify-between items-start">
-            <div className="w-2/3">
+        <header className="px-4 lg:px-10 flex justify-between items-start gap-4">
+            <div className="md:w-2/3">
                 {lastAnimationImage &&
                     <Image
                         className=""

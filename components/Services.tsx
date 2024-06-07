@@ -1,5 +1,4 @@
 import { AllPageQuery, ServicesFragmentFragment } from "@/.graphql/datoTypes"
-import { bahnSchrift } from "@/lib/fonts"
 import image from '@/public/svg/dolmetschen_mund.svg'
 import bubble from '@/public/svg/bubble.svg'
 import Image from 'next/image'
@@ -19,16 +18,16 @@ export default function Services({ data }: { data: AllPageQuery['servicesBlock']
                 </div>
             }
             <ul
-                className="flex flex-col gap-4 items-center"
+                className="flex flex-col gap-4 items-start"
             // style={{ background: `url(${data?.serviceList[0].animationImages[0].url}) no-repeat center/cover` }}
             >
                 {
                     data?.serviceList.map((service) => {
                         if (service.name === "SPRECHPROBEN") return
-                        return <li key={service.id} className="flex items-center justify-center gap-4">
+                        return <li key={service.id} className="flex items-center justify-start gap-4 w-full">
                             <span className="font-bold">{service.name}</span>
                             <Image src={image} alt="" width={50} height={50} />
-                            <div className="w-[300px]">
+                            <div className="ml-auto text-right">
                                 <span>{service.description}</span>
                             </div>
                         </li>

@@ -1,5 +1,4 @@
 import { AllPageQuery } from "@/.graphql/datoTypes"
-import { bahnSchrift } from "@/lib/fonts"
 import Image from 'next/image'
 
 export default function AboutMe({ data }: { data: AllPageQuery['aboutMe'] }) {
@@ -16,12 +15,12 @@ export default function AboutMe({ data }: { data: AllPageQuery['aboutMe'] }) {
                     </div>
                     <Image src={data?.profilePicture?.url!} alt={data?.profilePicture?.alt!} width={150} height={150} />
                 </div>
-                {data?.introText && <p className="text-center">{data?.introText}</p>}
+                {data?.introText && <p>{data?.introText}</p>}
             </ div>
             <div
                 className="flex flex-col gap-2 items-center justify-center"
             >
-                <div className="h-fit w-fit relative flex content-center items-center">
+                <div className="flex content-center items-center">
                     <Image src={data?.meanings?.backgroundImage?.url!} width={50} height={50} alt={data?.image?.alt || ""} />
                     {data?.meanings?.heading &&
                         <h3 className="text-xl"
@@ -30,7 +29,7 @@ export default function AboutMe({ data }: { data: AllPageQuery['aboutMe'] }) {
                             {data?.meanings?.heading}
                         </h3>}
                 </div>
-                <ul className="grid grid-cols-2">
+                <ul className="grid grid-cols-2 text-center gap-4">
                     {data?.meanings?.meanings?.map((meaning) => {
                         return meaning.description &&
                             <li key={meaning.id}>

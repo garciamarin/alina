@@ -1,12 +1,11 @@
 import { AllPageQuery } from "@/.graphql/datoTypes";
-import { bahnSchrift } from "@/lib/fonts"
 import Image from "next/image";
 
 export default function Experience({ data }: { data: AllPageQuery['trainingBlock'] }) {
     return (
         <section id="experience" className="section">
-            <ul className="grid grid-cols-2 gap-10 mt-4" >
-                <div className="h-fit w-fit relative flex content-center items-center">
+            <ul className="grid grid-cols-1 md:grid-cols-2 gap-10 mt-4" >
+                <div className="place-content-center flex content-center items-center">
                     <Image src={data?.experience[0].backgroundImage?.url!} width={50} height={50} alt={data?.experience[0].backgroundImage?.url || ""} />
                     {data?.experience &&
                         <h2

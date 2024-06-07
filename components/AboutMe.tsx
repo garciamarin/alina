@@ -29,7 +29,7 @@ export default function AboutMe({ data }: { data: AllPageQuery['aboutMe'] }) {
                             {data?.meanings?.heading}
                         </h3>}
                 </div>
-                <ul className="grid grid-cols-2 text-center gap-4">
+                <ul className="grid grid-cols-2 text-center gap-4 items-center">
                     {data?.meanings?.meanings?.map((meaning) => {
                         return meaning.description &&
                             <li key={meaning.id}>

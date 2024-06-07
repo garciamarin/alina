@@ -32,7 +32,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${urbanist.className} font-sans`}>{children}</body >
+      <body className={`${urbanist.className} font-sans text-justify`}>{children}</body >
     </html >
   );
 }

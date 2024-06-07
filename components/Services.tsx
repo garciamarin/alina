@@ -1,6 +1,7 @@
 import { AllPageQuery, ServicesFragmentFragment } from "@/.graphql/datoTypes"
 import { bahnSchrift } from "@/app/layout"
 import image from '@/public/svg/dolmetschen_mund.svg'
+import bubble from '@/public/svg/bubble.svg'
 import Image from 'next/image'
 
 
@@ -8,9 +9,10 @@ export default function Services({ data }: { data: AllPageQuery['servicesBlock']
     return (
         <section id="services" className="section">
             {data?.basicContent?.heading &&
-                <div
-                    className="items-center flex"
-                    style={{ background: `url(${data?.basicContent.backgroundImages[0].image?.url}) no-repeat center/cover` }}>
+                <div className="flex items-center justify-center"
+                // style={{ background: `url(${data?.basicContent.backgroundImages[0].image?.url})` }}
+                >
+                    <Image src={data?.basicContent.backgroundImages[0].image?.url!} width={50} height={50} alt={data?.basicContent.backgroundImages[0].image?.url || ""} />
                     <h2 className={`section-header ${bahnSchrift.className}`} >
                         {data?.basicContent.heading}
                     </h2>
@@ -18,7 +20,7 @@ export default function Services({ data }: { data: AllPageQuery['servicesBlock']
             }
             <ul
                 className="flex flex-col gap-4 items-center"
-                style={{ background: `url(${data?.serviceList[0].animationImages[0].url}) no-repeat center/cover` }}
+            // style={{ background: `url(${data?.serviceList[0].animationImages[0].url}) no-repeat center/cover` }}
             >
                 {
                     data?.serviceList.map((service) => {
@@ -41,7 +43,10 @@ export default function Services({ data }: { data: AllPageQuery['servicesBlock']
 function AudioSamples({ audioSamples }: { audioSamples: ServicesFragmentFragment['serviceList'][0] }) {
     return (
         <div className="section">
-            <h2 className={`section-header ${bahnSchrift.className}`}>{audioSamples.name}</h2>
+            <div className="flex items-center justify-center">
+                <Image src={bubble} width={50} height={50} alt={""} />
+                <h2 className={`section-header ${bahnSchrift.className}`}>{audioSamples.name}</h2>
+            </div>
             <ul>
                 {audioSamples.audioList.map(sample => {
                     return (

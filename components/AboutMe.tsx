@@ -7,10 +7,10 @@ export default function AboutMe({ data }: { data: AllPageQuery['aboutMe'] }) {
         <section id="about_me" className="section">
             <div
                 className="flex flex-col gap-4 items-center justify-center"
-                style={{ background: `url(${data?.image?.url}) no-repeat center/70%` }}
+                style={{ background: `url(${data?.image?.url}) no-repeat left/60%` }}
             >
                 <div className="flex gap-8 items-center">
-                    <div className={`${bahnSchrift.className} flex flex-col justify-start`}>
+                    <div className={`${bahnSchrift.className} flex flex-col items-start justify-start gap-4`}>
                         {data?.title && <h2 className="section-header" >{data?.title}</h2>}
                         {data?.subtitle && <h2 className="section-header">{data?.subtitle}</h2>}
                     </div>
@@ -20,9 +20,16 @@ export default function AboutMe({ data }: { data: AllPageQuery['aboutMe'] }) {
             </ div>
             <div
                 className="flex flex-col gap-2 items-center justify-center"
-                style={{ background: `url(${data?.meanings?.backgroundImage?.url}) no-repeat center/cover` }}
             >
-                {data?.meanings?.heading && <h3 className={`${bahnSchrift.className} text-xl`}>{data?.meanings?.heading}</h3>}
+                <div className="h-fit w-fit relative flex content-center items-center">
+                    <Image src={data?.meanings?.backgroundImage?.url!} width={50} height={50} alt={data?.image?.alt || ""} />
+                    {data?.meanings?.heading &&
+                        <h3 className={`${bahnSchrift.className} text-xl`}
+                        // style={{ background: `url(${data?.meanings?.backgroundImage?.url}) no-repeat center/cover` }}
+                        >
+                            {data?.meanings?.heading}
+                        </h3>}
+                </div>
                 <ul className="grid grid-cols-2">
                     {data?.meanings?.meanings?.map((meaning) => {
                         return meaning.description &&

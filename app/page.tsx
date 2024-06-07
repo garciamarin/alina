@@ -24,8 +24,9 @@ export default async function Page() {
         <Services data={servicesBlock} />
       </main>
       <footer className="flex items-center justify-center w-full h-20 bg-gray-800 text-white mt-8">
-        {footer?.title && <p>{footer?.title} </p>}
-      </footer>    </>
+        {footer?.title && <p>{footer?.title}</p>}
+      </footer>
+    </>
 
   )
 }

@@ -1,5 +1,5 @@
 import { AllPageQuery, ServicesFragmentFragment } from "@/.graphql/datoTypes"
-import { bahnSchrift } from "@/app/layout"
+import { bahnSchrift } from "@/lib/fonts"
 import image from '@/public/svg/dolmetschen_mund.svg'
 import bubble from '@/public/svg/bubble.svg'
 import Image from 'next/image'
@@ -13,7 +13,7 @@ export default function Services({ data }: { data: AllPageQuery['servicesBlock']
                 // style={{ background: `url(${data?.basicContent.backgroundImages[0].image?.url})` }}
                 >
                     <Image src={data?.basicContent.backgroundImages[0].image?.url!} width={50} height={50} alt={data?.basicContent.backgroundImages[0].image?.url || ""} />
-                    <h2 className={`section-header ${bahnSchrift.className}`} >
+                    <h2 className="section-header">
                         {data?.basicContent.heading}
                     </h2>
                 </div>
@@ -45,7 +45,7 @@ function AudioSamples({ audioSamples }: { audioSamples: ServicesFragmentFragment
         <div className="section">
             <div className="flex items-center justify-center">
                 <Image src={bubble} width={50} height={50} alt={""} />
-                <h2 className={`section-header ${bahnSchrift.className}`}>{audioSamples.name}</h2>
+                <h2 className="section-header">{audioSamples.name}</h2>
             </div>
             <ul>
                 {audioSamples.audioList.map(sample => {

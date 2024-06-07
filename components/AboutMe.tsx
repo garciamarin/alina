@@ -1,5 +1,5 @@
 import { AllPageQuery } from "@/.graphql/datoTypes"
-import { bahnSchrift } from "@/app/layout"
+import { bahnSchrift } from "@/lib/fonts"
 import Image from 'next/image'
 
 export default function AboutMe({ data }: { data: AllPageQuery['aboutMe'] }) {
@@ -10,7 +10,7 @@ export default function AboutMe({ data }: { data: AllPageQuery['aboutMe'] }) {
                 style={{ background: `url(${data?.image?.url}) no-repeat left/60%` }}
             >
                 <div className="flex gap-8 items-center">
-                    <div className={`${bahnSchrift.className} flex flex-col items-start justify-start gap-4`}>
+                    <div className={`font-sans flex flex-col items-start justify-start gap-4`}>
                         {data?.title && <h2 className="section-header" >{data?.title}</h2>}
                         {data?.subtitle && <h2 className="section-header">{data?.subtitle}</h2>}
                     </div>
@@ -24,7 +24,7 @@ export default function AboutMe({ data }: { data: AllPageQuery['aboutMe'] }) {
                 <div className="h-fit w-fit relative flex content-center items-center">
                     <Image src={data?.meanings?.backgroundImage?.url!} width={50} height={50} alt={data?.image?.alt || ""} />
                     {data?.meanings?.heading &&
-                        <h3 className={`${bahnSchrift.className} text-xl`}
+                        <h3 className="text-xl"
                         // style={{ background: `url(${data?.meanings?.backgroundImage?.url}) no-repeat center/cover` }}
                         >
                             {data?.meanings?.heading}

@@ -1,8 +1,24 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import "./globals.css";
+import { Urbanist } from "next/font/google";
+import localFont from "next/font/local";
+import "./globalStyles.css";
 
-const inter = Inter({ subsets: ["latin"] });
+export const urbanist = Urbanist(
+  {
+    subsets: ["latin"],
+    variable: "--font-urbanist",
+  }
+);
+
+export const bahnSchrift = localFont({
+  src: [
+    {
+      path: '../public/fonts/bahnschrift.ttf',
+      weight: '400'
+    },
+  ],
+  variable: '--font-bahnschrift'
+})
 
 export const metadata: Metadata = {
   title: "alina",
@@ -16,7 +32,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
-    </html>
+      <body className={`${urbanist.className} font-sans`}>{children}</body >
+    </html >
   );
 }

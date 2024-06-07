@@ -1,16 +1,17 @@
 import { AllPageQuery, ServicesFragmentFragment } from "@/.graphql/datoTypes"
+import { bahnSchrift } from "@/app/layout"
 import image from '@/public/svg/dolmetschen_mund.svg'
 import Image from 'next/image'
 
 
 export default function Services({ data }: { data: AllPageQuery['servicesBlock'] }) {
     return (
-        <section id="services" className="flex flex-col gap-4 text-center mt-8">
+        <section id="services" className="section">
             {data?.basicContent?.heading &&
                 <div
-                    className="h-[100px] items-center flex"
+                    className="items-center flex"
                     style={{ background: `url(${data?.basicContent.backgroundImages[0].image?.url}) no-repeat center/cover` }}>
-                    <h2 className="section-header" >
+                    <h2 className={`section-header ${bahnSchrift.className}`} >
                         {data?.basicContent.heading}
                     </h2>
                 </div>
@@ -39,9 +40,9 @@ export default function Services({ data }: { data: AllPageQuery['servicesBlock']
 
 function AudioSamples({ audioSamples }: { audioSamples: ServicesFragmentFragment['serviceList'][0] }) {
     return (
-        <div>
-            <h1 className="section-header">{audioSamples.name}</h1>
-            <ul className="mt-8">
+        <div className="section">
+            <h2 className={`section-header ${bahnSchrift.className}`}>{audioSamples.name}</h2>
+            <ul>
                 {audioSamples.audioList.map(sample => {
                     return (
                         <li className="flex items-center gap-4 justify-center" key={sample.displayName}>

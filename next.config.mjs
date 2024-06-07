@@ -1,7 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ["www.datocms-assets.com"],
+    remotePatterns: [
+      {
+        hostname: "www.datocms-assets.com",
+      },
+    ],
   },
 };
 

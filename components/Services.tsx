@@ -1,4 +1,4 @@
-import { AllPageQuery } from "@/.graphql/datoTypes"
+import { AllPageQuery, ServicesFragmentFragment } from "@/.graphql/datoTypes"
 import image from '@/public/svg/dolmetschen_mund.svg'
 import Image from 'next/image'
 
@@ -10,7 +10,7 @@ export default function Services({ data }: { data: AllPageQuery['servicesBlock']
                 <div
                     className="h-[100px] items-center flex"
                     style={{ background: `url(${data?.basicContent.backgroundImages[0].image?.url}) no-repeat center/cover` }}>
-                    <h2 className="text-3xl font-bold" >
+                    <h2 className="section-header" >
                         {data?.basicContent.heading}
                     </h2>
                 </div>
@@ -20,17 +20,39 @@ export default function Services({ data }: { data: AllPageQuery['servicesBlock']
                 style={{ background: `url(${data?.serviceList[0].animationImages[0].url}) no-repeat center/cover` }}
             >
                 {
-                    data?.serviceList.map((service) => (
-                        <li key={service.id} className="flex items-center justify-center gap-4">
+                    data?.serviceList.map((service) => {
+                        if (service.name === "SPRECHPROBEN") return
+                        return <li key={service.id} className="flex items-center justify-center gap-4">
                             <span className="font-bold">{service.name}</span>
                             <Image src={image} alt="" width={50} height={50} />
                             <div className="w-[300px]">
                                 <span>{service.description}</span>
                             </div>
                         </li>
-                    ))
+                    })
                 }
             </ul>
+            <AudioSamples audioSamples={data?.serviceList.find(service => service.name === "SPRECHPROBEN")!} />
         </section>
+    )
+}
+
+function AudioSamples({ audioSamples }: { audioSamples: ServicesFragmentFragment['serviceList'][0] }) {
+    return (
+        <div>
+            <h1 className="section-header">{audioSamples.name}</h1>
+            <ul className="mt-8">
+                {audioSamples.audioList.map(sample => {
+                    return (
+                        <li className="flex items-center gap-4 justify-center" key={sample.displayName}>
+                            <span>{sample.displayName}</span>
+                            <audio controls>
+                                <source src={sample.audio?.url} type="audio/mpeg" />
+                            </audio>
+                        </li>
+                    )
+                })}
+            </ul >
+        </div >
     )
 }

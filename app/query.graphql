@@ -80,6 +80,8 @@ fragment ServicesFragment on ServicesBlockRecord {
         url
         title
       }
+      displayName
+      language
     }
     animationImages {
       url

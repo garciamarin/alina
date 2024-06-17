@@ -19,7 +19,7 @@ export default function Experience({ data }: { data: AllPageQuery['trainingBlock
                     >
                         <span className="font-bold">{experience.year}</span>
                         {experience.event.map((event) => (
-                            <span className="inline"><b>{event.title}</b> {event.description}</span>
+                            <span key={event.title} className="inline"><b>{event.title}</b> {event.description}</span>
                         ))}
                     </li>
                 ))}

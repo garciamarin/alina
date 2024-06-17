@@ -10,16 +10,17 @@ export default function Experience({ data }: { data: AllPageQuery['trainingBlock
                     {data?.experience &&
                         <h2
                             className="section-header bg-center bg-no-repeat flex items-center justify-center h-full"
-                        // style={{ background: `url(${data.experience[0].backgroundImage?.url})` }}
                         >
                             {data?.displayName}
                         </h2>}
                 </div>
                 {data?.experience.map((experience) => (
-                    <li key={experience.id} className="flex flex-col items-center overflow-visible -m-8 p-8"
-                    // style={{ background: `url(${experience.backgroundImage?.url}) no-repeat center/105%` }}
+                    <li key={experience.id} className="flex flex-col items-start overflow-visible -m-8 p-8 text-left"
                     >
-                        <span>{experience.year}</span>
+                        <span className="font-bold">{experience.year}</span>
+                        {experience.event.map((event) => (
+                            <span className="inline"><b>{event.title}</b> {event.description}</span>
+                        ))}
                     </li>
                 ))}
             </ul>

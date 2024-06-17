@@ -59,7 +59,10 @@ fragment ExperienceFragment on TrainingBlockRecord {
   experience {
     year
     id
-    events
+    event {
+      title
+      description
+    }
     backgroundImage {
       url
       width
@@ -154,6 +157,5 @@ query AllPage {
       id
       displayTitle
     }
-    introText
   }
 }

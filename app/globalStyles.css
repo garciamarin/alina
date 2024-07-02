@@ -13,7 +13,7 @@
   @apply text-3xl font-bold;
   }
   .section{
-  @apply flex flex-col gap-10 mt-16;
+  @apply flex flex-col gap-10 mt-16 max-w-full;
   }
   h1, h2, h3, h4, h5, h6 { 
    @apply font-mono;
@@ -21,4 +21,17 @@
   body {
     @apply text-justify
   }
+}
+
+.gradient {
+  background: linear-gradient(
+    to right,
+    white 0%,
+    white 20%,
+    rgb(255 255 255 / 0%) 100%
+  );
+  width: 100px;
+  height: 100%;
+  position: absolute;
+  z-index: 3;
 }

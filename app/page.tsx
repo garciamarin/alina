@@ -18,7 +18,7 @@ export default async function Page() {
   return (
     <>
       <Header data={header} />
-      <main className="mx-auto flex min-h-screen flex-col items-center content-center px-4 lg:px-14 overflow-hidden max-w-screen-md">
+      <main className="mx-auto flex min-h-screen flex-col items-center content-center px-4 lg:px-14 max-w-screen-md">
         <AboutMe data={aboutMe} />
         <Experience data={trainingBlock} />
         <Services data={servicesBlock} />

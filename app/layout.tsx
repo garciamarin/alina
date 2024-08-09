@@ -14,7 +14,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="text-justify">
-      <body className={`${urbanist.variable} ${bahnSchrift.variable} font-sans`}>
+      <body className={`${urbanist.variable} ${bahnSchrift.variable} font-sans bg-[#edebec]`}>
         {children}
       </body >
     </html >

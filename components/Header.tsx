@@ -6,7 +6,7 @@ import logo from "@/public/images/logo.png"
 export default function Header({ data }: { data: AllPageQuery['header'] }) {
     return (
         <header className="px-4 lg:px-10 flex justify-between items-start gap-4">
-            <div className="md:w-2/3">
+            <div className="md:w-1/2">
                 <Image
                     className=""
                     src={logo}
@@ -18,7 +18,7 @@ export default function Header({ data }: { data: AllPageQuery['header'] }) {
                 <ul className="flex lg:space-x-8 space-x-4 font-medium font-mono">
                     {data?.navigationBar.map((navItem) => (
                         <li key={navItem.id}>
-                            <Link href={`#${navItem.section}`}>{navItem.heading}</Link>
+                            <Link className="text-xl" href={`#${navItem.section}`}>{navItem.heading}</Link>
                         </li>
                     ))}
                 </ul>

@@ -1,63 +1,125 @@
+'use client'
+
 import { AllPageQuery } from "@/.graphql/datoTypes"
 import Image from 'next/image'
+import { useEffect, useState } from "react"
+import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io"
 
 export default function AboutMe({ data }: { data: AllPageQuery['aboutMe'] }) {
+    const [currentMeaningIndex, setCurrentMeaningIndex] = useState<number | undefined>(undefined)
+    const meaningsArray = data?.meanings?.meanings.map(meaning => meaning.description)!
+    const meaningsArrayLength = meaningsArray?.length!
+    const introText = data?.introText!.split("\n")!
+
+    const [isFadingOut, setIsFadingOut] = useState(false);
+    const [text, setText] = useState(meaningsArray[currentMeaningIndex!]);
+
+    useEffect(() => {
+        setIsFadingOut(true); // Start fade-out
+
+        const timeout = setTimeout(() => {
+            setText(meaningsArray[currentMeaningIndex!]); // Change the text after fade-out
+            setIsFadingOut(false); // Start fade-in
+        }, 300); // Duration matches the fade-out duration
+
+        return () => clearTimeout(timeout);
+    }, [currentMeaningIndex]);
+
+
+    function handleMeaningNavigation(type: "next" | "prev") {
+        if (currentMeaningIndex === undefined) {
+            setCurrentMeaningIndex(0);
+            return
+        }
+
+
+        const modifyIndex = (index: number) => type === "next" ?
+            (currentMeaningIndex! + 1) % meaningsArrayLength :
+            (currentMeaningIndex! - 1 + meaningsArrayLength!) % meaningsArrayLength!
+        setCurrentMeaningIndex(currentMeaningIndex => modifyIndex(currentMeaningIndex!))
+        console.log('curren', currentMeaningIndex)
+    }
+
     return (
-        <section id="about_me" className="section">
+        <section id="about_me" className="section !gap-0">
             {/* Intro block */}
             <div
-                className="realtive flex flex-col gap-4 items-center justify-center h-fit"
+                className="flex flex-col gap-4 items-center justify-between h-fit"
             >
-                <Image
-                    className="max-w-screen-lg h-full -z-10 lg:!left-16 !top-4 lg:!top-16"
-                    src={data?.image?.url!}
-                    alt={data?.image?.alt!}
-                    fill
-                />
-                <div className="flex gap-8 items-center justify-between relative w-full">
-                    <div className={`font-sans flex flex-col items-start justify-start gap-4`}>
-                        {data?.title && <h2 className="!text-4xl section-header" >{data?.title}</h2>}
-                        {data?.subtitle && <h3 className="text-2xl">{data?.subtitle}</h3>}
+                <div className="absolute top-[200px] right-0 -z-10 mt-16">
+                    <Image
+                        className="ml-auto"
+                        src={data?.image?.url!}
+                        alt={data?.image?.alt!}
+                        height={data?.image?.height!}
+                        width={data?.image?.width!}
+                    />
+                </div>
+                <div className="flex items-baseline justify-between relative w-full">
+                    <div className="font-sans">
+                        {data?.title && <h2 className="!font-thin !text-4xl section-header" >{data?.title}</h2>}
                     </div>
-                    <div className="relative w-[180px] h-[180px] lg:w-[250px] lg:h-[250px]">
-                        <Image src={data?.profilePicture?.url!} alt={data?.profilePicture?.alt!} className="object-contain" fill />
+                    <div className="relative w-[220px] h-[220px] lg:w-[230px] lg:h-[230px]">
+                        <Image
+                            src={data?.profilePicture?.url!}
+                            alt={data?.profilePicture?.alt!}
+                            width={data?.profilePicture?.width!}
+                            height={data?.profilePicture?.height!}
+                        />
                     </div>
                 </div>
-                {data?.introText && <p className="max-w-screen-md">{data?.introText}</p>}
+                <div className="mt-4 flex flex-col gap-4">
+                    {data?.introText && <p className="max-w-screen-md">{introText[0]}</p>}
+                    {data?.introText && <p className="max-w-screen-md">{introText[1]}</p>}
+                </div>
+
             </ div>
             {/* Meanings block */}
             <div
-                className="flex flex-col gap-2 items-center justify-center"
+                className="flex flex-col gap-2 items-center justify-center mt-32"
             >
-                <div className="flex content-center items-center">
+                <div className="flex justify-self-start items-center md:mr-auto">
                     {data?.meanings?.heading &&
                         <h3 className="text-xl"
                         >
                             {data?.meanings?.heading}...
                         </h3>}
                 </div>
-                <div className="relative max-w-full h-[300px]">
-                    <div className="absolute left-1/2 -translate-x-1/2 w-screen">
-                        <div className="hidden md:block gradient -left-1" />
-                        <ul
-                            className='p-4 px-32 lg:px-32 overflow-x-scroll grid grid-row-1 grid-flow-col items-center horizontal-scroll-animation'
-                        >
-                            {data?.meanings?.meanings?.map((testimonial) => (
-                                <div
-                                    key={testimonial.id}
-                                    className="relative h-[280px] !w-[400px] text-center flex align-middl !bg-center !bg-no-repeat"
-                                    style={{ background: `url(${data?.meanings?.backgroundImage?.url!})` }}
-                                >
-                                    <li className="absolute top-1/2 left-1/2 w-[150px] -translate-y-1/2 -translate-x-1/2" >
-                                        {testimonial.description}
-                                    </li>
-                                </div>
-                            ))}
-                        </ul>
-                        <div className="hidden md:block gradient top-0 -right-1 rotate-180" />
+                <div className="relative p-6">
+                    <Image
+                        className="p-4"
+                        src={data?.meanings?.backgroundImage?.url!}
+                        alt={data?.image?.alt!}
+                        fill
+                    />
+
+                    <div
+                        className='-m-6 relative h-[350px] !w-[450px] text-center flex justify-between items-center'
+                    >
+                        <button
+                            className="flex items-center justify-center w-10 h-10  rounded-full hover:bg-slate-300  transition duration-200 ease-in-out"
+                            onClick={() => handleMeaningNavigation("prev")}>
+                            <IoIosArrowBack className="h-5 w-5" />
+                        </button>
+                        <button
+                            className="flex items-center justify-center w-10 h-10  rounded-full hover:bg-slate-300  transition duration-200 ease-in-out"
+                            onClick={() => handleMeaningNavigation("next")}>
+                            <IoIosArrowForward className="h-5 w-5" />
+                        </button>
+                        <div className="absolute  top-1/2 left-1/2 w-[150px] -translate-y-1/2 -translate-x-1/2" >
+                            <p className={`
+                            transition-opacity duration-300 ease-in-out 
+                            ${isFadingOut ? 'opacity-0' : 'opacity-100'}`}
+                            >
+                                {text}
+                            </p>
+                        </div>
+
+
                     </div>
                 </div>
             </div>
+            <div className="w-screen"></div>
         </section >
     )
 }

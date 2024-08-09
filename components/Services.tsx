@@ -14,14 +14,12 @@ export default function Services({ data }: { data: AllPageQuery['servicesBlock']
                 <div className="relative h-[300px] !bg-no-repeat !bg-center"
                     style={{ background: `url(${data?.basicContent.image?.url!})` }}
                 >
-                    <h2 className="section-header absolute top-[30%] md:top-[25%] left-1/2 w-[200px] -translate-x-1/2">
-                        {data?.basicContent.heading}
-                    </h2>
                 </div>
             }
-            <div className="relative !bg-no-repeat !bg-center h-[480px] !bg-contain">
+            <div className="relative  !bg-no-repeat !bg-center h-[480px] !bg-contain
+            ">
                 <div className="absolute top-0 left-0 w-full h-full !bg-no-repeat !bg-center !bg-cover -z-10"
-                    style={{ background: `url(${data?.basicContent?.backgroundImages?.[0]?.image?.url})` }}
+                // style={{ background: `url(${data?.})` }}
                 />
                 <div>
                     <ul className="absolute top-1/3 w-[150px] -translate-y-1/2 flex flex-col gap-4">

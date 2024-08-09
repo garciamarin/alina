@@ -87,15 +87,13 @@ export default function AboutMe({ data }: { data: AllPageQuery['aboutMe'] }) {
                 </div>
                 <div className="relative p-6">
                     <Image
-                        className="p-4"
+                        className="p-16 md:p-4"
                         src={data?.meanings?.backgroundImage?.url!}
                         alt={data?.image?.alt!}
                         fill
                     />
 
-                    <div
-                        className='-m-6 relative h-[350px] !w-[450px] text-center flex justify-between items-center'
-                    >
+                    <div className='flex md:-m-6 relative w-screen h-[350px] md:h-[350px] md:!w-[450px] text-center justify-between items-center'>
                         <button
                             className="flex items-center justify-center w-10 h-10  rounded-full hover:bg-slate-300  transition duration-200 ease-in-out"
                             onClick={() => handleMeaningNavigation("prev")}>
@@ -114,8 +112,6 @@ export default function AboutMe({ data }: { data: AllPageQuery['aboutMe'] }) {
                                 {text}
                             </p>
                         </div>
-
-
                     </div>
                 </div>
             </div>

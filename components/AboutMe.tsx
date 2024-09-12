@@ -6,7 +6,7 @@ import { useEffect, useState } from "react"
 import { IoIosArrowBack, IoIosArrowDropdown, IoIosArrowForward } from "react-icons/io"
 
 export default function AboutMe({ data }: { data: AllPageQuery['aboutMe'] }) {
-    const [currentMeaningIndex, setCurrentMeaningIndex] = useState<number | undefined>(undefined)
+    const [currentMeaningIndex, setCurrentMeaningIndex] = useState<number | undefined>(0)
     const meaningsArray = data?.meanings?.meanings.map(meaning => meaning.description)!
     const meaningsArrayLength = meaningsArray?.length!
     const introText = data?.introText!.split("\n")!
@@ -37,7 +37,6 @@ export default function AboutMe({ data }: { data: AllPageQuery['aboutMe'] }) {
             (currentMeaningIndex! + 1) % meaningsArrayLength :
             (currentMeaningIndex! - 1 + meaningsArrayLength!) % meaningsArrayLength!
         setCurrentMeaningIndex(currentMeaningIndex => modifyIndex(currentMeaningIndex!))
-        console.log('curren', currentMeaningIndex)
     }
 
     return (
@@ -56,7 +55,7 @@ export default function AboutMe({ data }: { data: AllPageQuery['aboutMe'] }) {
                     />
                 </div>
                 <div className="h-screen absolute top-0 flex flex-col">
-                    <div className="h-[300px] mt-16"></div>
+                    <div className="h-[300px] md:mt-16"></div>
                     <div className="flex items-baseline justify-between relative w-full">
                         <div className="font-sans">
                             {data?.title && <h2 className="!font-thin !text-4xl section-header" >{data?.title}</h2>}
@@ -70,7 +69,7 @@ export default function AboutMe({ data }: { data: AllPageQuery['aboutMe'] }) {
                             />
                         </div>
                     </div>
-                    <div className="mt-12 flex flex-col gap-4">
+                    <div className="mt-4 md:mt-12 flex flex-col gap-4 mb-4">
                         {data?.introText && <p className="max-w-screen-md">{introText[0]}</p>}
                         {data?.introText && <p className="max-w-screen-md">{introText[1]}</p>}
                     </div>
@@ -80,7 +79,7 @@ export default function AboutMe({ data }: { data: AllPageQuery['aboutMe'] }) {
                                 <h3 className="text-xl inline-block scroll-m-4" id="meanings"                                >
                                     {data?.meanings?.heading}...
                                 </h3>
-                                <IoIosArrowDropdown className="h-6 w-6" />
+                                <IoIosArrowDropdown className="h-6 w-6 md:block hidden" />
                             </a>
                         }
                     </div>
@@ -88,10 +87,9 @@ export default function AboutMe({ data }: { data: AllPageQuery['aboutMe'] }) {
             </ div>
             {/* Meanings block */}
             <div
-                className="flex flex-col gap-2 items-center justify-start h-[30vh]"
+                className="flex flex-col gap-2 items-center justify-start md:h-[30vh]"
             >
-
-                <div className="relative p-6">
+                <div className="relative md:p-6">
                     <Image
                         className="p-16 md:p-4"
                         src={data?.meanings?.backgroundImage?.url!}

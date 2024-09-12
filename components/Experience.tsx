@@ -5,9 +5,9 @@ export default function Experience({ data }: { data: AllPageQuery['trainingBlock
     return (
         <section id="experience" className="section">
             <ul className="relative grid grid-cols-1 md:grid-cols-2 gap-10" >
-                <div className="h-[150px] mx-auto overflow-visible">
+                <div className="md:h-[150px] mx-auto overflow-visible">
                     <Image
-                        className="-z-10 absolute -left-20 -top-20"
+                        className="-z-10 md:absolute md:-left-20 md:-top-20"
                         src={data?.experience[0].backgroundImage?.url!}
                         width={450}
                         height={450}

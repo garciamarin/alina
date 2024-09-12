@@ -17,16 +17,15 @@ export default function Services({ data }: { data: AllPageQuery['servicesBlock']
                 >
                 </div>
             }
-            <div className="relative  !bg-no-repeat !bg-center !bg-contain">
-                {/* <div className="absolute top-0 left-0 w-full h-full !bg-no-repeat !bg-center !bg-cover -z-10" /> */}
-                <div className="flex items-center justify-around h-[200px] ">
-                    <ul className="flex flex-col gap-4 mx-auto">
+            <div className="relative">
+                <div className="flex flex-col md:flex-row items-center justify-around h-[200px] ">
+                    <ul className="flex md:flex-col gap-4 mx-auto">
                         {
                             data?.serviceList.map((service) => {
                                 if (service.name === "SPRECHPROBEN") return
                                 return (
                                     <li key={service.id} className="">
-                                        <button onClick={() => setSelectedServiceId(service.id)} className="flex items-center justify-start gap-8 w-full">
+                                        <button onClick={() => setSelectedServiceId(service.id)} className="flex flex-col md:flex-row items-center justify-start md:gap-8 w-full">
                                             <span className="font-bold">{service.name}</span>
                                             <Image src={service.animationImages[4].url} alt="" width={50} height={50} />
                                         </button>
@@ -35,7 +34,7 @@ export default function Services({ data }: { data: AllPageQuery['servicesBlock']
                             })
                         }
                     </ul>
-                    <ul className="list-disc md:w-1/2">
+                    <ul className="list-disc md:w-1/2 h-[150px] md:h-auto my-4 md:mt-auto">
                         {(data?.serviceList.find(service => service.id === selectedServiceId)?.description as string)?.split(",").map(
                             (text) => <li key={text}>{text}</li>
                         )}

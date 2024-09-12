@@ -60,7 +60,7 @@ function AudioSamples({ audioSamples }: { audioSamples: ServicesFragmentFragment
                 </button>
             </div>
 
-            <ul className="mt-6 flex gap-4 justify-between h-[80px]">
+            <ul className="mt-6 grid grid-cols-2 gap-4 justify-between h-[160px]">
                 {hasSamples && audioSamples.audioList.map(sample => {
                     return (
                         <li className="flex flex-col items-center  justify-center gap-1" key={sample.displayName}>

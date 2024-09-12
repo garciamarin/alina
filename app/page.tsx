@@ -16,7 +16,8 @@ export default async function Page() {
     return <div>Page not found</div>
   }
   return (
-    <>
+    <div className="relative">
+      <div className="h-screen relative" />
       <Header data={header} />
       <main className="mx-auto flex min-h-screen flex-col items-center content-center px-4 md:px-16 max-w-screen-lg">
         <AboutMe data={aboutMe} />
@@ -26,7 +27,7 @@ export default async function Page() {
       <footer className="flex items-center justify-center w-full h-20 bg-gray-800 text-white mt-8">
         {footer?.title && <p>{footer?.title}</p>}
       </footer>
-    </>
+    </div>
 
   )
 }

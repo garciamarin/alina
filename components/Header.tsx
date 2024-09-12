@@ -5,7 +5,7 @@ import logo from "@/public/images/logo.png"
 
 export default function Header({ data }: { data: AllPageQuery['header'] }) {
     return (
-        <header className="px-4 lg:px-10 flex justify-between items-start gap-4">
+        <header className="px-4 lg:px-10 flex justify-between items-start gap-4 absolute top-0">
             <div className="md:w-1/2">
                 <Image
                     className=""

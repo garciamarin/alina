@@ -93,15 +93,28 @@ export default function AboutMe({ data }: { data: AllPageQuery['aboutMe'] }) {
                         fill
                     />
 
-                    <div className='flex md:-m-6 relative w-screen h-[350px] md:h-[350px] md:!w-[450px] text-center justify-between items-center'>
+                    <div className='flex md:-m-6 relative w-screen h-[350px] max-w-2xl text-center justify-between items-center'>
                         <button
-                            className="flex items-center justify-center w-10 h-10  rounded-full hover:bg-slate-300  transition duration-200 ease-in-out"
-                            onClick={() => handleMeaningNavigation("prev")}>
+                            className="flex items-center justify-center w-10 h-10 rounded-full hover:ring hover:ring-[#E6103490] transition duration-200 ease-in-out"
+                            onClick={() => handleMeaningNavigation("prev")}
+                            style={{
+                                backgroundImage: `url(${data?.meanings?.backgroundImage?.url})`,
+                                backgroundSize: 'cover',
+                                backgroundPosition: 'center',
+                            }}
+                        >
                             <IoIosArrowBack className="h-5 w-5" />
                         </button>
                         <button
-                            className="flex items-center justify-center w-10 h-10  rounded-full hover:bg-slate-300  transition duration-200 ease-in-out"
-                            onClick={() => handleMeaningNavigation("next")}>
+                            className="flex items-center justify-center w-10 h-10 rounded-full hover:ring hover:ring-[#E6103490] transition duration-200 ease-in-out"
+                            onClick={() => handleMeaningNavigation("next")}
+                            style={{
+                                backgroundImage: `url(${data?.meanings?.backgroundImage?.url})`,
+                                backgroundSize: 'cover',
+                                backgroundPosition: 'center',
+                                transform: 'scaleY(-1)',
+                            }}
+                        >
                             <IoIosArrowForward className="h-5 w-5" />
                         </button>
                         <div className="absolute  top-1/2 left-1/2 w-[150px] -translate-y-1/2 -translate-x-1/2" >

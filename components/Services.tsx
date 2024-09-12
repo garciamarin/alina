@@ -3,11 +3,12 @@ import { AllPageQuery, ServicesFragmentFragment } from "@/.graphql/datoTypes"
 import bubble from '@/public/svg/bubble.svg'
 import Image from 'next/image'
 import { useState } from "react"
+import { IoIosArrowDropdown } from "react-icons/io"
 
 
 export default function Services({ data }: { data: AllPageQuery['servicesBlock'] }) {
     const [selectedServiceId, setSelectedServiceId] = useState<string | undefined>(undefined)
-    const translateServiceId = data?.serviceList.find(service => service.name === "DOLMETSCHEN")?.id
+
     return (
         <section id="services" className="!w-full section !gap-0">
             {data?.basicContent?.heading &&
@@ -16,13 +17,10 @@ export default function Services({ data }: { data: AllPageQuery['servicesBlock']
                 >
                 </div>
             }
-            <div className="relative  !bg-no-repeat !bg-center h-[480px] !bg-contain
-            ">
-                <div className="absolute top-0 left-0 w-full h-full !bg-no-repeat !bg-center !bg-cover -z-10"
-                // style={{ background: `url(${data?.})` }}
-                />
-                <div>
-                    <ul className="absolute top-1/3 w-[150px] -translate-y-1/2 flex flex-col gap-4">
+            <div className="relative  !bg-no-repeat !bg-center !bg-contain">
+                {/* <div className="absolute top-0 left-0 w-full h-full !bg-no-repeat !bg-center !bg-cover -z-10" /> */}
+                <div className="flex items-center justify-around h-[200px] ">
+                    <ul className="flex flex-col gap-4 mx-auto">
                         {
                             data?.serviceList.map((service) => {
                                 if (service.name === "SPRECHPROBEN") return
@@ -37,16 +35,14 @@ export default function Services({ data }: { data: AllPageQuery['servicesBlock']
                             })
                         }
                     </ul>
-                    <div className="absolute top-1/3 left-1/2 w-1/2 -translate-y-1/2 -translate-x-4">
-                        {data?.serviceList.find(service => service.id === selectedServiceId)?.description}
-
-                    </div>
-                    <div className="absolute top-1/2 left-1/2 w-1/2 -translate-y-8 -translate-x-4">
-                        {selectedServiceId === translateServiceId
-                            &&
-                            <AudioSamples audioSamples={data?.serviceList.find(service => service.name === "SPRECHPROBEN")!} />
-                        }
-                    </div>
+                    <ul className="list-disc md:w-1/2">
+                        {(data?.serviceList.find(service => service.id === selectedServiceId)?.description as string)?.split(",").map(
+                            (text) => <li key={text}>{text}</li>
+                        )}
+                    </ul>
+                </div>
+                <div className="mt-8">
+                    <AudioSamples audioSamples={data?.serviceList.find(service => service.name === "SPRECHPROBEN")!} />
                 </div>
             </div>
         </section>
@@ -54,24 +50,30 @@ export default function Services({ data }: { data: AllPageQuery['servicesBlock']
 }
 
 function AudioSamples({ audioSamples }: { audioSamples: ServicesFragmentFragment['serviceList'][0] }) {
+    const [hasSamples, setHasSamples] = useState(false)
     return (
         <div>
             <div className="flex items-center justify-center">
-                <Image src={bubble} width={50} height={50} alt={""} />
                 <h2 className="section-header">{audioSamples.name}</h2>
+                <button onClick={() => { setHasSamples(!hasSamples) }} className="relative flex align-middle cursor-pointer z-10 h-fit w-fit">
+                    <Image className="cursor-pointer" src={bubble} width={75} height={75} alt={""} />
+                    <IoIosArrowDropdown className=" cursor-pointer self-center p-1 absolute text-3xl/8 ml-5" />
+                </button>
             </div>
-            <ul>
-                {audioSamples.audioList.map(sample => {
-                    return (
-                        <li className="flex items-center  justify-center" key={sample.displayName}>
-                            <span>{sample.displayName}</span>
-                            <audio controls>
-                                <source src={sample.audio?.url} type="audio/mpeg" />
-                            </audio>
-                        </li>
-                    )
-                })}
-            </ul >
+            {hasSamples &&
+                <ul className="mt-6 flex gap-4 justify-between">
+                    {audioSamples.audioList.map(sample => {
+                        return (
+                            <li className="flex flex-col items-center  justify-center gap-1" key={sample.displayName}>
+                                <p className="font-bold">{sample.displayName}</p>
+                                <audio controls>
+                                    <source src={sample.audio?.url} type="audio/mpeg" />
+                                </audio>
+                            </li>
+                        )
+                    })}
+                </ul >
+            }
         </div >
     )
 }

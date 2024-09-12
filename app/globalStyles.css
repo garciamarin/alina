@@ -48,3 +48,19 @@
 .horizontal-scroll-animation {
   animation: scrollRightToLeft 1s ease-in-out 1;
 }
+
+/* hide audio controls */
+audio::-webkit-media-controls-timeline,
+audio::-webkit-media-controls-volume-slider,
+audio::-webkit-media-controls-mute-button,
+audio::-webkit-media-controls-current-time-display,
+audio::-webkit-media-controls-time-remaining-display,
+audio::-webkit-media-controls-enclousure{  display: none;}
+
+
+audio {
+  width: 100px;
+  height: 34px; /* Small height for the controls */
+  padding: 0;
+  margin: 0;
+}

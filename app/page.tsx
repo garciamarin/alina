@@ -24,8 +24,12 @@ export default async function Page() {
         <Experience data={trainingBlock} />
         <Services data={servicesBlock} />
       </main>
-      <footer className="flex items-center justify-center w-full h-20 bg-gray-800 text-white mt-8">
+      <footer className="flex flex-col gap-2 items-center justify-center w-full bg-gray-800 text-[#edebec] mt-8 p-6 text-lg font-mono">
         {footer?.title && <p>{footer?.title}</p>}
+        <div>beeidigte Dolmetscherin & Übersetzerin </div>
+        <div>
+          Deutsch · Spanisch · Portugiesisch ·  Englisch
+        </div>
       </footer>
     </div>
 

@@ -60,20 +60,20 @@ function AudioSamples({ audioSamples }: { audioSamples: ServicesFragmentFragment
                     <IoIosArrowDropdown className=" cursor-pointer self-center p-1 absolute text-3xl/8 ml-5" />
                 </button>
             </div>
-            {hasSamples &&
-                <ul className="mt-6 flex gap-4 justify-between">
-                    {audioSamples.audioList.map(sample => {
-                        return (
-                            <li className="flex flex-col items-center  justify-center gap-1" key={sample.displayName}>
-                                <p className="font-bold">{sample.displayName}</p>
-                                <audio controls>
-                                    <source src={sample.audio?.url} type="audio/mpeg" />
-                                </audio>
-                            </li>
-                        )
-                    })}
-                </ul >
-            }
+
+            <ul className="mt-6 flex gap-4 justify-between h-[80px]">
+                {hasSamples && audioSamples.audioList.map(sample => {
+                    return (
+                        <li className="flex flex-col items-center  justify-center gap-1" key={sample.displayName}>
+                            <p className="font-bold">{sample.displayName}</p>
+                            <audio controls>
+                                <source src={sample.audio?.url} type="audio/mpeg" />
+                            </audio>
+                        </li>
+                    )
+                })}
+            </ul >
+
         </div >
     )
 }

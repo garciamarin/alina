@@ -40,7 +40,7 @@ export default function AboutMe({ data }: { data: AllPageQuery['aboutMe'] }) {
     }
 
     return (
-        <section id="about_me" className="flex flex-col max-w-full">
+        <section className="flex flex-col max-w-full">
             {/* Intro block */}
             <div
                 className="flex flex-col items-center"
@@ -54,9 +54,9 @@ export default function AboutMe({ data }: { data: AllPageQuery['aboutMe'] }) {
                         width={data?.image?.width!}
                     />
                 </div>
-                <div className="h-screen absolute top-0 flex flex-col">
+                <div className="-z-10 h-screen absolute top-0 flex flex-col">
                     <div className="h-[300px] md:mt-16"></div>
-                    <div className="flex items-baseline justify-between relative w-full">
+                    <div id="about_me" className="flex items-baseline justify-between relative w-full">
                         <div className="font-sans">
                             {data?.title && <h2 className="!font-thin !text-4xl section-header" >{data?.title}</h2>}
                         </div>

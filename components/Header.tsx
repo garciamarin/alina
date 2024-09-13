@@ -14,11 +14,11 @@ export default function Header({ data }: { data: AllPageQuery['header'] }) {
                     width={logo.width || 100}
                     height={logo.height || 100} />
             </div>
-            <nav className="md:ml-auto md:pt-4 lg:pt-8">
-                <ul className="flex lg:space-x-8 space-x-2 font-medium font-mono">
+            <nav className="top-0 md:ml-auto md:pt-4 lg:pt-8">
+                <ul className="z-10 flex lg:space-x-8 space-x-2 font-medium font-mono">
                     {data?.navigationBar.map((navItem) => (
                         <li key={navItem.id}>
-                            <Link className="md:text-xl" href={`#${navItem.section}`}>{navItem.heading}</Link>
+                            <Link className=" md:text-xl" href={"#" + navItem.section!}>{navItem.heading}</Link>
                         </li>
                     ))}
                 </ul>

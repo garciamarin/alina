@@ -12,7 +12,7 @@ export default function Services({ data }: { data: AllPageQuery['servicesBlock']
     return (
         <section id="services" className="!w-full section !gap-0">
             {data?.basicContent?.heading &&
-                <div className="relative h-[300px] !bg-no-repeat !bg-center"
+                <div className="relative h-[200px] md:h-[300px] !bg-no-repeat !bg-center"
                     style={{ background: `url(${data?.basicContent.image?.url!})` }}
                 >
                 </div>

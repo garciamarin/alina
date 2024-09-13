@@ -54,7 +54,7 @@ export default function AboutMe({ data }: { data: AllPageQuery['aboutMe'] }) {
                         width={data?.image?.width!}
                     />
                 </div>
-                <div className="-z-10 h-screen absolute top-0 flex flex-col">
+                <div className="h-screen absolute top-0 flex flex-col">
                     <div className="h-[300px] md:mt-16"></div>
                     <div id="about_me" className="flex items-baseline justify-between relative w-full">
                         <div className="font-sans">
@@ -73,7 +73,7 @@ export default function AboutMe({ data }: { data: AllPageQuery['aboutMe'] }) {
                         {data?.introText && <p className="max-w-screen-md">{introText[0]}</p>}
                         {data?.introText && <p className="max-w-screen-md">{introText[1]}</p>}
                     </div>
-                    <div className="flex mt-auto justify-self-end items-center md:mr-auto mb-6">
+                    <div className="relative z-40 flex mt-auto justify-self-end items-center md:mr-auto mb-6">
                         {data?.meanings?.heading &&
                             <a href="#meanings" className="flex items-center gap-2 cursor-pointer">
                                 <h3 className="text-xl inline-block scroll-m-4" id="meanings"                                >

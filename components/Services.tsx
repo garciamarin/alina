@@ -54,13 +54,13 @@ function AudioSamples({ audioSamples }: { audioSamples: ServicesFragmentFragment
         <div>
             <div className="flex items-center justify-center">
                 <h2 className="section-header">{audioSamples.name}</h2>
-                <button onClick={() => { setHasSamples(!hasSamples) }} className="relative flex align-middle cursor-pointer z-10 h-fit w-fit">
+                <button onClick={() => { setHasSamples(!hasSamples) }} className="hover:opacity-80 relative flex align-middle cursor-pointer z-10 h-fit w-fit">
                     <Image className="cursor-pointer" src={bubble} width={75} height={75} alt={""} />
-                    <IoIosArrowDropdown className=" cursor-pointer self-center p-1 absolute text-3xl/8 ml-5" />
+                    <IoIosArrowDropdown className="hover:opacity-80 cursor-pointer self-center p-1 absolute text-3xl/8 ml-5" />
                 </button>
             </div>
 
-            <ul className="mt-6 grid grid-cols-2 gap-4 justify-between h-[160px]">
+            <ul className="mt-6 grid grid-cols-2 gap-4 justify-between">
                 {hasSamples && audioSamples.audioList.map(sample => {
                     return (
                         <li className="flex flex-col items-center  justify-center gap-1" key={sample.displayName}>

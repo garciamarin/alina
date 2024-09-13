@@ -42,7 +42,7 @@ function Contact({ data }: { data: AllPageQuery['kontactBlock'] }) {
   return (
     <section id="contact" className="section flex flex-col items-center justify-center mb-16">
       <div className="font-sans">
-        <h2 className="!font-thin !text-4xl section-header" >Kontact</h2>
+        <h2 className="!font-thin !text-4xl section-header" >Kontakt</h2>
       </div>
       <ContactAnchor />
     </section>

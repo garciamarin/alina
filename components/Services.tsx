@@ -31,7 +31,7 @@ export default function Services({ data }: { data: AllPageQuery['servicesBlock']
                             })
                         }
                     </ul>
-                    <ul className="my-auto mt-6 md:mt-auto list-disc md:w-1/2 md:h-auto transition-opacity duration-500 ease-in-out transform">
+                    <ul className="my-auto mt-6 md:mt-auto list-disc md:w-1/2 md:h-auto transition-opacity duration-500 ease-in-out transform text-left">
                         {(data?.serviceList.find(service => service.id === selectedServiceId)?.description as string)?.split(",").map(
                             (text) => <li key={text}>{text}</li>
                         )}

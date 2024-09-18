@@ -69,7 +69,7 @@ export default function AboutMe({ data }: { data: AllPageQuery['aboutMe'] }) {
                             />
                         </div>
                     </div>
-                    <div className="mt-4 md:mt-12 flex flex-col gap-4 mb-4">
+                    <div className="mt-4 md:mt-12 flex flex-col gap-4 md:mb-4 !text-left md:text-justify">
                         {data?.introText && <p className="max-w-screen-md">{introText[0]}</p>}
                         {data?.introText && <p className="max-w-screen-md">{introText[1]}</p>}
                     </div>

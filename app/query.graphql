@@ -159,3 +159,68 @@ query AllPage {
     }
   }
 }
+
+query AudioList {
+  audioList {
+    audio {
+      language
+      displayName
+      audio {
+        url
+      }
+      animationImages {
+        url
+      }
+    }
+    images {
+      url
+    }
+  }
+}
+
+query AboutMe {
+  aboutMe {
+    ...AboutMeFragment
+  }
+}
+
+query Experience {
+  trainingBlock {
+    ...ExperienceFragment
+  }
+}
+
+query Services {
+  servicesBlock {
+    ...ServicesFragment
+  }
+}
+
+query Contact {
+  kontactBlock {
+    ...ContactFragment
+  }
+}
+
+query Footer {
+  footer {
+    title
+    links {
+      link
+      id
+      displayTitle
+    }
+  }
+}
+
+query indexPage {
+  header {
+    ...HeadingFragment
+  }
+}
+
+query Header {
+  header {
+    ...HeadingFragment
+  }
+}

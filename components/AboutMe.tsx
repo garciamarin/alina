@@ -55,7 +55,7 @@ export default function AboutMe({ data }: { data: AllPageQuery['aboutMe'] }) {
                     />
                 </div>
                 <div className="h-screen absolute top-0 flex flex-col">
-                    <div className="h-[300px] md:mt-16"></div>
+                    <div className="h-24 md:h-[200px] xl:h-[300px] md:mt-16"></div>
                     <div id="about_me" className="flex items-baseline justify-between relative w-full">
                         <div className="font-sans">
                             {data?.title && <h2 className="!font-thin !text-4xl section-header" >{data?.title}</h2>}
@@ -73,10 +73,10 @@ export default function AboutMe({ data }: { data: AllPageQuery['aboutMe'] }) {
                         {data?.introText && <p className="max-w-screen-md">{introText[0]}</p>}
                         {data?.introText && <p className="max-w-screen-md">{introText[1]}</p>}
                     </div>
-                    <div className="relative z-40 flex mt-auto justify-self-end items-center md:mr-auto mb-6">
+                    <div className="relative z-40 flex mt-auto justify-self-end items-center md:mr-auto xl:mb-12 md:mb-6 mb-4">
                         {data?.meanings?.heading &&
-                            <a href="#meanings" className="flex items-center gap-2 cursor-pointer">
-                                <h3 className="text-xl inline-block scroll-m-4" id="meanings"                                >
+                            <a href="#meanings" className="flex items-center gap-2 cursor-pointer  hover:opacity-70">
+                                <h3 className="text:lg md:text-xl inline-block scroll-m-10" id="meanings"                                >
                                     {data?.meanings?.heading}...
                                 </h3>
                                 <IoIosArrowDropdown className="h-6 w-6 md:block hidden" />
@@ -87,7 +87,7 @@ export default function AboutMe({ data }: { data: AllPageQuery['aboutMe'] }) {
             </ div>
             {/* Meanings block */}
             <div
-                className="flex flex-col gap-2 items-center justify-start md:h-[30vh]"
+                className="flex flex-col gap-2 items-center justify-start md:h-[30vh] md:my-16"
             >
                 <div className="relative md:p-6">
                     <Image

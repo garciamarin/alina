@@ -10,7 +10,7 @@ export default function Header({ data }: { data: AllPageQuery['header'] }) {
                 <Image
                     className=""
                     src={logo}
-                    alt={"website's logo"}
+                    alt={"website's logo: a green tongue"}
                     width={logo.width || 100}
                     height={logo.height || 100} />
             </div>

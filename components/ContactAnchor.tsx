@@ -6,7 +6,7 @@ const ContactAnchor = () => {
     const body = "Liebe Alina,\n\nich mag deine Arbeit und Website sehr und möchte dich kontaktieren, um...";
     const encodedSubject = encodeURIComponent(subject);
     const encodedBody = encodeURIComponent(body);
-    const email = "tell_mee@web.de";
+    const email = "alina.salzer@gmx.net";
     const mailtoLink = `mailto:${email}?subject=${encodedSubject}&body=${encodedBody}`;
 
     return (

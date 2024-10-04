@@ -3,41 +3,32 @@
 import { AllPageQuery } from "@/.graphql/datoTypes"
 import Image from 'next/image'
 import { useEffect, useState } from "react"
-import { IoIosArrowBack, IoIosArrowDropdown, IoIosArrowForward } from "react-icons/io"
+import { IoIosArrowDropdown } from "react-icons/io"
 
 export default function AboutMe({ data }: { data: AllPageQuery['aboutMe'] }) {
-    const [currentMeaningIndex, setCurrentMeaningIndex] = useState<number | undefined>(0)
-    const meaningsArray = data?.meanings?.meanings.map(meaning => meaning.description)!
-    const meaningsArrayLength = meaningsArray?.length!
+
+    const [currentMeaningIndex, setCurrentMeaningIndex] = useState<number>(0);
+    const meaningsArray = data?.meanings?.meanings.map(meaning => meaning.description)!;
+    const meaningsArrayLength = meaningsArray?.length!;
+    const [isFadingOut, setIsFadingOut] = useState(false);
+    const [text, setText] = useState(meaningsArray[currentMeaningIndex]);
     const introText = data?.introText!.split("\n")!
 
-    const [isFadingOut, setIsFadingOut] = useState(false);
-    const [text, setText] = useState(meaningsArray[currentMeaningIndex!]);
+    useEffect(() => {
+        const switchTextInterval = setInterval(() => {
+            setIsFadingOut(true);
+            setTimeout(() => {
+                setCurrentMeaningIndex((prevIndex) => (prevIndex + 1) % meaningsArrayLength);
+                setIsFadingOut(false);
+            }, 300);
+        }, 3000);
+
+        return () => clearInterval(switchTextInterval);
+    }, [meaningsArrayLength]);
 
     useEffect(() => {
-        setIsFadingOut(true); // Start fade-out
-
-        const timeout = setTimeout(() => {
-            setText(meaningsArray[currentMeaningIndex!]); // Change the text after fade-out
-            setIsFadingOut(false); // Start fade-in
-        }, 300); // Duration matches the fade-out duration
-
-        return () => clearTimeout(timeout);
-    }, [currentMeaningIndex]);
-
-
-    function handleMeaningNavigation(type: "next" | "prev") {
-        if (currentMeaningIndex === undefined) {
-            setCurrentMeaningIndex(0);
-            return
-        }
-
-
-        const modifyIndex = (index: number) => type === "next" ?
-            (currentMeaningIndex! + 1) % meaningsArrayLength :
-            (currentMeaningIndex! - 1 + meaningsArrayLength!) % meaningsArrayLength!
-        setCurrentMeaningIndex(currentMeaningIndex => modifyIndex(currentMeaningIndex!))
-    }
+        setText(meaningsArray[currentMeaningIndex]);
+    }, [currentMeaningIndex, meaningsArray]);
 
     return (
         <section className="flex flex-col max-w-full">
@@ -55,8 +46,8 @@ export default function AboutMe({ data }: { data: AllPageQuery['aboutMe'] }) {
                     />
                 </div>
                 <div className="h-screen absolute top-0 flex flex-col">
-                    <div className="h-24 md:h-[200px] xl:h-[300px] md:mt-16"></div>
-                    <div id="about_me" className="flex items-baseline justify-between relative w-full">
+                    <div className="h-24 md:h-[200px] 2xl:mt-8"></div>
+                    <div id="about_me" className="flex items-center md:items-baseline justify-between relative w-full">
                         <div className="font-sans">
                             {data?.title && <h2 className="!font-thin !text-4xl section-header" >{data?.title}</h2>}
                         </div>
@@ -73,9 +64,9 @@ export default function AboutMe({ data }: { data: AllPageQuery['aboutMe'] }) {
                         {data?.introText && <p className="max-w-screen-md">{introText[0]}</p>}
                         {data?.introText && <p className="max-w-screen-md">{introText[1]}</p>}
                     </div>
-                    <div className="relative z-40 flex mt-auto justify-self-end items-center md:mr-auto xl:mb-12 md:mb-6 mb-4">
+                    <div className="relative z-40 flex mt-auto justify-self-end items-end md:mr-auto xl:mb-12  mb-1">
                         {data?.meanings?.heading &&
-                            <a href="#meanings" className="flex items-center gap-2 cursor-pointer  hover:opacity-70">
+                            <a href="#meanings" className="mt-auto flex items-center gap-2 cursor-pointer  hover:opacity-70">
                                 <h3 className="text:lg md:text-xl inline-block scroll-m-10" id="meanings"                                >
                                     {data?.meanings?.heading}...
                                 </h3>
@@ -98,33 +89,10 @@ export default function AboutMe({ data }: { data: AllPageQuery['aboutMe'] }) {
                     />
 
                     <div className='flex md:-m-6 relative w-screen h-[350px] max-w-2xl text-center justify-between items-center'>
-                        <button
-                            className="flex items-center justify-center w-10 h-10 rounded-full hover:ring hover:ring-[#E6103490] transition duration-200 ease-in-out"
-                            onClick={() => handleMeaningNavigation("prev")}
-                            style={{
-                                backgroundImage: `url(${data?.meanings?.backgroundImage?.url})`,
-                                backgroundSize: 'cover',
-                                backgroundPosition: 'center',
-                            }}
-                        >
-                            <IoIosArrowBack className="h-5 w-5" />
-                        </button>
-                        <button
-                            className="flex items-center justify-center w-10 h-10 rounded-full hover:ring hover:ring-[#E6103490] transition duration-200 ease-in-out"
-                            onClick={() => handleMeaningNavigation("next")}
-                            style={{
-                                backgroundImage: `url(${data?.meanings?.backgroundImage?.url})`,
-                                backgroundSize: 'cover',
-                                backgroundPosition: 'center',
-                                transform: 'scaleY(-1)',
-                            }}
-                        >
-                            <IoIosArrowForward className="h-5 w-5" />
-                        </button>
                         <div className="absolute  top-1/2 left-1/2 w-[150px] -translate-y-1/2 -translate-x-1/2" >
                             <p className={`
-                            transition-opacity duration-300 ease-in-out 
-                            ${isFadingOut ? 'opacity-0' : 'opacity-100'}`}
+                                transition-opacity duration-500 ease-in-out 
+                                ${isFadingOut ? 'opacity-0' : 'opacity-100'}`}
                             >
                                 {text}
                             </p>

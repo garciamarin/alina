@@ -3,7 +3,7 @@ import Image from "next/image";
 
 export default function Experience({ data }: { data: AllPageQuery['trainingBlock'] }) {
     return (
-        <section id="experience" className="section mt-16 md:mt-64">
+        <section id="experience" className="section mt-16 md:mt-48">
             <ul className="relative grid grid-cols-1 md:grid-cols-2 gap-10" >
                 <div className="md:h-[150px] mx-auto overflow-visible">
                     <Image

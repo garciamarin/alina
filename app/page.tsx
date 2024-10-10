@@ -7,6 +7,8 @@ import Experience from "@/components/ExperienceFetcher"
 import Services from "@/components/ServicesFetcher"
 import ContactAnchor from "@/components/ContactAnchor"
 import Audios from "@/components/AudioBlock"
+import ReactMarkdown from "react-markdown"
+
 
 export const metadata: Metadata = {
   title: 'Alina Salzer',
@@ -46,14 +48,9 @@ function Contact() {
 async function Footer() {
   const { footer } = await getDato(FooterDocument)
   return (
-    < footer className="flex flex-col gap-2 items-center justify-center w-full bg-gray-800 text-[#edebec] mt-8 p-6 text-lg font-mono" >
-      {footer?.title && <p>{footer?.title}</p>}
-      <div>
-        <p>beeidigte Dolmetscherin & Übersetzerin</p>
-      </div>
-      <div>
-        <p>Deutsch · Spanisch · Portugiesisch ·  Englisch</p>
-      </div>
+    < footer className="flex flex-col gap-1 items-center justify-center w-full bg-gray-800 text-[#edebec] mt-8 py-12 text-lg font-sans" >
+      <p className="text-2xl">{footer?.title}</p>
+      <ReactMarkdown>{footer?.content}</ReactMarkdown>
     </footer>
   )
 }

@@ -131,6 +131,9 @@ fragment ContactFragment on KontactBlockRecord {
       height
       alt
     }
+    animation {
+      url
+    }
   }
 }
 
@@ -211,6 +214,11 @@ query Footer {
       displayTitle
     }
     content
+    backgroundImage {
+      image {
+        url
+      }
+    }
   }
 }
 

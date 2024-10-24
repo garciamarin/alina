@@ -14,7 +14,7 @@ export default function AudioBlock() {
         <div className="m-8 md:m-16">
             <div id="#audioSamples" className="flex items-center justify-center">
                 <a href="#audioSamples">
-                    <h2 className="section-header">Audio Samples</h2>
+                    <h2 className="section-header">Sprechproben</h2>
                 </a>
                 <button onClick={() => { setHasSamples(!hasSamples) }} className="hover:opacity-80 relative flex align-middle cursor-pointer z-10 h-fit w-fit">
                     <Image className="cursor-pointer" src={bubble} width={75} height={75} alt={""} />

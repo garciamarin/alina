@@ -1,7 +1,7 @@
 "use client"
 import { AllPageQuery, AudioListDocument, ServicesFragmentFragment } from "@/.graphql/datoTypes"
-import Image from 'next/image'
 import { useState } from "react"
+import { AnimatedSvg } from "./AnimateSvg"
 
 
 
@@ -23,8 +23,10 @@ export default function Services({ data }: { data: AllPageQuery['servicesBlock']
                                 return (
                                     <li key={service.id} className="">
                                         <button onMouseEnter={() => setSelectedServiceId(service.id)} onClick={() => setSelectedServiceId(service.id)} className="flex flex-col md:flex-row items-center justify-start md:gap-8 w-full">
+                                            <div className="relative h-[50px] w-[50px]">
+                                                <AnimatedSvg animation={service.animationImages.map(image => image.url)} interval={500} size={"fill"} />
+                                            </div>
                                             <span className="font-bold">{service.name}</span>
-                                            <Image src={service.animationImages[4].url} alt="" width={50} height={50} />
                                         </button>
                                     </li>
                                 )

@@ -42,11 +42,11 @@ function AudioSample({ sample }: { sample: NonNullable<AudioListQuery['audioList
         <li>
             <button
                 onClick={(toggleAudio)}
-                className="border-4 border-red-500 relative w-full h-auto cursor-pointer bg-contain bg-no-repeat bg-center border-none p-0 flex items-center justify-center outline-none"
+                className="hover:opacity-60 border-4 border-red-500 relative w-full h-auto cursor-pointer bg-contain bg-no-repeat bg-center border-none p-0 flex items-center justify-center outline-none"
                 style={{ backgroundImage: `url(${sample.animationImages[0].url})` }}
             >
                 <div className="text-white text-xl p-16 opacity-30 hover:opacity-80" style={{ textShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)' }}>
-                    {isPlaying ? '⏸️' : '▶️'}
+
                 </div>
                 <audio ref={audioRef}>
                     <source src={sample.audio?.url} type="audio/mpeg" />

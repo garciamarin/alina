@@ -2,10 +2,10 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 
-export const AnimatedSvg = ({ animation, interval = 250, size = "default" }: {
+export const AnimatedSvg = ({ animation, interval = 250, fill }: {
     animation: string[]
     interval?: number
-    size?: "fill" | "default"
+    fill?: true
 }) => {
     const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -18,10 +18,10 @@ export const AnimatedSvg = ({ animation, interval = 250, size = "default" }: {
 
         return () => clearInterval(animationInterval);
     }, [animation, interval]);
-    const imageProps = size === "fill" ? { layout: "fill" } : { width: 500, height: 300 };
+    const imageProps = fill ? { fill } : { width: 500, height: 300 };
     return (
         <div className="flex justify-center items-center w-full h-full">
-            <div className="transition-transform duration-700 ease-in-out">
+            <div className="transition-transform !duration-100 ease-in-out">
                 <Image
                     src={animation[currentIndex]}
                     alt="Contact Animation"

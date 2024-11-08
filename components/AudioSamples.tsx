@@ -15,7 +15,7 @@ export async function AudioSamples() {
     const audioList = await getAudios();
 
     return (
-        <ul className="mt-8 grid grid-cols-2 gap-6 md:gap-16">
+        <ul className="grid grid-cols-2 gap-6 md:gap-16 content-center">
             {
                 audioList?.audio.map(sample => <AudioSample key={sample.displayName} sample={sample} />)
             }
@@ -45,9 +45,7 @@ function AudioSample({ sample }: { sample: NonNullable<AudioListQuery['audioList
                 className="hover:opacity-60 border-4 border-red-500 relative w-full h-auto cursor-pointer bg-contain bg-no-repeat bg-center border-none p-0 flex items-center justify-center outline-none"
                 style={{ backgroundImage: `url(${sample.animationImages[0].url})` }}
             >
-                <div className="text-white text-xl p-16 opacity-30 hover:opacity-80" style={{ textShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)' }}>
-
-                </div>
+                <div className="text-white text-xl p-16 opacity-30 hover:opacity-80" style={{ textShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)' }} />
                 <audio ref={audioRef}>
                     <source src={sample.audio?.url} type="audio/mpeg" />
                 </audio>

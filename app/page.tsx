@@ -38,15 +38,10 @@ async function Contact() {
   const { kontactBlock } = await getDato(ContactDocument)
 
   return (
-    <section id="contact" className="section flex flex-col items-center justify-center m-16">
-      {(kontactBlock?.basicContent?.animation?.length || 0) > 1 ?
-        <AnimatedSvg animation={kontactBlock?.basicContent?.animation.map(animation => animation.url) || []} interval={1000} />
-        :
-        <div className="font-sans">
-          <h2 className="!font-thin !text-4xl section-header" ></h2>
-        </div>
-      }
-
+    <section id="contact" className="section flex flex-col items-center justify-center !my-8">
+      <div className="relative w-[80vw] h-[200px] md:w-[60vw] md:h-[300px]">
+        <AnimatedSvg animation={kontactBlock?.basicContent?.animation.map(animation => animation.url) || []} interval={250} fill />
+      </div>
       <ContactAnchor />
     </section>
   )
@@ -56,7 +51,7 @@ async function Footer() {
   const { footer } = await getDato(FooterDocument)
   return (
     <footer
-      className="flex flex-col gap-1 items-center justify-center w-full bg-no-repeat pt-16 text-lg font-sans p-4"
+      className="flex flex-col gap-1 items-center justify-center w-full bg-no-repeat bg-cover pt-16 text-lg font-sans p-4 mt-8"
       style={{ backgroundImage: `url(${footer?.backgroundImage?.image?.url})`, backgroundPosition: 'center calc(100% + 1rem)' }}
     >
       <p className="text-2xl">{footer?.title}</p>

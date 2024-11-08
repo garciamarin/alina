@@ -1,4 +1,5 @@
 import React from "react";
+import { MdOutlineEmail } from "react-icons/md";
 
 const ContactAnchor = () => {
 
@@ -14,14 +15,11 @@ const ContactAnchor = () => {
             href={mailtoLink}
             target="_blank"
             rel="noopener noreferrer"
-            className="group relative flex items-center px-6 py-3 bg-[#458F7C] text-white font-semibold rounded-lg hover:bg-[#458F7C80] transition duration-300"
+            className=" flex items-center p-4 
+            bg-[#458F7C] text-white 
+            font-semibold rounded-full hover:bg-[#458F7C80] transition duration-300"
         >
-            Melde dich bei mir
-            <span
-                className="ml-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-            >
-                →
-            </span>
+            <MdOutlineEmail className="h-8 w-8" />
         </a>
     );
 };

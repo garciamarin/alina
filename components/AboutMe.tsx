@@ -45,9 +45,9 @@ export default function AboutMe({ data }: { data: AllPageQuery['aboutMe'] }) {
                         />
                     </div>
                     <div className="h-screen absolute top-0 flex flex-col">
-                        <div className="h-24 md:h-[200px] 2xl:mt-8"></div>
+                        <div className="h-[200px] 2xl:mt-8"></div>
                         <div id="about_me" className="flex items-center md:items-baseline justify-between relative w-full">
-                            <div className="font-sans">
+                            <div className="px-8 md:px-0 font-sans">
                                 {data?.title && <h2 className="!font-thin !text-4xl section-header" >{data?.title}</h2>}
                             </div>
                             <div className="relative w-[220px] h-[220px] lg:w-[230px] lg:h-[230px]">
@@ -59,21 +59,21 @@ export default function AboutMe({ data }: { data: AllPageQuery['aboutMe'] }) {
                                 />
                             </div>
                         </div>
-                        <div className="mt-4 md:mt-12 flex flex-col gap-4 md:mb-4 !text-left md:text-justify">
+                        <div className="px-8 md:px-0 mt-4 md:mt-12 flex flex-col gap-4 md:mb-4 !text-left md:text-justify">
                             {data?.introText && <p className="max-w-screen-md">{introText[0]}</p>}
                             {data?.introText && <p className="max-w-screen-md">{introText[1]}</p>}
                         </div>
                     </div>
                 </ div>
             </section>
-            <section className="flex flex-col max-w-full h-[50vh]">
+            <section className="flex flex-col max-w-full">
                 {/* Meanings block */}
                 <div
                     className="flex flex-col gap-2 items-center justify-start md:my-16"
                 >
                     <div className="relative z-40 flex mt-auto justify-self-end items-end md:mr-auto xl:mb-8  mb-1">
                         {data?.meanings?.heading &&
-                            <a href="#meanings" className="mt-auto flex items-center gap-2 cursor-pointer  hover:opacity-70">
+                            <a href="#meanings" className="mt-auto flex items-center cursor-pointer  hover:opacity-70">
                                 <h3 className="text:lg md:text-xl inline-block scroll-m-10" id="meanings"                                >
                                     {data?.meanings?.heading}...
                                 </h3>
@@ -83,7 +83,7 @@ export default function AboutMe({ data }: { data: AllPageQuery['aboutMe'] }) {
                     </div>
                     <div className="relative md:p-6">
                         <Image
-                            className="p-16 md:p-4"
+                            className="p-4 md:p-1"
                             src={data?.meanings?.backgroundImage?.url!}
                             alt={data?.image?.alt!}
                             fill

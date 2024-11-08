@@ -175,8 +175,18 @@ query AudioList {
         url
       }
     }
+  }
+}
+
+query AudioBlockAnimation {
+  audioList {
     images {
       url
+      id
+    }
+    buttonAnimation {
+      url
+      id
     }
   }
 }

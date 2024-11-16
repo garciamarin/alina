@@ -9,6 +9,7 @@ import ContactAnchor from "@/components/ContactAnchor"
 import Audios from "@/components/AudioBlock"
 import ReactMarkdown from "react-markdown"
 import { AnimatedSvg } from "@/components/AnimateSvg"
+import Image from "next/image"
 
 export const metadata: Metadata = {
   title: 'Alina Salzer',
@@ -40,9 +41,9 @@ async function Contact() {
   return (
     <section id="contact" className="section flex flex-col items-center justify-center !my-8">
       <div className="relative w-[80vw] h-[200px] md:w-[60vw] md:h-[300px]">
-        <AnimatedSvg animation={kontactBlock?.basicContent?.animation.map(animation => animation.url) || []} interval={250} fill />
+        <Image alt="Contact Block Header" src={kontactBlock?.basicContent?.image?.url!} fill className="object-contain" />
       </div>
-      <ContactAnchor />
+      <ContactAnchor animation={kontactBlock?.basicContent?.animation!} />
     </section>
   )
 }

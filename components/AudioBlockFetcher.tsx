@@ -16,7 +16,7 @@ export default function AudioBlock({ buttonAnimation }: { buttonAnimation: strin
                 >
                     <div className="relative w-24 md:w-[calc(25vw/3)] h-24">
                         <div className="hidden group-hover:block">
-                            <AnimatedSvg animation={buttonAnimation} interval={350} fill />
+                            <AnimatedSvg animation={buttonAnimation} interval={350} contain />
                         </div>
                         <Image alt={`Animation of headphones`} src={buttonAnimation[0]} fill className="object-contain group-hover:hidden" />
                     </div>

@@ -39,7 +39,7 @@ export default function Services({ data }: { data: AllPageQuery['servicesBlock']
                                     >
                                         <div className="relative w-12 md:w-[calc(25vw/3)] h-12">
                                             {selectedServiceId === service.id
-                                                ? <AnimatedSvg animation={service.animationImages.map(image => image.url)} interval={350} fill />
+                                                ? <AnimatedSvg animation={service.animationImages.map(image => image.url)} interval={350} contain />
                                                 : <Image alt={`{${service.name} animation icon`} src={service.animationImages[0].url} fill className="object-contain" />
                                             }
                                         </div>

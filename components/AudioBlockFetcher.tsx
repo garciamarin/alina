@@ -22,7 +22,7 @@ export default function AudioBlock({ audioList }: {
     const [showAudios, setShowAudios] = useState(false)
 
     return (
-        <div className="flex justify-center content-center h-[300px]  md:h-[600px]  md:w-2/5 ">
+        <div className="flex justify-center content-center h-[300px] md:h-[600px]">
             {!showAudios && (
                 <div className="flex items-center justify-center">
                     <div className="h-[400px] w-screen md:h-[600px] md:w-2/5" >

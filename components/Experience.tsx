@@ -13,8 +13,8 @@ export default function Experience({ data }: { data: AllPageQuery['trainingBlock
                     alt={data?.experience[0].backgroundImage?.url || ""} />
             </div>
             <ul className="relative grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 lg:gap-20" >
-                <li>
-                    <div className="block relative left overflow-visible">
+                <li className="block md:hidden">
+                    <div className="relative left overflow-visible">
                         <Image
                             className="relative top-5"
                             src={data?.experience[0].backgroundImage?.url!}

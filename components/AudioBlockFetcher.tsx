@@ -1,30 +1,44 @@
 'use client'
 import { useState, Suspense } from "react"
 import { AudioSamples } from "./AudioSamples"
-import Image from 'next/image'
 import { FaCircleNotch } from "react-icons/fa6"
 import { AnimatedSvg } from "./AnimateSvg"
 
-export default function AudioBlock({ buttonAnimation }: { buttonAnimation: string[] }) {
+
+export default function AudioBlock({ audioList }: {
+    audioList: {
+        images: Array<{
+            __typename?: "FileField";
+            url: string;
+            id: string;
+        }>;
+        buttonAnimation: Array<{
+            __typename?: "FileField";
+            url: string;
+            id: string;
+        }>;
+    }
+}) {
     const [showAudios, setShowAudios] = useState(false)
+
     return (
-        <div className="flex justify-center content-center">
-            {!showAudios && <div className="flex items-center justify-center">
-                <button
-                    onClick={() => { setShowAudios(!showAudios) }}
-                    className="hover:opacity-80 hover:bg-slate-300 rounded-full relative flex align-middle cursor-pointer h-fit w-fit p-2 group"
-                >
-                    <div className="relative w-24 md:w-[calc(25vw/3)] h-24">
-                        <div className="hidden group-hover:block">
-                            <AnimatedSvg animation={buttonAnimation} interval={350} contain />
-                        </div>
-                        <Image alt={`Animation of headphones`} src={buttonAnimation[0]} fill className="object-contain group-hover:hidden" />
+        <div className="flex justify-center content-center h-[300px]  md:h-[600px]  md:w-2/5 ">
+            {!showAudios && (
+                <div className="flex items-center justify-center">
+                    <div className="h-[400px] w-screen md:h-[600px] md:w-2/5" >
+                        <button
+                            onClick={() => { setShowAudios(!showAudios) }}
+                            type="button"
+                            className=" hover:opacity-60 rounded-full absolute right-0 flex items-center justify-center md:h-[600px] md:w-2/5 h-[400px] w-screen">
+                            <AnimatedSvg contain animation={audioList?.images.map(image => image.url) || []} />
+                        </button>
                     </div>
-                </button>
-            </div>}
+                </div>
+            )
+            }
             <Suspense fallback={
                 <div className="flex items-center justify-center mt-6">
-                    <FaCircleNotch className="animate-spin h-10 w-10 text-[#ce6375]" />
+                    <FaCircleNotch className="animate-spin h-20 w-10 text-[#ce6375]" />
                 </div>
             }
             >

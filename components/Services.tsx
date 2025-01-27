@@ -10,7 +10,7 @@ export default function Services({ data }: { data: AllPageQuery['servicesBlock']
     return (
         <section id="services" className="!w-full section !gap-0">
             <div className="relative h-[150px] md:hidden my-8">
-                <div className="absolute -left-8 w-screen h-[150px]">
+                <div className="absolute -left-16 w-[120vw] h-[200px]">
                     <Image alt="Services header image" src={data?.basicContent?.image?.url!} fill className="object-contain" />
                 </div>
             </div>

@@ -21,8 +21,10 @@ export default async function Page() {
   return (
     <div className="relative">
       <div className="relative h-screen -z-10" />
-      <Header data={header} />
-      <main className="mx-auto flex min-h-screen flex-col items-center content-center px-8 md:px-16 max-w-screen-lg">
+      <div className="max-w-screen-xl mx-auto">
+        <Header data={header} />
+      </div>
+      <main className="mx-auto flex min-h-screen flex-col items-center content-center px-8 md:px-16 max-w-screen-xl">
         <AboutMe />
         <Experience />
         <Services />
@@ -40,11 +42,14 @@ async function Contact() {
 
   return (
     <section id="contact" className="section flex flex-col items-center justify-center !my-8">
-      <div className="relative w-[80vw] h-[200px] md:w-[60vw] md:h-[300px]">
+      <div className="relative w-[80vw] h-[200px] md:w-[60vw] md:h-[300px] flex items-center justify-center">
         <Image alt="Contact Block Header" src={kontactBlock?.basicContent?.image?.url!} fill className="object-contain" />
+        <div className="absolute -bottom-5 ml-60">
+          <ContactAnchor animation={kontactBlock?.basicContent?.animation!} />
+        </div>
       </div>
-      <ContactAnchor animation={kontactBlock?.basicContent?.animation!} />
-    </section>
+
+    </section >
   )
 }
 

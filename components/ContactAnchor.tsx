@@ -1,5 +1,4 @@
 import React from "react";
-import { MdOutlineEmail } from "react-icons/md";
 import { AnimatedSvg } from "./AnimateSvg";
 
 const ContactAnchor = ({ animation }: { animation: { url: string }[] }) => {
@@ -16,9 +15,9 @@ const ContactAnchor = ({ animation }: { animation: { url: string }[] }) => {
             href={mailtoLink}
             target="_blank"
             rel="noopener noreferrer"
-            className=" flex items-center p-4 
+            className=" flex items-center p-4 w-fit
             bg-[#458F7C] text-white 
-            font-semibold rounded-full hover:bg-[#458F7C80] transition duration-300"
+            font-semibold rounded-full hover:bg-[#458F7C] hover:opacity-95 hover:animate-bounce  transition duration-100"
         >
             <div className="relative w-[80px] h-[80px] md:w-[50px] md:h-[50px]">
                 <AnimatedSvg animation={animation.map(animation => animation.url) || []} interval={250} contain />

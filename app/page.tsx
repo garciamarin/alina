@@ -6,7 +6,7 @@ import AboutMe from "@/components/AboutMeFetcher"
 import Experience from "@/components/ExperienceFetcher"
 import Services from "@/components/ServicesFetcher"
 import Contact from "@/components/Contact"
-import Audios from "@/components/AudioBlock"
+import Audios from "@/components/AudioBlockFetcher"
 import ReactMarkdown from "react-markdown"
 
 export const metadata: Metadata = {

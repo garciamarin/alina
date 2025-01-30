@@ -22,14 +22,14 @@ async function Contact() {
                         alt="Contact Block background"
                         src={kontactBlock?.basicContent?.image?.url!}
                         fill
-                        className="object-contain hover:opacity-95 "
+                        className="object-contain hover:opacity-80 "
                     />
                 </div>
                 <div
                     className=" absolute flex items-center p-4 rounded-full
                                 right-[10vw] md:right-[5vw] bottom-0 w-[80px] h-[80px]
                                 hover:bg-[#458F7C] bg-[#458F7C] text-white font-semibold 
-                                hover:opacity-95 group-hover:animate-bounce transition duration-100"
+                                hover:opacity-80 group-hover:animate-bounce transition duration-100"
                 >
                     <AnimatedSvg animation={kontactBlock?.basicContent?.animation?.map(animation => animation.url) || []} interval={250} contain />
                 </div>

@@ -17,8 +17,8 @@ export default function Header({ data }: { data: AllPageQuery['header'] }) {
             <nav className="z-30 top-0 md:ml-auto md:pt-4 lg:pt-8">
                 <ul className=" flex lg:space-x-8 space-x-2 font-medium font-mono">
                     {data?.navigationBar.map((navItem) => (
-                        <li key={navItem.id}>
-                            <Link className=" md:text-xl" href={"#" + navItem.section!}>{navItem.heading}</Link>
+                        <li className="hover:opacity-80 rounded-lg hover:shadow-lg p-2" key={navItem.id}>
+                            <Link className="md:text-xl" href={"#" + navItem.section!}>{navItem.heading}</Link>
                         </li>
                     ))}
                 </ul>

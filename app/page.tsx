@@ -1,15 +1,13 @@
 import { getDato } from "@/lib/datocms"
-import { ContactDocument, FooterDocument, HeaderDocument } from '@/.graphql/datoTypes'
+import { FooterDocument, HeaderDocument } from '@/.graphql/datoTypes'
 import { Metadata } from 'next'
 import Header from "@/components/Header"
 import AboutMe from "@/components/AboutMeFetcher"
 import Experience from "@/components/ExperienceFetcher"
 import Services from "@/components/ServicesFetcher"
-import ContactAnchor from "@/components/ContactAnchor"
+import Contact from "@/components/Contact"
 import Audios from "@/components/AudioBlock"
 import ReactMarkdown from "react-markdown"
-import { AnimatedSvg } from "@/components/AnimateSvg"
-import Image from "next/image"
 
 export const metadata: Metadata = {
   title: 'Alina Salzer',
@@ -20,10 +18,8 @@ export default async function Page() {
 
   return (
     <div className="relative">
-      <div className="relative h-screen -z-10" />
-      <div className="max-w-screen-xl mx-auto">
-        <Header data={header} />
-      </div>
+      <div className="h-screen -z-10" />
+      <Header data={header} />
       <main className="mx-auto flex min-h-screen flex-col items-center content-center px-8 md:px-16 max-w-screen-xl">
         <AboutMe />
         <Experience />
@@ -34,22 +30,6 @@ export default async function Page() {
       <Footer />
     </div>
 
-  )
-}
-
-async function Contact() {
-  const { kontactBlock } = await getDato(ContactDocument)
-
-  return (
-    <section id="contact" className="section flex flex-col items-center justify-center !my-8">
-      <div className="relative w-[80vw] h-[200px] md:w-[60vw] md:h-[300px] flex items-center justify-center">
-        <Image alt="Contact Block Header" src={kontactBlock?.basicContent?.image?.url!} fill className="object-contain" />
-        <div className="absolute -bottom-5 ml-60">
-          <ContactAnchor animation={kontactBlock?.basicContent?.animation!} />
-        </div>
-      </div>
-
-    </section >
   )
 }
 

@@ -22,18 +22,19 @@ export default function AudioBlock({ audioList }: {
     const [showAudios, setShowAudios] = useState(false)
 
     return (
-        <div className="flex justify-center content-center h-[300px] md:h-[600px]">
+        <div className="flex relative items-center justify-center h-[300px] md:h-[400px] w-screen">
             {!showAudios && (
-                <div className="flex items-center justify-center">
-                    <div className="h-[400px] w-screen md:h-[600px] md:w-2/5" >
-                        <button
-                            onClick={() => { setShowAudios(!showAudios) }}
-                            type="button"
-                            className=" hover:opacity-60 rounded-full absolute right-0 flex items-center justify-center md:h-[600px] md:w-2/5 h-[400px] w-screen">
-                            <AnimatedSvg contain animation={audioList?.images.map(image => image.url) || []} />
-                        </button>
-                    </div>
-                </div>
+                <button
+                    onClick={() => { setShowAudios(!showAudios) }}
+                    type="button"
+                    className="hover:opacity-60 rounded-full 
+                            absolute right-0 
+                            sm:h-[300px] sm:w-[60vw]
+                            md:h-[400px] md:max-w-[600px] 
+                            h-[300px] w-screen
+                            ">
+                    <AnimatedSvg contain animation={audioList?.images.map(image => image.url) || []} />
+                </button>
             )
             }
             <Suspense fallback={
@@ -42,7 +43,9 @@ export default function AudioBlock({ audioList }: {
                 </div>
             }
             >
-                {showAudios && <AudioSamples />}
+                <div className="mt-4">
+                    {showAudios && <AudioSamples />}
+                </div>
             </Suspense>
         </div>
     )

@@ -15,7 +15,7 @@ export async function AudioSamples() {
     const audioList = await getAudios();
 
     return (
-        <ul className="grid grid-cols-2 gap-6 md:gap-16 content-center">
+        <ul className="grid grid-cols-2 gap-6 md:gap-16 content-center mt-0">
             {
                 audioList?.audio.map(sample => <AudioSample key={sample.displayName} sample={sample} />)
             }

@@ -7,7 +7,7 @@ export default async function AudioBlockFetcher() {
 
     return (
         audioList &&
-        <div className="my-8 md:my-16" id="#audioSamples">
+        <div className="mt-8" id="#audioSamples">
             <AudioBlock audioList={audioList} />
         </div>
     )

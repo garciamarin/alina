@@ -14,7 +14,7 @@ export default function Header({ data }: { data: AllPageQuery['header'] }) {
                     width={logo.width || 100}
                     height={logo.height || 100} />
             </div>
-            <nav className="z-30 top-0 md:ml-auto md:pt-4 lg:pt-8">
+            <nav className="z-30 top-0 md:ml-auto md:pt-4 lg:pt-8 animate-fade-in">
                 <ul className=" flex lg:space-x-8 space-x-2 font-medium font-mono">
                     {data?.navigationBar.map((navItem) => (
                         <li className="hover:opacity-80 rounded-lg hover:shadow-lg p-2" key={navItem.id}>

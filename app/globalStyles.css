@@ -56,14 +56,11 @@ audio {
 
 @keyframes slide-in {
   0% {
-    transform: translateX(-100%);
+    transform: translateX(100%);
     opacity: 0;
   }
   10% {
     opacity: 1;
-  }
-  70% {
-    transform: translateX(10%);
   }
   100% {
     transform: translateX(0%);
@@ -72,7 +69,7 @@ audio {
 
 
 .animate-slide-in {
-  animation: slide-in 1.4s ease-out forwards;
+  animation: slide-in 1s ease-out forwards;
 } 
 
 @keyframes fadeIn {
@@ -82,5 +79,5 @@ audio {
 }
 
 .animate-fade-in {
-  animation: fadeIn 1.5s ease-in forwards;
+  animation: fadeIn 1.2s ease-in forwards;
 }

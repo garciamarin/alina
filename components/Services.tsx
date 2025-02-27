@@ -28,7 +28,7 @@ export default function Services({ data }: { data: AllPageQuery['servicesBlock']
 
             {/* Services List */}
             <div className="flex flex-col md:grid md:grid-cols-2  justify-between">
-                <ul className="flex md:flex-col gap-8 mx-auto justify-between">
+                <ul className="flex flex-wrap md:flex-col gap-4 md:gap-8 mx-auto justify-between">
                     {
                         data?.serviceList.map((service) => {
                             return (
@@ -43,7 +43,7 @@ export default function Services({ data }: { data: AllPageQuery['servicesBlock']
                                         type="button"
                                         className="
                                         relative 
-                                        px-4 py-2 rounded-full
+                                        px-2 md:px-4 py-2 rounded-full
                                         flex flex-col md:flex-row items-center justify-around md:gap-1
                                         transition-all duration-300 ease-in-out
                                         hover:scale-110 shadow focus:scale-110

@@ -41,7 +41,7 @@ async function Footer() {
       style={{ backgroundImage: `url(${footer?.backgroundImage?.image?.url})`, backgroundPosition: 'center calc(100% + 1rem)' }}
     >
       <p className="text-2xl">{footer?.title}</p>
-      <ReactMarkdown>{footer?.content}</ReactMarkdown>
+      <ReactMarkdown className="text-center">{footer?.content}</ReactMarkdown>
     </footer>
   )
 }

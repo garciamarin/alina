@@ -20,7 +20,7 @@ export default async function Page() {
     <div className="relative overflow-hidden">
       <div className="h-screen -z-10" />
       <Header data={header} />
-      <main className="mx-auto flex min-h-screen flex-col items-center content-center px-8 md:px-16 max-w-screen-xl">
+      <main className="mx-auto flex min-h-screen flex-col items-center content-center px-8 md:px-16 max-w-screen-xl md:text-lg">
         <AboutMe />
         <Experience />
         <Services />

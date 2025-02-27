@@ -62,7 +62,7 @@ export default function Services({ data }: { data: AllPageQuery['servicesBlock']
                     }
                 </ul>
                 <ul
-                    className="mt-6 list-none md:w-1/2 md:h-auto transition-opacity duration-500 ease-in-out transform text-center justify-self-start">
+                    className="mt-6 list-none md:w-1/2 md:h-auto transition-opacity duration-500 ease-in-out transform text-center justify-self-center md:self-center">
                     <li className="font-bold text-2xl pb-2">
                         {
                             (data?.serviceList.find(

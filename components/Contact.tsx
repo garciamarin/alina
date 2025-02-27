@@ -10,7 +10,7 @@ async function Contact() {
     const { kontactBlock } = await getDato(ContactDocument)
 
     return (
-        <section id="contact" className="section !my-8">
+        <section id="contact" className="section mt-16 md:mt-32">
             <a
                 href={EMAIL_LINK}
                 target="_blank"

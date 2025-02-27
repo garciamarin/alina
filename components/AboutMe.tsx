@@ -11,20 +11,21 @@ export default function AboutMe({ data }: AboutMeQuery) {
         <>
             <section id="intro section" className="flex flex-col items-center w-full max-w-full">
 
-                <div className="absolute top-[200px] right-0 -z-10 mt-16 animate-slide-in">
+                <div className="absolute top-[200px] right-0 -z-10 mt-16 animate-slide-from-right">
                     <Image
                         className="ml-auto"
                         src={data?.image?.url!}
                         alt="background image with Verbinden text"
                         height={data?.image?.height!}
                         width={data?.image?.width!}
+                        priority
                     />
                 </div>
 
                 {/* Intro block */}
                 <div className="h-screen absolute top-0 flex flex-col w-full pb-8 px-4 md:pb-0 md:px-16 max-w-screen-xl mx-auto animate-fade-in">
                     {/* spacer */}
-                    <div className="h-[200px] 2xl:mt-8" />
+                    <div className="h-[120px] md:h-[200px] 2xl:mt-8" />
                     <div className="my-auto">
                         <div id="about_me" className="flex items-center md:items-baseline justify-between relative w-full">
                             <div className="px-4 md:px-0 font-sans">

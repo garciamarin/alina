@@ -17,7 +17,7 @@ export default async function Page() {
   const { header } = await getDato(HeaderDocument)
 
   return (
-    <div className="relative">
+    <div className="relative overflow-hidden">
       <div className="h-screen -z-10" />
       <Header data={header} />
       <main className="mx-auto flex min-h-screen flex-col items-center content-center px-8 md:px-16 max-w-screen-xl">

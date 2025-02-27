@@ -39,22 +39,7 @@ audio {
   margin: 0;
 }
 
-@keyframes shrinkImage {
-  from {
-      height: 100vh;
-      opacity: 1;
-  }
-  to {
-      height: 200px;
-      opacity: 1;
-  }
-}
-
-.animate-shrink {
-  animation: shrinkImage 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-}
-
-@keyframes slide-in {
+@keyframes slide-from-right {
   0% {
     transform: translateX(100%);
     opacity: 0;
@@ -67,9 +52,8 @@ audio {
   }
 }
 
-
-.animate-slide-in {
-  animation: slide-in 1s ease-out forwards;
+.animate-slide-from-right {
+  animation: slide-from-right 1s ease-out forwards;
 } 
 
 @keyframes fadeIn {
@@ -80,4 +64,38 @@ audio {
 
 .animate-fade-in {
   animation: fadeIn 1.2s ease-in forwards;
+}
+
+@keyframes logo-swap {
+  0% {
+    opacity: 0;
+  }
+  70% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.animate-logo-swap {
+  animation: logo-swap 1s ease-in-out forwards;
+}
+
+@keyframes slide-from-top {
+  0% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.animate-slide-from-top {
+  animation: slide-from-top 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }

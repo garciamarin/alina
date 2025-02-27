@@ -3,10 +3,10 @@ import Image from "next/image";
 
 export default function Experience({ data }: { data: AllPageQuery['trainingBlock'] }) {
     return (
-        <section id="experience" className="section mt-16 md:mt-64">
+        <section id="experience" className="section mt-16 md:mt-[320px] ">
             <div className="hidden md:block relative left overflow-visible">
                 <Image
-                    className="absolute -top-60"
+                    className="absolute -top-[300px] left-10"
                     src={data?.experience[0].backgroundImage?.url!}
                     width={450}
                     height={450}

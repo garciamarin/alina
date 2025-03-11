@@ -13,19 +13,21 @@ export default function Header({ data }: { data: AllPageQuery['header'] }) {
             flex-col flex md:flex-row justify-between items-start"
         >
             <div className="relative w-5/6 md:w-[50vw] h-[30vw] md:h-[20vw] max-h-[300px]">
-                {animationArray.map((image, index) => {
-                    return (
-                        <Image
-                            key={index}
-                            src={image}
-                            alt={`Logo Animation Frame ${index + 1}`}
-                            fill
-                            className={"object-contain " + "animate-logo-" + index}
-                            style={{ objectPosition: 'top' }}
-                            priority
-                        />
-                    )
-                })}
+                {animationArray.map((image, index) => (
+                    <Image
+                        key={index}
+                        src={image}
+                        alt={`Logo Animation Frame ${index + 1}`}
+                        fill
+                        className={`object-contain ${index < 3 ? "animate-logo-slide-from-top" : "animate-logo-fade-in"}`}
+                        style={{
+                            objectPosition: 'top',
+                            '--animation-delay': `${(index + 1) * 0.2}s`,
+                        } as React.CSSProperties}
+                        priority
+                    />
+                )
+                )}
             </div>
             <nav className="z-30 top-0 md:ml-auto md:pt-4 lg:pt-8 animate-fade-in">
                 <ul className=" flex lg:space-x-8 space-x-2 font-medium font-mono">

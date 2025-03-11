@@ -15,7 +15,7 @@ export default function AboutMe({ data }: AboutMeQuery) {
                     <Image
                         className="ml-auto"
                         src={data?.image?.url!}
-                        alt="background image with Verbinden text"
+                        alt="Verbinden background of turquise bubble"
                         height={data?.image?.height!}
                         width={data?.image?.width!}
                         priority

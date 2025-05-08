@@ -63,45 +63,127 @@ audio {
 
 @keyframes fadeIn {
   0% { opacity: 0; }
-  99% { opacity: 0; }
+  90% { opacity: 0; }
   100% { opacity: 1; }
 }
 
 .animate-fade-in {
-  animation: fadeIn 1s ease-in forwards;
+  animation: fadeIn .2s ease-in both .6s;
+}
+
+@keyframes logo-fade-in-out {
+  0% {
+    opacity: 0;
+  }
+  40% {
+    opacity: 0;
+  }
+  99% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
 }
 
 @keyframes logo-fade-in {
   0% {
     opacity: 0;
   }
-  70% {
+  40% {
+    opacity: 0;
+  }
+  98% {
+    opacity: 1;
+  }
+  99% {
     opacity: 0;
   }
   100% {
-    opacity: .5;
+    opacity: 1;
   }
 }
 
-.animate-logo-fade-in {
-  animation: logo-fade-in var(--animation-delay) ease-in-out backwards;
-}
-
-@keyframes slide-from-top {
+@keyframes slide-from-top-1 {
   0% {
     transform: translateY(-100%);
     opacity: 0;
   }
-  80% {
-    opacity: .5;
+  40% {
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  90% {
+    transform: translateY(0);
+    opacity: 1;
   }
   100% {
     transform: translateY(0);
-    opacity: .5;
+    opacity: 0;
   }
 }
 
-.animate-logo-slide-from-top {
-  animation: slide-from-top var(--animation-delay) cubic-bezier(0.4, 0, 0.2, 1)  forwards;
+@keyframes slide-from-top-2 {
+  0%, 33% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  73% {
+    opacity: 1;
+  }
+  83% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  90% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 0;
+  }
 }
 
+@keyframes slide-from-top-3 {
+  0%, 66% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  86% {
+    opacity: 1;
+  }
+  96% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  90% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 0;
+  }
+}
+
+.animate-logo-1 {
+  animation: slide-from-top-1 .8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.animate-logo-2 {
+  animation: slide-from-top-2 .8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.animate-logo-3 {
+  animation: slide-from-top-3 .8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+.animate-logo-4 {
+  animation: logo-fade-in-out .3s ease-in-out both .5s;
+}
+.animate-logo-5 {
+  animation: logo-fade-in .2s ease-in-out both .7s;
+}

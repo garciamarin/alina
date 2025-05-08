@@ -19,11 +19,8 @@ export default function Header({ data }: { data: AllPageQuery['header'] }) {
                         src={image}
                         alt={`Logo Animation Frame ${index + 1}`}
                         fill
-                        className={`object-contain ${index < 3 ? "animate-logo-slide-from-top" : "animate-logo-fade-in"}`}
-                        style={{
-                            objectPosition: 'top',
-                            '--animation-delay': `${(index + 1) * 0.2}s`,
-                        } as React.CSSProperties}
+                        className={`object-contain animate-logo-${index + 1}`}
+                        style={{ objectPosition: 'top' } as React.CSSProperties}
                         priority
                     />
                 )

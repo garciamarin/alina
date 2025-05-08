@@ -40,8 +40,8 @@ async function Footer() {
       className="flex flex-col gap-1 items-center justify-center w-full bg-no-repeat bg-cover pt-16 text-lg font-sans p-4 mt-16 md:mt-32"
       style={{ backgroundImage: `url(${footer?.backgroundImage?.image?.url})`, backgroundPosition: 'center calc(100% + 1rem)' }}
     >
-      <p className="text-2xl">{footer?.title}</p>
-      <ReactMarkdown className="text-center">{footer?.content}</ReactMarkdown>
+      <p className="text-xl">{footer?.title}</p>
+      <ReactMarkdown className="text-[15px] text-center">{footer?.content}</ReactMarkdown>
     </footer>
   )
 }

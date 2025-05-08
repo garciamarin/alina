@@ -9,10 +9,6 @@ import Contact from "@/components/Contact"
 import Audios from "@/components/AudioBlockFetcher"
 import ReactMarkdown from "react-markdown"
 
-export const metadata: Metadata = {
-  title: 'Alina Salzer',
-}
-
 export default async function Page() {
   const { header } = await getDato(HeaderDocument)
 
@@ -44,4 +40,42 @@ async function Footer() {
       <ReactMarkdown className="text-[15px] text-center">{footer?.content}</ReactMarkdown>
     </footer>
   )
+}
+
+export const metadata: Metadata = {
+  title: 'Alina Salzer – Dolmetscherin & Übersetzerin | Translator & Interpreter',
+  description: 'Allgemein beeidigte Dolmetscherin und Übersetzerin für Deutsch, Spanisch, Portugiesisch und Englisch. Konferenzdolmetschen mit Fokus auf Dekolonialismus, Queerfeminismus, Umwelt, Nachhaltigkeit, Kunst & Kultur.',
+  keywords: [
+    'Alina Salzer',
+    'Dolmetscherin',
+    'Übersetzerin',
+    'Konferenzdolmetschen',
+    'Deutsch Spanisch Portugiesisch Englisch',
+    'beeidigte Übersetzerin',
+    'Translator',
+    'Interpreter',
+    'Translation',
+    'Simultaneous Interpreting',
+    'Remote Interpreting'
+  ],
+  authors: [{ name: 'Alina Salzer' }],
+  openGraph: {
+    title: 'Alina Salzer – Translator & Interpreter | Dolmetscherin & Übersetzerin',
+    description: 'Certified interpreter and translator for German, Spanish, Portuguese, and English. Conference interpreting with a focus on decolonialism, queer feminism, sustainability, and culture.',
+    url: 'https://www.alina-salzer.de',
+    siteName: 'Alina Salzer',
+    locale: 'de_DE',
+    type: 'website',
+    images: [
+      {
+        url: '/images/logo.png',
+        width: 983,
+        height: 1013,
+        alt: 'Portrait of Alina Salzer with translation languages listed',
+      },
+    ],
+  },
+  icons: {
+    icon: '/images/favicon.ico',
+  },
 }

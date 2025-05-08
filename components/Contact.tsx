@@ -17,7 +17,7 @@ async function Contact() {
                 rel="noopener noreferrer"
                 className="relative group"
             >
-                <div className="relative w-[80vw] h-[200px] md:max-w-[600px] md:w-[50vw] md:h-[300px] flex items-center justify-center">
+                <div className="relative w-[80vw] h-[200px] sm:max-w-[600px] sm:w-[50vw] sm:h-[300px] flex items-center justify-center">
                     <Image
                         alt="Contact Block background"
                         src={kontactBlock?.basicContent?.image?.url!}
@@ -26,9 +26,9 @@ async function Contact() {
                     />
                 </div>
                 <div
-                    className=" absolute flex items-center p-4 rounded-full
-                                right-[10vw] md:right-[5vw] bottom-0 w-[80px] h-[80px]
-                                hover:bg-[#458F7C] bg-[#458F7C] text-white font-semibold 
+                    className=" absolute flex items-center p-4 rounded-full z-10
+                                right-[25vw] sm:right-[10vw] bottom-5 sm:bottom-10 w-[100px] h-[100px]
+                              text-white font-semibold 
                                 hover:opacity-80 group-hover:animate-bounce transition duration-100"
                 >
                     <AnimatedSvg animation={kontactBlock?.basicContent?.animation?.map(animation => animation.url) || []} interval={250} contain />

@@ -11,7 +11,7 @@ export default function AboutMe({ data }: AboutMeQuery) {
         <>
             <section id="intro section" className="flex flex-col items-center w-full max-w-full">
 
-                <div className="absolute top-[200px] right-0 -z-10 mt-16 animate-slide-from-right">
+                <div className="absolute top-[50vh] md:top-[200px] right-0 -z-10 mt-16 animate-slide-from-right">
                     <Image
                         className="ml-auto"
                         src={data?.image?.url!}
@@ -27,11 +27,11 @@ export default function AboutMe({ data }: AboutMeQuery) {
                     {/* spacer */}
                     <div className="h-[80px] md:h-[200px] 2xl:mt-8" />
                     <div className="my-auto">
-                        <div id="about_me" className="flex items-center md:items-baseline justify-between relative w-full">
+                        <div id="about_me" className="mb-8 md:mb-0 flex items-center md:items-baseline justify-between relative w-full">
                             <div className="px-4 md:px-0 font-sans">
                                 {data?.title && <h2 className="!font-thin !text-4xl section-header" >{data?.title}</h2>}
                             </div>
-                            <div className="relative w-[220px] h-[220px] lg:w-[230px] lg:h-[230px]">
+                            <div className="relative sm:w-[140px] sm:h-[140px] md:w-[220px] md:h-[220px] lg:w-[230px] lg:h-[230px]">
                                 <Image
                                     src={data?.profilePicture?.url!}
                                     alt={data?.profilePicture?.alt!}

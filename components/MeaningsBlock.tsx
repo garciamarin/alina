@@ -24,7 +24,7 @@ export default function MeaningsBlock({ data }: AboutMeQuery) {
                     {data?.meanings?.heading &&
                         <a href="#meanings" className="mt-auto flex items-center cursor-pointer  hover:opacity-70">
                             <h3 className="text:lg md:text-xl inline-block scroll-m-10" id="meanings"                                >
-                                {data?.meanings?.heading}...
+                                {data?.meanings?.heading}
                             </h3>
                         </a>
                     }

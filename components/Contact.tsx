@@ -27,7 +27,7 @@ async function Contact() {
                 </div>
                 <div
                     className=" absolute flex items-center p-4 rounded-full z-10
-                                right-[25vw] sm:right-[10vw] bottom-5 sm:bottom-10 w-[100px] h-[100px]
+                                right-[25vw] sm:right-[13vw] bottom-5 sm:bottom-10 w-[100px] h-[100px] md:w-[150px] md:h-[150px]
                               text-white font-semibold 
                                 hover:opacity-80 group-hover:animate-bounce transition duration-100"
                 >

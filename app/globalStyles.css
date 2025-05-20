@@ -93,12 +93,6 @@ audio {
   40% {
     opacity: 0;
   }
-  98% {
-    opacity: 1;
-  }
-  99% {
-    opacity: 0;
-  }
   100% {
     opacity: 1;
   }
@@ -116,9 +110,13 @@ audio {
     transform: translateY(0);
     opacity: 1;
   }
-  90% {
+  75% {
     transform: translateY(0);
     opacity: 1;
+  }
+  99% {
+    transform: translateY(0);
+    opacity: .7;
   }
   100% {
     transform: translateY(0);
@@ -138,9 +136,13 @@ audio {
     transform: translateY(0);
     opacity: 1;
   }
-  90% {
+  91% {
     transform: translateY(0);
     opacity: 1;
+  }
+  99% {
+    transform: translateY(0);
+    opacity: .7;
   }
   100% {
     transform: translateY(0);
@@ -160,9 +162,13 @@ audio {
     transform: translateY(0);
     opacity: 1;
   }
-  90% {
+  98% {
     transform: translateY(0);
     opacity: 1;
+  }
+  99% {
+    transform: translateY(0);
+    opacity: .7;
   }
   100% {
     transform: translateY(0);
@@ -185,5 +191,5 @@ audio {
   animation: logo-fade-in-out .3s ease-in-out both .5s;
 }
 .animate-logo-5 {
-  animation: logo-fade-in .2s ease-in-out both .7s;
+  animation: logo-fade-in .2s ease-in-out both .6s;
 }

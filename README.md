@@ -17,11 +17,6 @@ To run the website locally, follow these steps:
 - Provide information about Alina Salzer's background and expertise
 - Contact form for inquiries and collaboration opportunities
 
-## Technologies Used
-
-- Next.js: A React framework for building server-side rendered and static websites
-- Tailwind CSS: A utility-first CSS framework for rapid UI development
-
 ## License
 
 This project is licensed under the [MIT License](LICENSE).

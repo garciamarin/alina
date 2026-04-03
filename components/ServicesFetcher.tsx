@@ -18,20 +18,35 @@ export default async function AboutMeFetcher({ locale }: Props) {
         if (!hasMainImage || !hasAnyAnimationImage) {
             const { servicesBlock: deServicesBlock } = await getDato(ServicesDocument, { locale: "de" })
 
-            servicesBlock = {
-                ...servicesBlock,
-                basicContent: {
-                    ...servicesBlock?.basicContent,
-                    image: hasMainImage ? servicesBlock?.basicContent?.image : deServicesBlock?.basicContent?.image,
-                },
-                serviceList: servicesBlock?.serviceList?.map((service: any) => {
-                    const deService = deServicesBlock?.serviceList?.find((s: any) => s.id === service.id)
-                    const hasIcons = !!service?.animationImages?.[0]?.url
-                    return {
-                        ...service,
-                        animationImages: hasIcons ? service.animationImages : deService?.animationImages,
-                    }
-                }) ?? servicesBlock?.serviceList,
+            if (!servicesBlock) {
+                servicesBlock = deServicesBlock
+            } else if (deServicesBlock) {
+                const localizedBasicContent = servicesBlock.basicContent
+                const deBasicContent = deServicesBlock.basicContent
+
+                const basicContent =
+                    localizedBasicContent?.image?.url
+                        ? localizedBasicContent
+                        : localizedBasicContent && deBasicContent
+                            ? {
+                                ...localizedBasicContent,
+                                image: deBasicContent.image,
+                            }
+                            : deBasicContent
+
+                servicesBlock = {
+                    ...servicesBlock,
+                    basicContent,
+                    serviceList: servicesBlock.serviceList.map((service: any) => {
+                        const hasIcons = !!service?.animationImages?.[0]?.url
+                        if (hasIcons) return service
+                        const deService = deServicesBlock.serviceList.find((s: any) => s.id === service.id)
+                        return {
+                            ...service,
+                            animationImages: deService?.animationImages ?? service.animationImages,
+                        }
+                    }),
+                }
             }
         }
     }

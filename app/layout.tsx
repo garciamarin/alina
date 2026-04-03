@@ -13,10 +13,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="text-justify scroll-smooth">
+    <html lang="de" className="text-justify scroll-smooth">
       <body className={`${urbanist.variable} ${bahnSchrift.variable} font-sans bg-[#edebec]`}>
         {children}
-      </body >
+      </body>
     </html >
   );
 }

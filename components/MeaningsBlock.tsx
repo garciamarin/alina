@@ -7,7 +7,11 @@ import { Splide, SplideSlide, SplideTrack } from '@splidejs/react-splide';
 import '@splidejs/react-splide/css';
 
 export default function MeaningsBlock({ data }: AboutMeQuery) {
-    const meaningsArray = data?.meanings?.meanings.map(meaning => meaning.description)!;
+    const meaningsArray = data?.meanings?.meanings?.map(meaning => meaning.description) || [];
+    if (!meaningsArray.length) {
+        return null;
+    }
+    const backgroundUrl = data?.meanings?.backgroundImage?.url
     const options = {
         type: 'loop',
         autoplay: true,
@@ -38,7 +42,7 @@ export default function MeaningsBlock({ data }: AboutMeQuery) {
                                     return (
                                         <SplideSlide key={meaning}>
                                             <div className="flex  justify-center" >
-                                                <div style={{ backgroundImage: `url(${data?.meanings?.backgroundImage?.url!})` }}
+                                                <div style={{ backgroundImage: backgroundUrl ? `url(${backgroundUrl})` : undefined }}
                                                     className="flex items-center justify-center bg-no-repeat bg-cover bg-center w-[300px] h-[300px] md:w-[400px] md:h-[400px] text-center">
                                                     <p className="p-4 md:p-8 w-[250px]">
                                                         {meaning}

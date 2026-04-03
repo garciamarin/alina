@@ -1,0 +1,16 @@
+{
+  "experience": {
+    "since": "seit 2020",
+    "freelance_title": "Freiberufliche Dolmetscherin & Übersetzerin",
+    "freelance_desc": "für namhafte Organisationen in Kultur, Politik & NGOs",
+    "clients_intro": "...und mit dieser Auswahl von Kund:innen & Projekten war ich schon unterwegs:"
+  },
+  "contact": {
+    "email_subject": "Anfrage zu deinem Angebot",
+    "email_body": "Liebe Alina,\\n\\nich mag deine Arbeit und Website sehr und möchte dich kontaktieren, um..."
+  },
+  "common": {
+    "services_header_alt": "Services Kopfzeilenbild",
+    "contact_bg_alt": "Kontakt Hintergrund"
+  }
+}

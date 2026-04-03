@@ -3,27 +3,33 @@ import { AllPageQuery } from "@/.graphql/datoTypes"
 import { useState } from "react"
 import { AnimatedSvg } from "./AnimateSvg"
 import Image from "next/image"
+import { useT } from "@/app/i18n"
 
 
 export default function Services({ data }: { data: AllPageQuery['servicesBlock'] }) {
     const [selectedServiceId, setSelectedServiceId] = useState<string | undefined>(undefined)
+    const t = useT()
     return (
         <section id="services" className="!w-full section !gap-0 mb-10">
             {/* Mobile Section Header */}
             <>
                 <div className="h-[170px] md:hidden" />
-                <div className="absolute left-0 h-[130px] md:hidden my-8 w-screen overflow-hidden flex justify-center">
-                    <div className="relative w-[100vw] h-[130px]">
-                        <Image alt="Services header image" src={data?.basicContent?.image?.url!} fill className="object-cover" />
+                {data?.basicContent?.image?.url && (
+                    <div className="absolute left-0 h-[130px] md:hidden my-8 w-screen overflow-hidden flex justify-center">
+                        <div className="relative w-[100vw] h-[130px]">
+                            <Image alt={t("common.services_header_alt")} src={data.basicContent.image.url} fill className="object-cover" />
+                        </div>
                     </div>
-                </div>
+                )}
             </>
 
             {/* Desktop Section Header */}
             <>
-                <div className="relative hidden md:block w-[75vw] h-[250px] mx-auto mb-12">
-                    <Image alt="Services header image" src={data?.basicContent?.image?.url!} fill className="object-contain" />
-                </div>
+                {data?.basicContent?.image?.url && (
+                    <div className="relative hidden md:block w-[75vw] h-[250px] mx-auto mb-12">
+                        <Image alt={t("common.services_header_alt")} src={data.basicContent.image.url} fill className="object-contain" />
+                    </div>
+                )}
             </>
 
             {/* Services List */}
@@ -50,10 +56,27 @@ export default function Services({ data }: { data: AllPageQuery['servicesBlock']
                                         "
                                     >
                                         <div className="relative w-14 h-14 md:w-[calc(25vw/4)] md:h-[calc(25vw/4)]">
-                                            {selectedServiceId === service.id
-                                                ? <AnimatedSvg animation={service.animationImages.map(image => image.url)} interval={350} contain />
-                                                : <Image alt={`{${service.name} animation icon`} src={service.animationImages[0].url} fill className="object-contain" />
-                                            }
+                                            {service.animationImages &&
+                                                service.animationImages.some((img) => !!img.url) && (
+                                                    <>
+                                                        {selectedServiceId === service.id ? (
+                                                            <AnimatedSvg
+                                                                animation={service.animationImages
+                                                                    .filter((img) => !!img.url)
+                                                                    .map((img) => img.url)}
+                                                                interval={350}
+                                                                contain
+                                                            />
+                                                        ) : (
+                                                            <Image
+                                                                alt={`{${service.name} animation icon`}
+                                                                src={service.animationImages.find((img) => !!img.url)!.url}
+                                                                fill
+                                                                className="object-contain"
+                                                            />
+                                                        )}
+                                                    </>
+                                                )}
                                         </div>
                                     </button>
                                 </li>

@@ -1,0 +1,16 @@
+{
+  "experience": {
+    "since": "desde 2020",
+    "freelance_title": "Intérprete e tradutora freelancer",
+    "freelance_desc": "para organizações renomadas em cultura, política e ONGs",
+    "clients_intro": "...e aqui uma seleção de clientes e projetos com os quais trabalhei:"
+  },
+  "contact": {
+    "email_subject": "Consulta sobre seus serviços",
+    "email_body": "Querida Alina,\\n\\ngosto muito do seu trabalho e do seu site e gostaria de entrar em contato para..."
+  },
+  "common": {
+    "services_header_alt": "Imagem de cabeçalho de serviços",
+    "contact_bg_alt": "Fundo do bloco de contato"
+  }
+}

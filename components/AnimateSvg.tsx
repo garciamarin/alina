@@ -24,7 +24,7 @@ export const AnimatedSvg = ({ animation, interval = 250, fill, contain }: {
     const className = contain ? "object-contain" : fill ? "object-fill" : "";
     const imageProps = { ...sizeProps, ...{ className } };
     return (
-        <div className="flex justify-center items-center w-full h-full">
+        <div className="relative flex justify-center items-center w-full h-full">
             <div className="transition-transform !duration-100 ease-in-out">
                 <Image
                     src={animation[currentIndex]}

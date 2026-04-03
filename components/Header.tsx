@@ -1,6 +1,7 @@
 import { AllPageQuery } from "@/.graphql/datoTypes"
 import Link from "next/link"
 import Image from "next/image"
+import LanguageSwitcher from "./LanguageSwitcher"
 
 export default function Header({ data }: { data: AllPageQuery['header'] }) {
     if (!data) return;
@@ -27,12 +28,15 @@ export default function Header({ data }: { data: AllPageQuery['header'] }) {
                 )}
             </div>
             <nav className="z-30 md:top-0 md:ml-auto md:pt-4 lg:pt-8 animate-fade-in">
-                <ul className="-mt-4 md:mt-0 flex lg:space-x-8 md:space-x-2 space-x-1 font-medium font-mono">
+                <ul className="-mt-4 md:mt-0 flex lg:space-x-8 md:space-x-2 space-x-1 font-medium font-mono items-center">
                     {data?.navigationBar.map((navItem) => (
                         <li className="hover:opacity-80 rounded-lg hover:shadow-lg pb-2 md:p-2" key={navItem.id}>
                             <Link className="md:text-xl" href={"#" + navItem.section!}>{navItem.heading}</Link>
                         </li>
                     ))}
+                    <li className="pl-2 md:pl-4">
+                        <LanguageSwitcher />
+                    </li>
                 </ul>
             </nav>
         </header >

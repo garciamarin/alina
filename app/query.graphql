@@ -137,34 +137,8 @@ fragment ContactFragment on KontactBlockRecord {
   }
 }
 
-query AllPage {
-  header {
-    ...HeadingFragment
-  }
-  aboutMe {
-    ...AboutMeFragment
-  }
-  trainingBlock {
-    ...ExperienceFragment
-  }
-  servicesBlock {
-    ...ServicesFragment
-  }
-  kontactBlock {
-    ...ContactFragment
-  }
-  footer {
-    title
-    links {
-      link
-      id
-      displayTitle
-    }
-  }
-}
-
-query AudioList {
-  audioList {
+query AudioList($locale: SiteLocale) {
+  audioList(locale: $locale) {
     audio {
       language
       displayName
@@ -178,8 +152,8 @@ query AudioList {
   }
 }
 
-query AudioBlockAnimation {
-  audioList {
+query AudioBlockAnimation($locale: SiteLocale) {
+  audioList(locale: $locale) {
     images {
       url
       id
@@ -191,32 +165,32 @@ query AudioBlockAnimation {
   }
 }
 
-query AboutMe {
-  aboutMe {
+query AboutMe($locale: SiteLocale) {
+  aboutMe(locale: $locale) {
     ...AboutMeFragment
   }
 }
 
-query Experience {
-  trainingBlock {
+query Experience($locale: SiteLocale) {
+  trainingBlock(locale: $locale) {
     ...ExperienceFragment
   }
 }
 
-query Services {
-  servicesBlock {
+query Services($locale: SiteLocale) {
+  servicesBlock(locale: $locale) {
     ...ServicesFragment
   }
 }
 
-query Contact {
-  kontactBlock {
+query Contact($locale: SiteLocale) {
+  kontactBlock(locale: $locale) {
     ...ContactFragment
   }
 }
 
-query Footer {
-  footer {
+query Footer($locale: SiteLocale) {
+  footer(locale: $locale) {
     title
     links {
       link
@@ -232,14 +206,14 @@ query Footer {
   }
 }
 
-query indexPage {
-  header {
+query indexPage($locale: SiteLocale) {
+  header(locale: $locale) {
     ...HeadingFragment
   }
 }
 
-query Header {
-  header {
+query Header($locale: SiteLocale) {
+  header(locale: $locale) {
     ...HeadingFragment
   }
 }

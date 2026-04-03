@@ -5,21 +5,25 @@ import Meanings from "@/components/MeaningsBlock"
 type AboutMeQuery = { data: AllPageQuery['aboutMe'] }
 
 export default function AboutMe({ data }: AboutMeQuery) {
-    const introText = data?.introText!.split("\n")!
+    const introText = (data?.introText || "").split("\n")
+    const bubbleUrl = data?.image?.url
+    const profileUrl = data?.profilePicture?.url
 
     return (
         <>
             <section id="intro section" className="flex flex-col items-center w-full max-w-full">
 
                 <div className="absolute top-[50vh] md:top-[200px] right-0 -z-10 mt-16 animate-slide-from-right">
-                    <Image
-                        className="ml-auto"
-                        src={data?.image?.url!}
-                        alt="Verbinden background of turquise bubble"
-                        height={data?.image?.height!}
-                        width={data?.image?.width!}
-                        priority
-                    />
+                    {bubbleUrl && (
+                        <Image
+                            className="ml-auto"
+                            src={bubbleUrl}
+                            alt="Verbinden background of turquise bubble"
+                            height={data?.image?.height ?? 1}
+                            width={data?.image?.width ?? 1}
+                            priority
+                        />
+                    )}
                 </div>
 
                 {/* Intro block */}
@@ -32,17 +36,19 @@ export default function AboutMe({ data }: AboutMeQuery) {
                                 {data?.title && <h2 className="!font-thin !text-4xl section-header" >{data?.title}</h2>}
                             </div>
                             <div className="relative sm:w-[140px] sm:h-[140px] md:w-[220px] md:h-[220px] lg:w-[230px] lg:h-[230px]">
-                                <Image
-                                    src={data?.profilePicture?.url!}
-                                    alt={data?.profilePicture?.alt!}
-                                    width={data?.profilePicture?.width!}
-                                    height={data?.profilePicture?.height!}
-                                />
+                                {profileUrl && (
+                                    <Image
+                                        src={profileUrl}
+                                        alt={data?.profilePicture?.alt || ""}
+                                        width={data?.profilePicture?.width ?? 1}
+                                        height={data?.profilePicture?.height ?? 1}
+                                    />
+                                )}
                             </div>
                         </div>
                         <div className="px-4 md:px-0 mt-4 md:mt-12 flex flex-col gap-4 md:mb-4 !text-left md:text-justify">
-                            {data?.introText && <p className="max-w-screen-md">{introText[0]}</p>}
-                            {data?.introText && <p className="max-w-screen-md">{introText[1]}</p>}
+                            {introText[0] && <p className="max-w-screen-md">{introText[0]}</p>}
+                            {introText[1] && <p className="max-w-screen-md">{introText[1]}</p>}
                         </div>
                     </div>
                 </div>

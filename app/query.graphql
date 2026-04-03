@@ -191,13 +191,13 @@ query Contact($locale: SiteLocale) {
 
 query Footer($locale: SiteLocale) {
   footer(locale: $locale) {
-    title
-    links {
+    title(locale: $locale)
+    links(locale: $locale) {
       link
       id
       displayTitle
     }
-    content
+    content(locale: $locale)
     backgroundImage {
       image {
         url

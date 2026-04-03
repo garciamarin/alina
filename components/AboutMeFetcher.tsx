@@ -17,22 +17,24 @@ export default async function AboutMeFetcher({ locale }: Props) {
 
         if (missingImages) {
             const { aboutMe: deAboutMe } = await getDato(AboutMeDocument, { locale: "de" })
-            const deMeanings = deAboutMe?.meanings ?? null
-            const localizedMeanings = aboutMe?.meanings ?? null
 
-            aboutMe = {
-                ...aboutMe,
-                image: aboutMe?.image?.url ? aboutMe.image : deAboutMe?.image,
-                profilePicture: aboutMe?.profilePicture?.url ? aboutMe.profilePicture : deAboutMe?.profilePicture,
-                meanings:
-                    localizedMeanings && deMeanings
+            // If the localized record is missing entirely, fall back to `de`.
+            if (!aboutMe) {
+                aboutMe = deAboutMe
+            } else if (deAboutMe) {
+                aboutMe = {
+                    ...aboutMe,
+                    image: aboutMe.image?.url ? aboutMe.image : deAboutMe.image,
+                    profilePicture: aboutMe.profilePicture?.url ? aboutMe.profilePicture : deAboutMe.profilePicture,
+                    meanings: aboutMe.meanings
                         ? {
-                            ...localizedMeanings,
-                            backgroundImage: localizedMeanings.backgroundImage?.url
-                                ? localizedMeanings.backgroundImage
-                                : deMeanings.backgroundImage,
+                            ...aboutMe.meanings,
+                            backgroundImage: aboutMe.meanings.backgroundImage?.url
+                                ? aboutMe.meanings.backgroundImage
+                                : deAboutMe.meanings?.backgroundImage,
                         }
-                        : localizedMeanings ?? deMeanings,
+                        : deAboutMe.meanings,
+                }
             }
         }
     }

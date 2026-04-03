@@ -1,9 +1,9 @@
 "use client"
-import { AllPageQuery } from "@/.graphql/datoTypes";
+import type { ExperienceQuery } from "@/.graphql/datoTypes";
 import Image from "next/image";
 import { useT } from "@/app/i18n";
 
-export default function Experience({ data }: { data: AllPageQuery['trainingBlock'] }) {
+export default function Experience({ data }: { data: ExperienceQuery['trainingBlock'] }) {
     const t = useT()
     return (
         <section id="experience" className="section mt-16 md:mt-[320px] ">

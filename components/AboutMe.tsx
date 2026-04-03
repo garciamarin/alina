@@ -1,10 +1,10 @@
-import { AllPageQuery } from "@/.graphql/datoTypes"
+import type { AboutMeQuery } from "@/.graphql/datoTypes"
 import Image from 'next/image'
 import Meanings from "@/components/MeaningsBlock"
 
-type AboutMeQuery = { data: AllPageQuery['aboutMe'] }
+type AboutMeProps = { data: AboutMeQuery['aboutMe'] }
 
-export default function AboutMe({ data }: AboutMeQuery) {
+export default function AboutMe({ data }: AboutMeProps) {
     const introText = (data?.introText || "").split("\n")
     const bubbleUrl = data?.image?.url
     const profileUrl = data?.profilePicture?.url

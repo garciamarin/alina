@@ -1,9 +1,9 @@
-import { AllPageQuery } from "@/.graphql/datoTypes"
+import type { HeaderQuery } from "@/.graphql/datoTypes"
 import Link from "next/link"
 import Image from "next/image"
 import LanguageSwitcher from "./LanguageSwitcher"
 
-export default function Header({ data }: { data: AllPageQuery['header'] }) {
+export default function Header({ data }: { data: HeaderQuery['header'] }) {
     if (!data) return;
     const animationArray = data.backgroundAnimation.map(image => image.url)
 

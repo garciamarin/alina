@@ -1,12 +1,12 @@
 'use client'
 
-import { AllPageQuery } from "@/.graphql/datoTypes"
-type AboutMeQuery = { data: AllPageQuery['aboutMe'] }
+import type { AboutMeQuery } from "@/.graphql/datoTypes"
+type AboutMeProps = { data: AboutMeQuery['aboutMe'] }
 // @ts-ignore
 import { Splide, SplideSlide, SplideTrack } from '@splidejs/react-splide';
 import '@splidejs/react-splide/css';
 
-export default function MeaningsBlock({ data }: AboutMeQuery) {
+export default function MeaningsBlock({ data }: AboutMeProps) {
     const meaningsArray = data?.meanings?.meanings?.map(meaning => meaning.description) || [];
     if (!meaningsArray.length) {
         return null;

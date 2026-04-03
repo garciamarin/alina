@@ -1,12 +1,12 @@
 "use client"
-import { AllPageQuery } from "@/.graphql/datoTypes"
+import type { ServicesQuery } from "@/.graphql/datoTypes"
 import { useState } from "react"
 import { AnimatedSvg } from "./AnimateSvg"
 import Image from "next/image"
 import { useT } from "@/app/i18n"
 
 
-export default function Services({ data }: { data: AllPageQuery['servicesBlock'] }) {
+export default function Services({ data }: { data: ServicesQuery['servicesBlock'] }) {
     const [selectedServiceId, setSelectedServiceId] = useState<string | undefined>(undefined)
     const t = useT()
     return (

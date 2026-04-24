@@ -21,16 +21,9 @@ const messagesCache: Partial<Record<SupportedLocale, Messages>> = {}
 
 async function loadMessages(locale: SupportedLocale): Promise<Messages> {
     if (messagesCache[locale]) return messagesCache[locale]!
-    // Prefer bundler import from app/locales (no network), fallback to public fetch
-    try {
-        const data = await import(`@/app/locales/${locale}.json`)
-        messagesCache[locale] = (data as any).default || data
-        return messagesCache[locale]!
-    } catch {
-        const data = await fetch(`/locales/${locale}.json`, { cache: "no-store" }).then((r) => r.json())
-        messagesCache[locale] = data
-        return data
-    }
+    const data = await import(`@/app/locales/${locale}.json`)
+    messagesCache[locale] = (data as any).default || data
+    return messagesCache[locale]!
 }
 
 export function I18nProvider({ initialLocale, children }: { initialLocale: SupportedLocale, children: React.ReactNode }) {

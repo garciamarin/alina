@@ -10,6 +10,8 @@ import Audios from "@/components/AudioBlockFetcher"
 import ReactMarkdown from "react-markdown"
 import { getSupportedLocale } from "@/lib/i18n"
 
+const metadataBaseUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.alina-salzer.de"
+
 export default async function Page({ params }: { params: { locale: string } }) {
     const locale = getSupportedLocale(params.locale)
     let { header } = await getDato(HeaderDocument, { locale })
@@ -58,6 +60,7 @@ async function Footer({ locale }: { locale: string }) {
 }
 
 export const metadata: Metadata = {
+    metadataBase: new URL(metadataBaseUrl),
     title: 'Alina Salzer – Dolmetscherin & Übersetzerin | Translator & Interpreter',
     description: 'Allgemein beeidigte Dolmetscherin und Übersetzerin für Deutsch, Spanisch, Portugiesisch und Englisch. Konferenzdolmetschen mit Fokus auf Dekolonialismus, Queerfeminismus, Umwelt, Nachhaltigkeit, Kunst & Kultur.',
     keywords: [

@@ -65,6 +65,12 @@ const FALLBACK: TranslationSample[] = [
     },
 ]
 
+const BLOBS = [
+    { shape: "rounded-[3.5rem_1.5rem_4rem_2rem]", color: "bg-[#a5d6d2]/70", ink: "text-white/70" },
+    { shape: "rounded-[1.75rem_4rem_2rem_3.5rem]", color: "bg-[#e0a3ac]/45", ink: "text-white/80" },
+    { shape: "rounded-[2.5rem_2rem_3.5rem_1.5rem]", color: "bg-[#4aaaa5]/45", ink: "text-white/70" },
+]
+
 export default function TranslationSamples({ locale, title, samples }: Props) {
     const heading = title || (TITLE[locale] ?? TITLE.de)
     const items = samples && samples.length > 0 ? samples : FALLBACK
@@ -72,53 +78,61 @@ export default function TranslationSamples({ locale, title, samples }: Props) {
     return (
         <section id="translations" className="section mt-16 w-full text-left md:mt-24">
             <h2 className="section-header">{heading}</h2>
-            <ul className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6">
-                {items.map((sample) => (
-                    <li
-                        key={sample.id}
-                        className="flex flex-col gap-3 rounded-3xl bg-white/60 p-6 shadow-sm"
-                    >
-                        <div className="flex flex-wrap items-center justify-between gap-x-4 gap-y-2">
-                            {sample.kind && (
-                                <span className="font-mono text-sm font-medium uppercase tracking-wider text-[#1f9994]">
-                                    {sample.kind}
-                                </span>
-                            )}
+            <ul className="grid grid-cols-1 gap-5 md:grid-cols-2 md:gap-8">
+                {items.map((sample, index) => {
+                    const blob = BLOBS[index % BLOBS.length]
+                    return (
+                        <li
+                            key={sample.id}
+                            className={`relative flex flex-col gap-3 overflow-hidden px-7 pt-7 transition-transform duration-500 ease-out hover:-translate-y-1 hover:rotate-[-0.6deg] md:px-9 md:pt-9 ${sample.languages ? "pb-20 md:pb-24" : "pb-8 md:pb-10"} ${blob.shape} ${blob.color}`}
+                        >
                             {sample.languages && (
-                                <span className="whitespace-nowrap rounded-full border border-[#1f9994]/40 px-3 py-0.5 font-mono text-sm text-[#1f9994]">
+                                <span
+                                    aria-label={sample.languages}
+                                    className={`pointer-events-none absolute bottom-1 right-8 select-none whitespace-nowrap font-mono font-medium leading-none ${blob.ink} ${
+                                        sample.languages.length > 8 ? "text-4xl md:text-5xl" : "text-6xl md:text-7xl"
+                                    }`}
+                                >
                                     {sample.languages}
                                 </span>
                             )}
-                        </div>
-                        <h3 className="font-mono text-lg font-bold leading-snug md:text-xl">{sample.title}</h3>
-                        {sample.text && (
-                            <ReactMarkdown
-                                className="mt-1 border-t border-[#1f9994]/20 pt-3 text-base"
-                                components={{
-                                    ul: ({ children }) => <ul className="flex flex-col gap-1.5">{children}</ul>,
-                                    li: ({ children }) => (
-                                        <li className="flex gap-2">
-                                            <span aria-hidden className="text-[#1f9994]">↗</span>
-                                            <span className="min-w-0 break-words">{children}</span>
-                                        </li>
-                                    ),
-                                    a: ({ href, children }) => (
-                                        <a
-                                            href={href}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className="underline decoration-[#1f9994]/50 underline-offset-4 hover:decoration-[#1f9994]"
-                                        >
-                                            {children}
-                                        </a>
-                                    ),
-                                }}
-                            >
-                                {sample.text}
-                            </ReactMarkdown>
-                        )}
-                    </li>
-                ))}
+                            <div className="relative flex flex-col gap-3">
+                                {sample.kind && (
+                                    <span className="font-mono text-sm font-medium uppercase tracking-wider text-[#12706c]">
+                                        {sample.kind}
+                                    </span>
+                                )}
+                                <h3 className="font-mono text-lg font-bold leading-snug md:text-xl">{sample.title}</h3>
+                                {sample.text && (
+                                    <ReactMarkdown
+                                        className="mt-1 text-base"
+                                        components={{
+                                            ul: ({ children }) => <ul className="flex flex-col gap-1.5">{children}</ul>,
+                                            li: ({ children }) => (
+                                                <li className="flex gap-2">
+                                                    <span aria-hidden className="text-[#12706c]">↗</span>
+                                                    <span className="min-w-0 break-words">{children}</span>
+                                                </li>
+                                            ),
+                                            a: ({ href, children }) => (
+                                                <a
+                                                    href={href}
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                    className="underline decoration-black/30 underline-offset-4 hover:decoration-black"
+                                                >
+                                                    {children}
+                                                </a>
+                                            ),
+                                        }}
+                                    >
+                                        {sample.text}
+                                    </ReactMarkdown>
+                                )}
+                            </div>
+                        </li>
+                    )
+                })}
             </ul>
         </section>
     )

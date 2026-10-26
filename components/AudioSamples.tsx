@@ -1,54 +1,48 @@
-import {
-    AudioListDocument, AudioListQuery
-} from "@/.graphql/datoTypes"
-import { getDato } from "@/lib/datocms"
-import { cache, useRef, useState } from "react";
+"use client"
+import { useRef, useState } from "react"
 
-const getAudios = cache(
-    async () => {
-        const { audioList } = await getDato(AudioListDocument)
-        return audioList;
-    }
-);
+export type AudioClip = {
+    displayName: string
+    audioUrl?: string | null
+    imageUrl?: string | null
+}
 
-export async function AudioSamples() {
-    const audioList = await getAudios();
-
+export function AudioSamples({ samples }: { samples: AudioClip[] }) {
     return (
-        <ul className="grid grid-cols-2 gap-6 md:gap-16 content-center mt-0">
-            {
-                audioList?.audio.map(sample => <AudioSample key={sample.displayName} sample={sample} />)
-            }
-        </ul >
+        <ul className="grid grid-cols-2 gap-6 md:gap-16">
+            {samples.map((sample) => (
+                <AudioSample key={sample.displayName} sample={sample} />
+            ))}
+        </ul>
     )
 }
 
-function AudioSample({ sample }: { sample: NonNullable<AudioListQuery['audioList']>['audio'][number] }) {
-    const audioRef = useRef<null | HTMLAudioElement>(null);
-    const [isPlaying, setIsPlaying] = useState(false);
+function AudioSample({ sample }: { sample: AudioClip }) {
+    const audioRef = useRef<HTMLAudioElement>(null)
+    const [isPlaying, setIsPlaying] = useState(false)
 
     const toggleAudio = () => {
-        if (audioRef.current) {
-            if (isPlaying) {
-                audioRef.current.pause();
-            } else {
-                audioRef.current.play();
-            }
-            setIsPlaying(!isPlaying);
-        }
-    };
+        const audio = audioRef.current
+        if (!audio) return
+        if (isPlaying) audio.pause()
+        else audio.play()
+        setIsPlaying(!isPlaying)
+    }
 
     return (
         <li>
             <button
-                onClick={(toggleAudio)}
-                className="hover:opacity-60 border-4 border-red-500 relative w-full h-auto cursor-pointer bg-contain bg-no-repeat bg-center border-none p-0 flex items-center justify-center outline-none"
-                style={{ backgroundImage: `url(${sample.animationImages[0].url})` }}
+                type="button"
+                onClick={toggleAudio}
+                aria-label={sample.displayName}
+                className="h-36 w-36 cursor-pointer bg-contain bg-center bg-no-repeat md:h-48 md:w-48"
+                style={{ backgroundImage: sample.imageUrl ? `url(${sample.imageUrl})` : undefined }}
             >
-                <div className="text-white text-xl p-16 opacity-30 hover:opacity-80" style={{ textShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)' }} />
-                <audio ref={audioRef}>
-                    <source src={sample.audio?.url} type="audio/mpeg" />
-                </audio>
+                {sample.audioUrl && (
+                    <audio ref={audioRef} onEnded={() => setIsPlaying(false)}>
+                        <source src={sample.audioUrl} type="audio/mpeg" />
+                    </audio>
+                )}
             </button>
         </li>
     )

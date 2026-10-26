@@ -2,36 +2,39 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 
-// corregir types
 export const AnimatedSvg = ({ animation, interval = 250, fill, contain }: {
     animation: string[]
     interval?: number
     fill?: true
     contain?: true
 }) => {
-    const [currentIndex, setCurrentIndex] = useState(0);
+    const frames = animation.filter(Boolean)
+    const [currentIndex, setCurrentIndex] = useState(0)
+    const framesKey = frames.join("|")
 
     useEffect(() => {
+        if (frames.length < 2) return
         const animationInterval = setInterval(() => {
-            setCurrentIndex((prevIndex) =>
-                prevIndex === animation.length - 1 ? 0 : prevIndex + 1
-            );
-        }, interval);
+            setCurrentIndex((prevIndex) => (prevIndex + 1) % frames.length)
+        }, interval)
+        return () => clearInterval(animationInterval)
+    }, [framesKey, frames.length, interval])
 
-        return () => clearInterval(animationInterval);
-    }, [animation, interval]);
-    const sizeProps = (fill || contain) ? { fill: true } : { width: 500, height: 300 };
-    const className = contain ? "object-contain" : fill ? "object-fill" : "";
-    const imageProps = { ...sizeProps, ...{ className } };
+    if (!frames.length) return null
+
+    const fit = contain ? "object-contain" : fill ? "object-fill" : "object-contain"
+
     return (
-        <div className="relative flex justify-center items-center w-full h-full">
-            <div className="transition-transform !duration-100 ease-in-out">
+        <div className="relative h-full w-full">
+            {frames.map((src, index) => (
                 <Image
-                    src={animation[currentIndex]}
-                    alt="Contact Animation"
-                    {...imageProps}
+                    key={`${src}-${index}`}
+                    src={src}
+                    alt=""
+                    fill
+                    className={`${fit} transition-opacity duration-150 ${index === 0 || index === currentIndex ? "opacity-100" : "opacity-0"}`}
                 />
-            </div>
+            ))}
         </div>
-    );
-};
+    )
+}

@@ -36,13 +36,14 @@ export default function Services({ data }: { data: ServicesQuery['servicesBlock'
             <div className="flex flex-col md:grid md:grid-cols-2  justify-between">
                 <ul className="flex flex-wrap md:flex-col gap-4 md:gap-8 mx-auto justify-between">
                     {
-                        data?.serviceList.map((service) => {
+                        data?.serviceList.map((service, index) => {
+                            const nudge = ["translate-x-0", "translate-x-6", "translate-x-2", "translate-x-10"][index % 4]
                             return (
                                 <li
                                     onMouseLeave={() => setSelectedServiceId(undefined)}
                                     onMouseEnter={() => setSelectedServiceId(service.id)}
                                     key={service.id}
-                                    className="md:grid md:grid-cols-1 mt-4"
+                                    className={`mt-4 md:grid md:grid-cols-1 ${nudge}`}
                                 >
                                     <button
                                         onClick={() => setSelectedServiceId(service.id)}

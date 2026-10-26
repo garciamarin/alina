@@ -8,7 +8,7 @@ export default function Experience({ data }: { data: ExperienceQuery['trainingBl
         <section id="experience" className="section mt-16 md:mt-[320px] ">
             <div className="hidden md:block relative left overflow-visible">
                 <Image
-                    className="absolute -top-[300px] left-10 -z-10"
+                    className="animate-cap absolute -top-[300px] left-10 -z-10"
                     src={data?.experience[0].backgroundImage?.url!}
                     width={450}
                     height={450}
@@ -19,7 +19,7 @@ export default function Experience({ data }: { data: ExperienceQuery['trainingBl
                 <li className="block md:hidden">
                     <div className="relative left overflow-visible">
                         <Image
-                            className="relative top-5"
+                            className="animate-cap relative top-5"
                             src={data?.experience[0].backgroundImage?.url!}
                             width={450}
                             height={450}

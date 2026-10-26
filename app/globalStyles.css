@@ -194,6 +194,15 @@ audio {
   animation: logo-fade-in .2s ease-in-out both .6s;
 }
 
+@keyframes service-idle {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+.animate-service-idle {
+  animation: service-idle 3.4s ease-in-out infinite;
+}
+
 [id] {
   scroll-margin-top: 5.5rem;
 }

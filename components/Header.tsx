@@ -9,7 +9,7 @@ export default function Header({ data }: { data: HeaderQuery['header'] }) {
 
     return (
         <header className="absolute top-0 w-full">
-            <div className="relative ml-2 mt-1 h-[40vw] w-[68%] max-h-[380px] md:ml-8 md:h-[26vw] md:w-[44vw]">
+            <div className="relative ml-4 mt-16 h-[40vw] w-[72%] max-h-[380px] md:mt-0 md:h-[26vw] md:w-[44vw] lg:ml-10">
                 {frames.map((image, index) => (
                     <Image
                         key={image}
@@ -25,17 +25,17 @@ export default function Header({ data }: { data: HeaderQuery['header'] }) {
             <img
                 src="/svg/horproben_headset.svg"
                 alt=""
-                className="pointer-events-none absolute left-[40%] top-28 hidden w-40 lg:block xl:left-[44%] xl:w-48"
+                className="pointer-events-none absolute left-[47%] top-5 hidden w-28 xl:block xl:w-32"
             />
 
-            <nav className="fixed top-3 right-3 z-40 md:top-6 md:right-10">
-                <ul className="flex max-w-[70vw] flex-wrap items-center justify-end gap-x-5 gap-y-2 font-mono font-medium md:max-w-none md:gap-x-8">
-                    <li className="order-first flex w-full justify-end md:order-last md:w-auto">
+            <nav className="fixed inset-x-0 top-0 z-40 bg-[#edebec]/90 px-4 py-3.5 backdrop-blur-sm md:inset-x-auto md:right-10 md:top-8 md:bg-transparent md:p-0 md:backdrop-blur-none">
+                <ul className="flex items-center justify-end gap-x-3 font-mono font-medium min-[400px]:gap-x-4 md:gap-x-5 lg:gap-x-8">
+                    <li className="order-last">
                         <LanguageSwitcher />
                     </li>
                     {data.navigationBar.map((navItem) => (
                         <li key={navItem.id}>
-                            <Link className="text-sm hover:opacity-80 md:text-xl" href={"#" + navItem.section!}>
+                            <Link className="text-[13px] hover:opacity-80 min-[400px]:text-sm md:text-lg lg:text-xl" href={"#" + navItem.section!}>
                                 {navItem.heading}
                             </Link>
                         </li>

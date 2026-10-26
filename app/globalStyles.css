@@ -206,3 +206,31 @@ audio {
 [id] {
   scroll-margin-top: 5.5rem;
 }
+
+@keyframes bubble-wave {
+  0%, 100% { transform: rotate(-1.6deg) translateY(0); }
+  50% { transform: rotate(1.6deg) translateY(-8px); }
+}
+
+@keyframes hat-wiggle {
+  0%, 100% { transform: rotate(-5deg) translateY(0); }
+  50% { transform: rotate(6deg) translateY(-4px); }
+}
+
+.animate-bubble-wave {
+  transform-origin: 50% 70%;
+  animation: bubble-wave 7s ease-in-out infinite;
+}
+
+.animate-hat-wiggle {
+  transform-origin: 50% 90%;
+  animation: hat-wiggle 7s ease-in-out infinite;
+  animation-delay: -0.9s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-bubble-wave,
+  .animate-hat-wiggle {
+    animation: none;
+  }
+}

@@ -7,6 +7,7 @@ import Experience from "@/components/ExperienceFetcher"
 import Services from "@/components/ServicesFetcher"
 import Contact from "@/components/Contact"
 import Audios from "@/components/AudioBlockFetcher"
+import TranslationSamples from "@/components/TranslationSamples"
 import ReactMarkdown from "react-markdown"
 import { getSupportedLocale } from "@/lib/i18n"
 
@@ -30,6 +31,7 @@ export default async function Page({ params }: { params: { locale: string } }) {
                 <Experience locale={locale} />
                 <Services locale={locale} />
                 <Audios locale={locale} />
+                <TranslationSamples locale={locale} />
                 <Contact locale={locale} />
             </main>
             <Footer locale={locale} />

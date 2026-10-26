@@ -13,28 +13,35 @@ export default function AboutMe({ data }: AboutMeProps) {
         <>
             <section id="intro" className="flex flex-col items-center w-full max-w-full">
 
-                <div className="absolute top-[calc(4rem+40vw+20vh-4.5rem)] right-0 -z-10 animate-slide-from-right md:top-[140px]">
-                    {bubbleUrl && (
-                        <Image
-                            className="ml-auto w-[96vw] max-w-none md:w-auto"
-                            src={bubbleUrl}
+                <div className="absolute right-0 top-[calc(100svh-5vh)] -z-10 -translate-y-full md:top-[140px] md:translate-y-0">
+                    <div className="relative animate-slide-from-right">
+                        {bubbleUrl && (
+                            <Image
+                                className="ml-auto w-screen max-w-none md:w-auto"
+                                src={bubbleUrl}
+                                alt=""
+                                height={data?.image?.height ?? 1}
+                                width={data?.image?.width ?? 1}
+                                priority
+                            />
+                        )}
+                        <img
+                            src="/svg/horproben_headset.svg"
                             alt=""
-                            height={data?.image?.height ?? 1}
-                            width={data?.image?.width ?? 1}
-                            priority
+                            className="pointer-events-none absolute bottom-full left-[250px] hidden w-32 translate-y-4 xl:block"
                         />
-                    )}
+                    </div>
                 </div>
 
-                <div className="absolute top-0 flex h-[90vh] w-full flex-col md:h-screen px-4 pt-[calc(4rem+40vw+20vh)] md:justify-center md:px-16 md:pb-[6vh] md:pt-[320px] max-w-screen-xl mx-auto animate-fade-in">
+                <div className="absolute top-0 flex h-[100svh] w-full flex-col px-4 pt-[calc(22vw+4rem+4vh)] md:h-screen md:px-16 md:pt-[calc(330px+6vh)] max-w-screen-xl mx-auto animate-fade-in">
                     <div
                         id="about_me"
-                        className="grid grid-cols-[1fr_auto] items-end gap-x-4 gap-y-5 md:items-center md:gap-x-12 md:gap-y-4"
+                        className="grid grid-cols-[1fr_auto] items-end gap-x-4 gap-y-6 md:items-center md:gap-x-12 md:gap-y-4"
                     >
                         <div className="font-sans md:self-end">
-                            {data?.title && <h2 className="!font-thin !text-3xl md:!text-4xl section-header">{data?.title}</h2>}
+                            {data?.title && <h2 className="!font-thin !text-4xl section-header">{data?.title}</h2>}
                         </div>
-                        <div className="relative h-[104px] w-[104px] shrink-0 overflow-hidden rounded-full md:col-start-2 md:row-span-2 md:row-start-1 md:h-[200px] md:w-[200px]">
+                        <div className="relative h-[148px] w-[148px] shrink-0 overflow-hidden rounded-full md:col-start-2 md:row-span-2 md:row-start-1 md:h-[200px] md:w-[200px]">
                             {profileUrl && (
                                 <Image
                                     src={profileUrl}

@@ -3,7 +3,7 @@ import type { ExperienceQuery } from "@/.graphql/datoTypes"
 import Image from "next/image"
 import { AnimatedSvg } from "./AnimateSvg"
 
-const HAT_BOX = "pointer-events-none absolute left-[62%] -top-[14%] h-[22%] w-[26%]"
+const HAT_BOX = "animate-hat-wiggle pointer-events-none absolute left-[62%] -top-[14%] h-[22%] w-[26%]"
 
 export default function Experience({
     data,
@@ -19,7 +19,7 @@ export default function Experience({
             {bubble?.url && (
                 <div className="relative hidden md:block">
                     <div className="absolute -top-[300px] left-10 -z-10 w-[450px]">
-                        <div className="relative">
+                        <div className="relative animate-bubble-wave">
                             <Image
                                 src={bubble.url}
                                 width={450}
@@ -35,7 +35,7 @@ export default function Experience({
             <ul className="relative grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 lg:gap-20">
                 {bubble?.url && (
                     <li className="block md:hidden">
-                        <div className="relative top-5 w-full max-w-[450px]">
+                        <div className="relative top-5 w-full max-w-[450px] animate-bubble-wave">
                             <Image
                                 src={bubble.url}
                                 width={450}

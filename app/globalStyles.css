@@ -193,3 +193,17 @@ audio {
 .animate-logo-5 {
   animation: logo-fade-in .2s ease-in-out both .6s;
 }
+
+@keyframes cap-bob {
+  0%, 100% { transform: rotate(-7deg) translateY(0); }
+  50% { transform: rotate(7deg) translateY(-10px); }
+}
+
+.animate-cap {
+  animation: cap-bob 2.6s ease-in-out infinite;
+  transform-origin: 50% 70%;
+}
+
+[id] {
+  scroll-margin-top: 5.5rem;
+}

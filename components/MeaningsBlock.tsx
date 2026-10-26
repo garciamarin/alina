@@ -22,12 +22,12 @@ export default function MeaningsBlock({ data }: AboutMeProps) {
     };
 
     return (
-        <section id="meanings section" className="max-w-full">
+        <section className="max-w-full">
             <div className="flex flex-col gap-2 items-center justify-start my-8 md:my-16 relative">
                 <div className="relative z-40 flex mt-auto justify-self-end items-end md:mr-auto xl:mb-8 mb-1">
                     {data?.meanings?.heading &&
                         <a href="#meanings" className="mt-auto flex items-center cursor-pointer  hover:opacity-70">
-                            <h3 className="text:lg md:text-xl inline-block scroll-m-10" id="meanings"                                >
+                            <h3 className="text-lg md:text-xl inline-block" id="meanings">
                                 {data?.meanings?.heading}
                             </h3>
                         </a>

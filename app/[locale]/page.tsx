@@ -7,7 +7,7 @@ import Experience from "@/components/ExperienceFetcher"
 import Services from "@/components/ServicesFetcher"
 import Contact from "@/components/Contact"
 import Audios from "@/components/AudioBlockFetcher"
-import TranslationSamples from "@/components/TranslationSamples"
+import TranslationSamples from "@/components/TranslationSamplesFetcher"
 import ReactMarkdown from "react-markdown"
 import { getSupportedLocale } from "@/lib/i18n"
 

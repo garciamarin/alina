@@ -195,6 +195,9 @@ query TranslationSamples($locale: SiteLocale) {
     title
     samples {
       id
+      kind
+      languages
+      title
       text
     }
   }

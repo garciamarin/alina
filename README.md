@@ -2,14 +2,26 @@
 
 This is the official website for Alina Salzer, a professional translator. The website is hosted at [alina-salzer.de](https://alina-salzer.de) and is built using Next.js and Tailwind CSS.
 
-## Getting Started
+## Getting started
 
-To run the website locally, follow these steps:
+Node 24. Then:
 
-1. Clone the repository: `git clone https://github.com/username/repo.git`
-2. Install dependencies: `yarn`
-3. Start the development server: `yarn run dev`
-4. Open your browser and visit `http://localhost:3000`
+```
+yarn
+```
+
+Add the DatoCMS read token to `.env.local`:
+
+```
+NEXT_PUBLIC_DATOCMS_API_TOKEN=your-read-token
+```
+
+```
+yarn codegen
+yarn dev
+```
+
+Open http://localhost:3000. The page reads its copy from DatoCMS, and `yarn codegen` writes the GraphQL types the app imports.
 
 ## Features
 

@@ -4,41 +4,44 @@ import Image from "next/image"
 import LanguageSwitcher from "./LanguageSwitcher"
 
 export default function Header({ data }: { data: HeaderQuery['header'] }) {
-    if (!data) return;
-    const animationArray = data.backgroundAnimation.map(image => image.url)
+    if (!data) return null
+    const frames = data.backgroundAnimation.map((image) => image.url).filter(Boolean)
 
     return (
-        <header className="
-            max-w-screen-3xl w-screen h-fit absolute top-0
-            mx-auto px-4 lg:px-10 
-            flex-col flex md:flex-row justify-start md:justify-between items-start"
-        >
-            <div className="relative w-5/6 md:w-[50vw] h-[30vw] md:h-[20vw] max-h-[300px]">
-                {animationArray.map((image, index) => (
+        <header className="absolute top-0 w-full">
+            <div className="relative ml-2 mt-1 h-[40vw] w-[68%] max-h-[380px] md:ml-8 md:h-[26vw] md:w-[44vw]">
+                {frames.map((image, index) => (
                     <Image
-                        key={index}
+                        key={image}
                         src={image}
-                        alt={`Logo Animation Frame ${index + 1}`}
+                        alt=""
                         fill
-                        className={`object-contain animate-logo-${index + 1}`}
-                        style={{ objectPosition: 'top' } as React.CSSProperties}
-                        priority
+                        priority={index === frames.length - 1}
+                        className={`object-contain object-top animate-logo-${index + 1}`}
                     />
-                )
-                )}
+                ))}
             </div>
-            <nav className="z-30 md:top-0 md:ml-auto md:pt-4 lg:pt-8 animate-fade-in">
-                <ul className="-mt-4 md:mt-0 flex lg:space-x-8 md:space-x-2 space-x-1 font-medium font-mono items-center">
-                    {data?.navigationBar.map((navItem) => (
-                        <li className="hover:opacity-80 rounded-lg hover:shadow-lg pb-2 md:p-2" key={navItem.id}>
-                            <Link className="md:text-xl" href={"#" + navItem.section!}>{navItem.heading}</Link>
-                        </li>
-                    ))}
-                    <li className="pl-2 md:pl-4">
+
+            <img
+                src="/svg/horproben_headset.svg"
+                alt=""
+                className="pointer-events-none absolute left-[40%] top-28 hidden w-40 lg:block xl:left-[44%] xl:w-48"
+            />
+
+            <nav className="fixed top-3 right-3 z-40 md:top-6 md:right-10">
+                <ul className="flex max-w-[70vw] flex-wrap items-center justify-end gap-x-5 gap-y-2 font-mono font-medium md:max-w-none md:gap-x-8">
+                    <li className="order-first flex w-full justify-end md:order-last md:w-auto">
                         <LanguageSwitcher />
                     </li>
+                    {data.navigationBar.map((navItem) => (
+                        <li key={navItem.id}>
+                            <Link className="text-sm hover:opacity-80 md:text-xl" href={"#" + navItem.section!}>
+                                {navItem.heading}
+                            </Link>
+                        </li>
+                    ))}
                 </ul>
             </nav>
-        </header >
+        </header>
     )
 }

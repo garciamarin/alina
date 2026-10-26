@@ -56,7 +56,10 @@ export default function Services({ data }: { data: ServicesQuery['servicesBlock'
                                         hover:scale-110 shadow focus:scale-110
                                         "
                                     >
-                                        <div className="relative w-14 h-14 md:w-[calc(25vw/4)] md:h-[calc(25vw/4)]">
+                                        <div
+                                            className={`relative w-14 h-14 md:w-[calc(25vw/4)] md:h-[calc(25vw/4)] ${selectedServiceId === service.id ? "" : "animate-service-idle"}`}
+                                            style={{ animationDelay: `${index * 0.45}s` }}
+                                        >
                                             {service.animationImages &&
                                                 service.animationImages.some((img) => !!img.url) && (
                                                     <>

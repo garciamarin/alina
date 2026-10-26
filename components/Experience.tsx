@@ -3,7 +3,7 @@ import type { ExperienceQuery } from "@/.graphql/datoTypes"
 import Image from "next/image"
 import { AnimatedSvg } from "./AnimateSvg"
 
-const HAT_BOX = "pointer-events-none absolute left-[28%] top-[3%] h-[34%] w-[44%]"
+const HAT_BOX = "pointer-events-none absolute left-[62%] -top-[14%] h-[22%] w-[26%]"
 
 export default function Experience({
     data,

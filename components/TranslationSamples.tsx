@@ -1,3 +1,11 @@
+import ReactMarkdown from "react-markdown"
+
+type Props = {
+    locale: string
+    title?: string | null
+    samples?: { id: string; text?: string | null }[] | null
+}
+
 const TITLE: Record<string, string> = {
     de: "Übersetzungsproben",
     en: "Translation samples",
@@ -20,10 +28,39 @@ const ARTICLES = [
     },
 ]
 
-export default function TranslationSamples({ locale }: { locale: string }) {
+export default function TranslationSamples({ locale, title, samples }: Props) {
+    const heading = title || (TITLE[locale] ?? TITLE.de)
+
+    if (samples && samples.length > 0) {
+        return (
+            <section id="translations" className="section mt-16 w-full text-left md:mt-24">
+                <h2 className="section-header">{heading}</h2>
+                <ul className="flex flex-col gap-3 text-base md:text-lg">
+                    {samples.map((sample) => (
+                        <li key={sample.id}>
+                            <ReactMarkdown
+                                components={{
+                                    p: ({ children }) => <>{children}</>,
+                                    ul: ({ children }) => <ul className="mt-1 flex flex-col gap-1 pl-4">{children}</ul>,
+                                    a: ({ href, children }) => (
+                                        <a href={href} target="_blank" rel="noopener noreferrer" className="underline">
+                                            {children}
+                                        </a>
+                                    ),
+                                }}
+                            >
+                                {sample.text ?? ""}
+                            </ReactMarkdown>
+                        </li>
+                    ))}
+                </ul>
+            </section>
+        )
+    }
+
     return (
         <section id="translations" className="section mt-16 w-full text-left md:mt-24">
-            <h2 className="section-header">{TITLE[locale] ?? TITLE.de}</h2>
+            <h2 className="section-header">{heading}</h2>
             <ul className="flex flex-col gap-3 text-base md:text-lg">
                 <li>Lektorat ES&gt;DE: Julio Santos – Der Jadedrache (2021)</li>
                 <li>

@@ -2,23 +2,24 @@ import type { AboutMeQuery } from "@/.graphql/datoTypes"
 import Image from 'next/image'
 import Meanings from "@/components/MeaningsBlock"
 
-type AboutMeProps = { data: AboutMeQuery['aboutMe'] }
+type AboutMeProps = { data: AboutMeQuery['aboutMe']; locale: string }
 
-export default function AboutMe({ data }: AboutMeProps) {
+export default function AboutMe({ data, locale }: AboutMeProps) {
     const introText = (data?.introText || "").split("\n")
     const bubbleUrl = data?.image?.url
     const profileUrl = data?.profilePicture?.url
+    const textDrop = locale === "de" || locale === "en" ? "mt-14 md:mt-20" : "mt-8 md:mt-14"
 
     return (
         <>
-            <section id="intro section" className="flex flex-col items-center w-full max-w-full">
+            <section id="intro" className="flex flex-col items-center w-full max-w-full">
 
-                <div className="absolute top-[50vh] md:top-[200px] right-0 -z-10 mt-16 animate-slide-from-right">
+                <div className="absolute top-[14vh] right-0 -z-10 animate-slide-from-right md:top-[140px]">
                     {bubbleUrl && (
                         <Image
-                            className="ml-auto"
+                            className="ml-auto w-[92vw] max-w-none md:w-auto"
                             src={bubbleUrl}
-                            alt="Verbinden background of turquise bubble"
+                            alt=""
                             height={data?.image?.height ?? 1}
                             width={data?.image?.width ?? 1}
                             priority
@@ -26,30 +27,25 @@ export default function AboutMe({ data }: AboutMeProps) {
                     )}
                 </div>
 
-                {/* Intro block */}
-                <div className="h-screen absolute top-0 flex flex-col w-full pb-8 px-4 md:pb-0 md:px-16 max-w-screen-xl mx-auto animate-fade-in">
-                    {/* spacer */}
-                    <div className="h-[80px] md:h-[200px] 2xl:mt-8" />
-                    <div className="my-auto">
-                        <div id="about_me" className="mb-8 md:mb-0 flex items-center md:items-baseline justify-between relative w-full">
-                            <div className="px-4 md:px-0 font-sans">
-                                {data?.title && <h2 className="!font-thin !text-4xl section-header" >{data?.title}</h2>}
-                            </div>
-                            <div className="relative sm:w-[140px] sm:h-[140px] md:w-[220px] md:h-[220px] lg:w-[230px] lg:h-[230px]">
-                                {profileUrl && (
-                                    <Image
-                                        src={profileUrl}
-                                        alt={data?.profilePicture?.alt || ""}
-                                        width={data?.profilePicture?.width ?? 1}
-                                        height={data?.profilePicture?.height ?? 1}
-                                    />
-                                )}
-                            </div>
+                <div className="absolute top-0 flex w-full flex-col px-4 pt-40 md:px-16 md:pt-56 max-w-screen-xl mx-auto animate-fade-in">
+                    <div id="about_me" className="flex items-center justify-between gap-4">
+                        <div className="font-sans">
+                            {data?.title && <h2 className="!font-thin !text-3xl md:!text-4xl section-header">{data?.title}</h2>}
                         </div>
-                        <div className="px-4 md:px-0 mt-4 md:mt-12 flex flex-col gap-4 md:mb-4 !text-left md:text-justify">
-                            {introText[0] && <p className="max-w-screen-md">{introText[0]}</p>}
-                            {introText[1] && <p className="max-w-screen-md">{introText[1]}</p>}
+                        <div className="relative h-[84px] w-[84px] shrink-0 overflow-hidden rounded-full sm:h-[110px] sm:w-[110px] md:h-[200px] md:w-[200px]">
+                            {profileUrl && (
+                                <Image
+                                    src={profileUrl}
+                                    alt={data?.profilePicture?.alt || ""}
+                                    fill
+                                    className="object-cover rounded-full"
+                                />
+                            )}
                         </div>
+                    </div>
+                    <div className={`${textDrop} flex flex-col gap-4 !text-left md:text-justify`}>
+                        {introText[0] && <p className="max-w-screen-md">{introText[0]}</p>}
+                        {introText[1] && <p className="max-w-screen-md">{introText[1]}</p>}
                     </div>
                 </div>
             </section>

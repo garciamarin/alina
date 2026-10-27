@@ -13,7 +13,7 @@ export default function AboutMe({ data }: AboutMeProps) {
         <>
             <section id="intro" className="flex flex-col items-center w-full max-w-full">
 
-                <div className="absolute right-0 top-[calc(100svh-5vh)] -z-10 -translate-y-full md:top-[170px] md:translate-y-0">
+                <div className="absolute right-0 top-[max(calc(101svh-77vw),calc(540px-20vw))] -z-10 md:top-[170px]">
                     <div className="relative animate-slide-from-right">
                         {bubbleUrl && (
                             <Image
@@ -33,7 +33,7 @@ export default function AboutMe({ data }: AboutMeProps) {
                     </div>
                 </div>
 
-                <div className="absolute top-0 flex h-[100svh] w-full flex-col px-4 pt-[calc(22vw+4rem+4vh)] md:h-screen md:px-16 md:pt-[calc(360px+6vh)] min-[1452px]:pt-[calc(198px+11.2vw+6vh)] max-w-screen-xl mx-auto animate-fade-in">
+                <div className="absolute top-0 flex h-[100svh] w-full flex-col px-4 pt-[calc(22vw+3rem+3vh)] md:h-screen md:px-16 md:pt-[calc(360px+6vh)] min-[1452px]:pt-[calc(198px+11.2vw+6vh)] max-w-screen-xl mx-auto animate-fade-in">
                     <div
                         id="about_me"
                         className="grid grid-cols-[1fr_auto] items-end gap-x-4 gap-y-6 md:items-center md:gap-x-12 md:gap-y-4"
@@ -41,7 +41,7 @@ export default function AboutMe({ data }: AboutMeProps) {
                         <div className="font-sans md:self-end">
                             {data?.title && <h2 className="!font-thin !text-4xl section-header">{data?.title}</h2>}
                         </div>
-                        <div className="relative h-[148px] w-[148px] shrink-0 overflow-hidden rounded-full md:col-start-2 md:row-span-2 md:row-start-1 md:h-[200px] md:w-[200px]">
+                        <div className="relative h-[min(46vw,200px)] w-[min(46vw,200px)] shrink-0 overflow-hidden rounded-full md:col-start-2 md:row-span-2 md:row-start-1 md:h-[200px] md:w-[200px]">
                             {profileUrl && (
                                 <Image
                                     src={profileUrl}

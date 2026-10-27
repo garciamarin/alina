@@ -24,7 +24,7 @@ export default async function Page({ params }: { params: { locale: string } }) {
 
     return (
         <div className="relative overflow-hidden">
-            <div className="h-[100svh] -z-10 md:h-screen" />
+            <div className="h-[max(100svh,calc(540px+57vw-1.5rem))] -z-10 md:h-screen" />
             <Header data={header} />
             <main className="mx-auto flex min-h-screen flex-col items-center content-center px-8 md:px-16 max-w-screen-xl md:text-lg">
                 <AboutMe locale={locale} />

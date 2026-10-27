@@ -8,7 +8,7 @@ export default function Header({ data }: { data: HeaderQuery['header'] }) {
 
     return (
         <header className="absolute top-0 w-full">
-            <div className="relative ml-4 h-[40vw] w-[72%] max-h-[380px] md:h-[26vw] md:w-[44vw] lg:ml-10">
+            <div className="relative ml-4 h-[40vw] w-[64%] max-h-[380px] md:h-[26vw] md:w-[44vw] lg:ml-10">
                 {frames.map((image, index) => (
                     <Image
                         key={image}

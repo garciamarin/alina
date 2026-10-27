@@ -1,4 +1,5 @@
 import ReactMarkdown from "react-markdown"
+import Image from "next/image"
 
 export type TranslationSample = {
     id: string
@@ -66,10 +67,32 @@ const FALLBACK: TranslationSample[] = [
 ]
 
 const BLOBS = [
-    { shape: "rounded-[3.5rem_1.5rem_4rem_2rem]", color: "bg-[#a5d6d2]/70", ink: "text-white/70" },
-    { shape: "rounded-[1.75rem_4rem_2rem_3.5rem]", color: "bg-[#e0a3ac]/45", ink: "text-white/80" },
-    { shape: "rounded-[2.5rem_2rem_3.5rem_1.5rem]", color: "bg-[#4aaaa5]/45", ink: "text-white/70" },
+    {
+        shape: "rounded-[4.5rem_1rem_5rem_1.5rem]",
+        back: "rounded-[1.5rem_4rem_1rem_5rem] bg-[#e0a3ac]/40 -rotate-2 translate-x-3 translate-y-3",
+        color: "bg-[#a5d6d2]/75",
+        ink: "text-white",
+    },
+    {
+        shape: "rounded-[1rem_5rem_1.5rem_4.5rem]",
+        back: "rounded-[5rem_1.5rem_4rem_1rem] bg-[#4aaaa5]/30 rotate-2 -translate-x-3 translate-y-3",
+        color: "bg-[#e0a3ac]/70",
+        ink: "text-white",
+    },
+    {
+        shape: "rounded-[5rem_1.5rem_1rem_4rem]",
+        back: "rounded-[1rem_4rem_5rem_1.5rem] bg-[#e0a3ac]/40 -rotate-1 translate-x-2 translate-y-3",
+        color: "bg-[#4aaaa5]/55",
+        ink: "text-white",
+    },
 ]
+
+function iconFor(kind?: string | null) {
+    if (!kind) return null
+    if (/lektor/i.test(kind)) return "/svg/ubersetzen_stift.svg"
+    if (/(ü|u)bersetz|translat|traduc|tradu/i.test(kind)) return "/svg/ubersetzen_tastaturpng.svg"
+    return null
+}
 
 export default function TranslationSamples({ locale, title, samples }: Props) {
     const heading = title || (TITLE[locale] ?? TITLE.de)
@@ -78,27 +101,31 @@ export default function TranslationSamples({ locale, title, samples }: Props) {
     return (
         <section id="translations" className="section mt-16 w-full text-left md:mt-44">
             <h2 className="section-header">{heading}</h2>
-            <ul className="grid grid-cols-1 gap-5 md:grid-cols-2 md:gap-8">
+            <ul className="grid grid-cols-1 gap-x-14 items-start gap-y-12 pb-4 md:grid-cols-2 md:gap-y-16">
                 {items.map((sample, index) => {
                     const blob = BLOBS[index % BLOBS.length]
+                    const icon = iconFor(sample.kind)
+                    const long = (sample.languages?.length ?? 0) > 8
                     return (
                         <li
                             key={sample.id}
-                            className={`relative flex flex-col gap-3 overflow-hidden px-7 pt-7 transition-transform duration-500 ease-out hover:-translate-y-1 hover:rotate-[-0.6deg] md:px-9 md:pt-9 ${sample.languages ? "pb-20 md:pb-24" : "pb-8 md:pb-10"} ${blob.shape} ${blob.color}`}
+                            className={`group relative isolate ${index % 2 === 0 ? "mr-4 md:mr-0" : "ml-4 md:ml-0 md:mt-20"}`}
                         >
-                            {sample.languages && (
-                                <span
-                                    aria-label={sample.languages}
-                                    className={`pointer-events-none absolute bottom-1 right-8 select-none whitespace-nowrap font-mono font-medium leading-none ${blob.ink} ${
-                                        sample.languages.length > 8 ? "text-4xl md:text-5xl" : "text-6xl md:text-7xl"
-                                    }`}
-                                >
-                                    {sample.languages}
-                                </span>
-                            )}
-                            <div className="relative flex flex-col gap-3">
+                            <div aria-hidden className={`absolute inset-0 -z-10 ${blob.back}`} />
+                            <div
+                                className={`relative flex flex-col gap-3 px-7 pb-8 pt-9 transition-transform duration-500 ease-out group-hover:-translate-y-1 md:px-10 md:pb-10 md:pt-10 ${blob.shape} ${blob.color}`}
+                            >
+                                {sample.languages && (
+                                    <span
+                                        className={`select-none whitespace-nowrap font-sans font-extralight uppercase leading-none tracking-wide ${blob.ink} ${
+                                            long ? "text-3xl md:text-4xl" : "text-5xl md:text-6xl"
+                                        }`}
+                                    >
+                                        {sample.languages}
+                                    </span>
+                                )}
                                 {sample.kind && (
-                                    <span className="font-mono text-sm font-medium uppercase tracking-wider text-[#12706c]">
+                                    <span className="mt-2 font-mono text-sm font-medium uppercase tracking-wider text-[#12706c]">
                                         {sample.kind}
                                     </span>
                                 )}
@@ -130,6 +157,11 @@ export default function TranslationSamples({ locale, title, samples }: Props) {
                                     </ReactMarkdown>
                                 )}
                             </div>
+                            {icon && (
+                                <div className="absolute -right-2 -top-6 flex h-[60px] w-[60px] items-center justify-center rounded-full bg-[#edebec] shadow transition-transform duration-500 group-hover:rotate-[-8deg] group-hover:scale-110 md:-right-4 md:h-16 md:w-16">
+                                    <Image src={icon} alt="" width={44} height={31} className="h-auto w-[84%]" />
+                                </div>
+                            )}
                         </li>
                     )
                 })}

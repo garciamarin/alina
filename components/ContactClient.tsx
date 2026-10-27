@@ -22,7 +22,7 @@ export default function ContactClient({
   const EMAIL_LINK = `mailto:${email}?subject=${encodedSubject}&body=${encodedBody}`;
 
   return (
-    <section id="contact" className="section mt-16 md:mt-32">
+    <section id="contact" className="section mt-16 md:mt-44">
       <a
         href={EMAIL_LINK}
         target="_blank"

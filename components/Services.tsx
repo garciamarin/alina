@@ -10,7 +10,7 @@ export default function Services({ data }: { data: ServicesQuery['servicesBlock'
     const [selectedServiceId, setSelectedServiceId] = useState<string | undefined>(undefined)
     const t = useT()
     return (
-        <section id="services" className="!w-full section !gap-0 mb-10">
+        <section id="services" className="!w-full section !gap-0 mt-20 mb-10 md:mt-44 md:mb-24">
             {/* Mobile Section Header */}
             <>
                 <div className="h-[170px] md:hidden" />

@@ -42,7 +42,7 @@ export default function LanguageSwitcher() {
           bg-[#edebec]
           border border-[#1f9994]/40
           rounded-md
-          px-3 pr-8
+          px-3 pr-3 md:pr-8
           py-1
           h-9 md:h-10
           font-mono
@@ -60,7 +60,7 @@ export default function LanguageSwitcher() {
       </select>
       <svg
         aria-hidden="true"
-        className="pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 h-4 w-4 md:h-5 md:w-5"
+        className="pointer-events-none absolute right-2 top-1/2 hidden -translate-y-1/2 md:block md:h-5 md:w-5"
         viewBox="0 0 24 24"
         fill="none"
         stroke="#1f9994"

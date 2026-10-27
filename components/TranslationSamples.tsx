@@ -101,6 +101,16 @@ export default function TranslationSamples({ locale, title, samples }: Props) {
     return (
         <section id="translations" className="section mt-16 w-full text-left md:mt-44">
             <h2 className="section-header">{heading}</h2>
+            <svg aria-hidden width="0" height="0" className="absolute">
+                <defs>
+                    {[3, 11, 27].map((seed, i) => (
+                        <filter key={seed} id={`wavy-${i}`} colorInterpolationFilters="sRGB">
+                            <feTurbulence type="fractalNoise" baseFrequency="0.011" numOctaves="1" seed={seed} result="noise" />
+                            <feDisplacementMap in="SourceGraphic" in2="noise" scale="16" xChannelSelector="R" yChannelSelector="G" />
+                        </filter>
+                    ))}
+                </defs>
+            </svg>
             <ul className="grid grid-cols-1 gap-x-14 items-start gap-y-12 pb-4 md:grid-cols-2 md:gap-y-16">
                 {items.map((sample, index) => {
                     const blob = BLOBS[index % BLOBS.length]
@@ -111,10 +121,17 @@ export default function TranslationSamples({ locale, title, samples }: Props) {
                             key={sample.id}
                             className={`group relative isolate ${index % 2 === 0 ? "mr-4 md:mr-0" : "ml-4 md:ml-0 md:mt-20"}`}
                         >
-                            <div aria-hidden className={`absolute inset-0 -z-10 ${blob.back}`} />
                             <div
-                                className={`relative flex flex-col gap-3 px-7 pb-8 pt-9 transition-transform duration-500 ease-out group-hover:-translate-y-1 md:px-10 md:pb-10 md:pt-10 ${blob.shape} ${blob.color}`}
-                            >
+                                aria-hidden
+                                style={{ filter: `url(#wavy-${(index + 1) % 3})` }}
+                                className={`absolute inset-0 -z-10 ${blob.back}`}
+                            />
+                            <div className="relative flex flex-col gap-3 px-7 pb-8 pt-9 transition-transform duration-500 ease-out group-hover:-translate-y-1 md:px-10 md:pb-10 md:pt-10">
+                                <div
+                                    aria-hidden
+                                    style={{ filter: `url(#wavy-${index % 3})` }}
+                                    className={`absolute inset-0 -z-10 ${blob.shape} ${blob.color}`}
+                                />
                                 {sample.languages && (
                                     <span
                                         className={`select-none whitespace-nowrap font-sans font-extralight uppercase leading-none tracking-wide ${blob.ink} ${

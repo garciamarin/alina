@@ -30,7 +30,7 @@ export default async function AudioBlockFetcher({ locale }: Props) {
     }))
 
     return (
-        <div className="mt-8" id="audioSamples">
+        <div className="mt-8 md:mt-16" id="audioSamples">
             <AudioBlock
                 images={(animation.images ?? []).map((image) => image.url).filter(Boolean)}
                 samples={samples}

@@ -15,7 +15,7 @@ export default function Experience({
     const bubble = data?.experience?.[0]?.backgroundImage
 
     return (
-        <section id="experience" className="section mt-16 md:mt-[320px] ">
+        <section id="experience" className="section mt-16 md:mt-[440px]">
             {bubble?.url && (
                 <div className="relative hidden md:block">
                     <div className="absolute -top-[300px] left-10 -z-10 w-[450px]">
@@ -32,7 +32,7 @@ export default function Experience({
                     </div>
                 </div>
             )}
-            <ul className="relative grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 lg:gap-20">
+            <ul className="relative grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 md:pt-32 lg:gap-20">
                 {bubble?.url && (
                     <li className="block md:hidden">
                         <div className="relative top-5 w-full max-w-[450px] animate-bubble-wave">

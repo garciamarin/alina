@@ -76,7 +76,7 @@ export default function TranslationSamples({ locale, title, samples }: Props) {
     const items = samples && samples.length > 0 ? samples : FALLBACK
 
     return (
-        <section id="translations" className="section mt-16 w-full text-left md:mt-24">
+        <section id="translations" className="section mt-16 w-full text-left md:mt-44">
             <h2 className="section-header">{heading}</h2>
             <ul className="grid grid-cols-1 gap-5 md:grid-cols-2 md:gap-8">
                 {items.map((sample, index) => {

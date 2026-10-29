@@ -5,14 +5,42 @@ import { AnimatedSvg } from "./AnimateSvg"
 
 const HAT_BOX = "animate-hat-wiggle pointer-events-none absolute left-[62%] -top-[14%] h-[22%] w-[26%]"
 
+const CLIENTS = [
+    "UNESCO",
+    "Rosa-Luxemburg-Stiftung",
+    "EU-LAC",
+    "Caritas",
+    "LUSH GmbH",
+    "DOK Leipzig Filmfestival",
+    "Fusion Festival",
+    "Konzeptwerk Neue Ökonomie",
+]
+
+const CLIENT_LEAD: Record<string, string> = {
+    de: "seit 2020 arbeite ich als freiberufliche Dolmetscherin & Übersetzerin mit Unternehmen und Organisationen wie z.B.:",
+    en: "since 2020 I have been working as a freelance interpreter and translator with companies and organisations such as:",
+    es: "desde 2020 trabajo como intérprete y traductora autónoma con empresas y organizaciones como:",
+    pt: "desde 2020 trabalho como intérprete e tradutora autônoma com empresas e organizações como:",
+}
+
+// The client names used to sit in the "seit 2020" Ausbildung entry. They are shown under the timeline instead.
+function isClientWork(experience: NonNullable<ExperienceQuery["trainingBlock"]>["experience"][number]) {
+    const year = experience.year ?? ""
+    const text = experience.event.map((event) => `${event.title ?? ""} ${event.description ?? ""}`).join(" ")
+    return /2020/.test(year) && /unesco/i.test(`${year} ${text}`)
+}
+
 export default function Experience({
     data,
     hatFrames,
+    locale,
 }: {
     data: ExperienceQuery["trainingBlock"]
     hatFrames: string[]
+    locale: string
 }) {
-    const bubble = data?.experience?.[0]?.backgroundImage
+    const timeline = data?.experience.filter((experience) => !isClientWork(experience))
+    const bubble = data?.experience.find((experience) => experience.backgroundImage?.url)?.backgroundImage
 
     return (
         <section id="experience" className="section mt-16 md:mt-[440px]">
@@ -47,7 +75,7 @@ export default function Experience({
                         </div>
                     </li>
                 )}
-                {data?.experience.map((experience) => {
+                {timeline?.map((experience) => {
                     return (
                         <li key={experience.id} className="flex flex-col items-start overflow-visible -m-8 p-8 text-left">
                             <span className="font-bold">{experience.year}</span>
@@ -58,6 +86,10 @@ export default function Experience({
                     )
                 })}
             </ul>
+            <div className="mt-12 max-w-3xl text-left md:mt-20">
+                <p>{CLIENT_LEAD[locale] ?? CLIENT_LEAD.de}</p>
+                <p className="mt-3">{CLIENTS.join(", ")}</p>
+            </div>
         </section>
     )
 }

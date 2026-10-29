@@ -38,7 +38,7 @@ export default async function AboutMeFetcher({ locale }: Props) {
 
     return (
         <Suspense fallback={<div>Loading...</div>}>
-            <Experience data={trainingBlock} hatFrames={hatFrames} />
+            <Experience data={trainingBlock} hatFrames={hatFrames} locale={locale} />
         </Suspense>
     )
 }

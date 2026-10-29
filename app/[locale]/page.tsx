@@ -63,8 +63,8 @@ async function Footer({ locale }: { locale: string }) {
 
 export const metadata: Metadata = {
     metadataBase: new URL(metadataBaseUrl),
-    title: 'Alina Salzer – Dolmetscherin & Übersetzerin | Translator & Interpreter',
-    description: 'Allgemein beeidigte Dolmetscherin und Übersetzerin für Deutsch, Spanisch, Portugiesisch und Englisch. Konferenzdolmetschen mit Fokus auf Dekolonialismus, Queerfeminismus, Umwelt, Nachhaltigkeit, Kunst & Kultur.',
+    title: 'ALINA SALZER',
+    description: 'Dolmetscherin und Übersetzerin in Leipzig',
     keywords: [
         'Alina Salzer',
         'Dolmetscherin',
@@ -80,10 +80,10 @@ export const metadata: Metadata = {
     ],
     authors: [{ name: 'Alina Salzer' }],
     openGraph: {
-        title: 'Alina Salzer – Translator & Interpreter | Dolmetscherin & Übersetzerin',
-        description: 'Certified interpreter and translator for German, Spanish, Portuguese, and English. Conference interpreting with a focus on decolonialism, queer feminism, sustainability, and culture.',
+        title: 'ALINA SALZER',
+        description: 'Dolmetscherin und Übersetzerin in Leipzig',
         url: 'https://www.alina-salzer.de',
-        siteName: 'Alina Salzer',
+        siteName: 'ALINA SALZER',
         locale: 'de_DE',
         type: 'website',
         images: [

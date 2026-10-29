@@ -25,11 +25,6 @@ export default function AboutMe({ data }: AboutMeProps) {
                                 priority
                             />
                         )}
-                        <img
-                            src="/svg/horproben_headset.svg"
-                            alt=""
-                            className="animate-headset-hello pointer-events-none absolute bottom-full left-[26%] hidden w-32 xl:block"
-                        />
                     </div>
                 </div>
 

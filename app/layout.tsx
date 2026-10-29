@@ -3,8 +3,8 @@ import "./globalStyles.css";
 import { bahnSchrift, urbanist } from "@/lib/fonts";
 
 export const metadata: Metadata = {
-  title: "alina",
-  description: "Alina Salzer",
+  title: "ALINA SALZER",
+  description: "Dolmetscherin und Übersetzerin in Leipzig",
 };
 
 export default function RootLayout({

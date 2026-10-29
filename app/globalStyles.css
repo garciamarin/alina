@@ -239,7 +239,7 @@ audio {
 .animate-headset-hello {
   transform: translateY(2.5rem) rotate(8deg);
   transform-origin: 50% 22%;
-  animation: headset-hello 0.8s ease-in-out 0.55s both;
+  animation: headset-hello 0.8s ease-in-out 0.40s both;
 }
 
 @media (prefers-reduced-motion: reduce) {

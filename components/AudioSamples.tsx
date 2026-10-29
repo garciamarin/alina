@@ -7,19 +7,27 @@ export type AudioClip = {
     imageUrl?: string | null
 }
 
+const DRIFT = [
+    "mt-2 md:mt-2",
+    "mt-8 md:mt-8",
+    "mt-1 md:mt-14",
+    "mt-11 md:mt-20",
+]
+
 export function AudioSamples({ samples }: { samples: AudioClip[] }) {
     const [playingIndex, setPlayingIndex] = useState<number | null>(null)
 
     return (
-        <ul className="grid grid-cols-2 gap-6 md:gap-16">
+        <ul className="mx-auto flex max-w-sm flex-wrap items-start justify-center md:max-w-none md:gap-x-6">
             {samples.map((sample, index) => (
-                <AudioSample
-                    key={`${sample.displayName}-${index}`}
-                    sample={sample}
-                    playing={playingIndex === index}
-                    onToggle={() => setPlayingIndex(playingIndex === index ? null : index)}
-                    onEnded={() => setPlayingIndex(null)}
-                />
+                <li key={`${sample.displayName}-${index}`} className={DRIFT[index % DRIFT.length]}>
+                    <AudioSample
+                        sample={sample}
+                        playing={playingIndex === index}
+                        onToggle={() => setPlayingIndex(playingIndex === index ? null : index)}
+                        onEnded={() => setPlayingIndex(null)}
+                    />
+                </li>
             ))}
         </ul>
     )

@@ -10,7 +10,7 @@ export default function AudioBlock({ images, samples }: {
     const [showAudios, setShowAudios] = useState(false)
 
     return (
-        <div className="relative flex h-[300px] w-screen items-center justify-center md:h-[400px]">
+        <div className={`relative flex w-screen items-center justify-center ${showAudios ? "min-h-[28rem] py-8 md:min-h-[22rem]" : "h-[300px] md:h-[400px]"}`}>
             {!showAudios && (
                 <button
                     onClick={() => setShowAudios(true)}

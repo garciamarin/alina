@@ -57,13 +57,8 @@ export default function ContactClient({
           )}
         </div>
         {imageUrl && (
-          <div
-            className=" absolute flex items-center p-4 rounded-full z-10
-                                  right-[25vw] sm:right-[13vw] bottom-5 sm:bottom-10 w-[100px] h-[100px] md:w-[150px] md:h-[150px]
-                                text-white font-semibold 
-                                  hover:opacity-80 group-hover:animate-bounce transition duration-100"
-          >
-            <div className="relative w-full h-full">
+          <div className="pointer-events-none absolute inset-x-0 -bottom-2 z-10 flex justify-center sm:-bottom-4">
+            <div className="relative right-6 h-[150px] w-[170px] transition duration-100 group-hover:animate-bounce sm:right-10 sm:h-[230px] sm:w-[260px]">
               {firstFrame ? (
                 isHover ? (
                   <AnimatedSvg animation={animationUrls || []} interval={250} contain />

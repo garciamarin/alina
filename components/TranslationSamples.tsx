@@ -12,7 +12,6 @@ export type TranslationSample = {
 type Props = {
     locale: string
     title?: string | null
-    samples?: TranslationSample[] | null
 }
 
 const TITLE: Record<string, string> = {
@@ -22,18 +21,19 @@ const TITLE: Record<string, string> = {
     pt: "Amostras de tradução",
 }
 
-const FALLBACK: TranslationSample[] = [
+const SAMPLES: TranslationSample[] = [
     {
         id: "jadedrache",
         kind: "Lektorat",
         languages: "ES → DE",
         title: "Julio Santos – Der Jadedrache (2021)",
+        text: "ISBN 979-8303928626",
     },
     {
         id: "rosa-luxemburg",
         kind: "Übersetzte Artikel",
         languages: "PT → DE",
-        title: "Rosa-Luxemburg-Stiftung",
+        title: "für die Rosa-Luxemburg-Stiftung",
         text: [
             "- [Lautes Schweigen für die queere Agenda](https://www.rosalux.de/news/id/47094/lautes-schweigen-fuer-die-queere-agenda)",
             "- [Brasiliens Militär und die Wahlen](https://www.rosalux.de/news/id/50075/brasiliens-militaer-und-die-wahlen)",
@@ -43,47 +43,49 @@ const FALLBACK: TranslationSample[] = [
     {
         id: "goethe",
         kind: "Website-Übersetzung",
-        languages: "DE · PT · ES · EN",
+        languages: "DE ↔ PT",
         title: "Goethe-Institut Salvador",
         text: "- [goethe.de/ins/br/de/sta/sal](https://www.goethe.de/ins/br/de/sta/sal.html)",
     },
     {
         id: "nashi44",
-        kind: "Songtext-Übersetzung",
+        kind: "Dolmetschen und Songtext-Übersetzung",
         languages: "DE → PT",
-        title: "Nashi44 – Asiabox",
+        title: "NASHI44 – Asia Box",
+        text: [
+            "während Künstlerinnenresidenz am Goethe-Institut in Salvador",
+            "",
+            "- [instagram.com/p/ClBtEngrG2u](https://www.instagram.com/p/ClBtEngrG2u/?xtok=eHg0OGVpazhrZjV1)",
+        ].join("\n"),
     },
     {
         id: "caritas",
         kind: "Übersetzungen",
-        title: "Beratungsstelle des Caritas Leipzig e.V.",
+        languages: "DE → ES",
+        title: "für den Caritasverband Leipzig e.V.",
+        text: "- [caritas-leipzig.de/schwangerschaft](https://www.caritas-leipzig.de/hilfeundberatung/kinderjugendlicheundfamilien/beratungsangebote/schwangerschaft/schwangerschaft)",
     },
     {
         id: "ullrich",
         kind: "Übersetzung und Lektorat",
         languages: "EN → DE",
         title: "Ruth & Hans Ullrich – Aus der Stube in die Welt. Tätowier-Kultur in der Mitte des 20. Jahrhunderts (2025)",
+        text: "ISBN 978-3-00-076184-3",
     },
 ]
 
-const BLOBS = [
+const SHAPES = [
     {
         shape: "rounded-[4.5rem_1rem_5rem_1.5rem]",
-        back: "rounded-[1.5rem_4rem_1rem_5rem] bg-[#e0a3ac]/40 -rotate-2 translate-x-3 translate-y-3",
-        color: "bg-[#a5d6d2]/75",
-        ink: "text-white",
+        back: "rounded-[1.5rem_4rem_1rem_5rem] -rotate-2 translate-x-3 translate-y-3",
     },
     {
         shape: "rounded-[1rem_5rem_1.5rem_4.5rem]",
-        back: "rounded-[5rem_1.5rem_4rem_1rem] bg-[#4aaaa5]/30 rotate-2 -translate-x-3 translate-y-3",
-        color: "bg-[#e0a3ac]/70",
-        ink: "text-white",
+        back: "rounded-[5rem_1.5rem_4rem_1rem] rotate-2 -translate-x-3 translate-y-3",
     },
     {
         shape: "rounded-[5rem_1.5rem_1rem_4rem]",
-        back: "rounded-[1rem_4rem_5rem_1.5rem] bg-[#e0a3ac]/40 -rotate-1 translate-x-2 translate-y-3",
-        color: "bg-[#4aaaa5]/55",
-        ink: "text-white",
+        back: "rounded-[1rem_4rem_5rem_1.5rem] -rotate-1 translate-x-2 translate-y-3",
     },
 ]
 
@@ -94,13 +96,12 @@ function iconFor(kind?: string | null) {
     return null
 }
 
-export default function TranslationSamples({ locale, title, samples }: Props) {
+export default function TranslationSamples({ locale, title }: Props) {
     const heading = title || (TITLE[locale] ?? TITLE.de)
-    const items = samples && samples.length > 0 ? samples : FALLBACK
 
     return (
         <section id="translations" className="section mt-16 w-full text-left md:mt-44">
-            <h2 className="section-header">{heading}</h2>
+            <h2 className="section-header uppercase">{heading}</h2>
             <svg aria-hidden width="0" height="0" className="absolute">
                 <defs>
                     {[3, 11, 27].map((seed, i) => (
@@ -112,8 +113,8 @@ export default function TranslationSamples({ locale, title, samples }: Props) {
                 </defs>
             </svg>
             <ul className="grid grid-cols-1 gap-x-14 items-start gap-y-12 pb-4 md:grid-cols-2 md:gap-y-16">
-                {items.map((sample, index) => {
-                    const blob = BLOBS[index % BLOBS.length]
+                {SAMPLES.map((sample, index) => {
+                    const blob = SHAPES[index % SHAPES.length]
                     const icon = iconFor(sample.kind)
                     const long = (sample.languages?.length ?? 0) > 8
                     return (
@@ -124,17 +125,17 @@ export default function TranslationSamples({ locale, title, samples }: Props) {
                             <div
                                 aria-hidden
                                 style={{ filter: `url(#wavy-${(index + 1) % 3})` }}
-                                className={`absolute inset-0 -z-10 ${blob.back}`}
+                                className={`absolute inset-0 -z-10 bg-[#a5d6d2]/60 ${blob.back}`}
                             />
                             <div className="relative flex flex-col gap-3 px-7 pb-8 pt-9 transition-transform duration-500 ease-out group-hover:-translate-y-1 md:px-10 md:pb-10 md:pt-10">
                                 <div
                                     aria-hidden
                                     style={{ filter: `url(#wavy-${index % 3})` }}
-                                    className={`absolute inset-0 -z-10 ${blob.shape} ${blob.color}`}
+                                    className={`absolute inset-0 -z-10 bg-[#4aaaa5]/55 ${blob.shape}`}
                                 />
                                 {sample.languages && (
                                     <span
-                                        className={`select-none whitespace-nowrap font-sans font-extralight uppercase leading-none tracking-wide ${blob.ink} ${
+                                        className={`select-none whitespace-nowrap font-sans font-extralight uppercase leading-none tracking-wide text-white ${
                                             long ? "text-3xl md:text-4xl" : "text-5xl md:text-6xl"
                                         }`}
                                     >

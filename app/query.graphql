@@ -193,13 +193,6 @@ query TranslationSamples($locale: SiteLocale) {
   translationSamplesBlock(locale: $locale) {
     id
     title
-    samples {
-      id
-      kind
-      languages
-      title
-      text
-    }
   }
 }
 

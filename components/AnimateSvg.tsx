@@ -32,7 +32,8 @@ export const AnimatedSvg = ({ animation, interval = 250, fill, contain }: {
                     src={src}
                     alt=""
                     fill
-                    className={`${fit} transition-opacity duration-150 ${index === 0 || index === currentIndex ? "opacity-100" : "opacity-0"}`}
+                    loading="eager"
+                    className={`${fit} ${index === currentIndex ? "opacity-100" : "opacity-0"}`}
                 />
             ))}
         </div>

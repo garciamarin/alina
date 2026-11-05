@@ -6,6 +6,13 @@ import Image from "next/image"
 import { useT } from "@/app/i18n"
 
 
+// Resting picture per service: the open mouth and the finished squiggle with the pencil.
+const RESTING_FRAME = [/dolmetschen_mund3/, /ubersetzen_stift4/]
+
+function restingFrame(urls: string[]) {
+    return urls.find((url) => RESTING_FRAME.some((pattern) => pattern.test(url))) ?? urls[0]
+}
+
 export default function Services({ data }: { data: ServicesQuery['servicesBlock'] }) {
     const [selectedServiceId, setSelectedServiceId] = useState<string | undefined>(undefined)
     const t = useT()
@@ -74,7 +81,7 @@ export default function Services({ data }: { data: ServicesQuery['servicesBlock'
                                                         ) : (
                                                             <Image
                                                                 alt={`{${service.name} animation icon`}
-                                                                src={service.animationImages.find((img) => !!img.url)!.url}
+                                                                src={restingFrame(service.animationImages.filter((img) => !!img.url).map((img) => img.url))}
                                                                 fill
                                                                 className="object-contain"
                                                             />

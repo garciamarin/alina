@@ -13,7 +13,7 @@ export default function AboutMe({ data }: AboutMeProps) {
         <>
             <section id="intro" className="flex flex-col items-center w-full max-w-full">
 
-                <div className="absolute right-0 top-[max(calc(101svh-77vw),calc(540px-20vw))] -z-10 md:top-[170px]">
+                <div className="absolute right-0 top-[calc(10.5vw+3rem+3vh+min(46vw,200px)+1.75rem)] -z-10 md:top-[250px]">
                     <div className="relative animate-slide-from-right">
                         {bubbleUrl && (
                             <Image
@@ -25,18 +25,13 @@ export default function AboutMe({ data }: AboutMeProps) {
                                 priority
                             />
                         )}
-                        <img
-                            src="/svg/horproben_headset.svg"
-                            alt=""
-                            className="animate-headset-hello pointer-events-none absolute bottom-full left-[26%] hidden w-32 xl:block"
-                        />
                     </div>
                 </div>
 
                 <div className="absolute top-0 flex h-[100svh] w-full flex-col px-4 pt-[calc(22vw+3rem+3vh)] md:h-screen md:px-16 md:pt-[calc(360px+6vh)] min-[1452px]:pt-[calc(198px+11.2vw+6vh)] max-w-screen-xl mx-auto animate-fade-in">
                     <div
                         id="about_me"
-                        className="grid grid-cols-[1fr_auto] items-end gap-x-4 gap-y-6 md:items-center md:gap-x-12 md:gap-y-4"
+                        className="grid grid-cols-[1fr_auto] items-end gap-x-4 gap-y-14 md:items-center md:gap-x-12 md:gap-y-4"
                     >
                         <div className="font-sans md:self-end">
                             {data?.title && <h2 className="!font-thin !text-4xl section-header">{data?.title}</h2>}

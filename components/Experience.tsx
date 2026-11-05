@@ -3,27 +3,29 @@ import type { ExperienceQuery } from "@/.graphql/datoTypes"
 import Image from "next/image"
 import { AnimatedSvg } from "./AnimateSvg"
 
-const HAT_BOX = "animate-hat-wiggle pointer-events-none absolute left-[62%] -top-[14%] h-[22%] w-[26%]"
+const HAT_BOX = "animate-hat-wiggle pointer-events-none absolute left-[48%] -top-[15%] h-[28%] w-[38%]"
 
 const CLIENTS = [
     "UNESCO",
     "Rosa-Luxemburg-Stiftung",
     "EU-LAC",
-    "Caritas",
     "LUSH GmbH",
+    "Caritas",
+    "Diakonie",
+    "Frauen für Frauen",
     "DOK Leipzig Filmfestival",
     "Fusion Festival",
     "Konzeptwerk Neue Ökonomie",
 ]
 
-const CLIENT_LEAD: Record<string, string> = {
-    de: "seit 2020 arbeite ich als freiberufliche Dolmetscherin & Übersetzerin mit Unternehmen und Organisationen wie z.B.:",
-    en: "since 2020 I have been working as a freelance interpreter and translator with companies and organisations such as:",
-    es: "desde 2020 trabajo como intérprete y traductora autónoma con empresas y organizaciones como:",
-    pt: "desde 2020 trabalho como intérprete e tradutora autônoma com empresas e organizações como:",
+const CLIENT_LEAD: Record<string, { title: string; description: string }> = {
+    de: { title: "freiberufliche Dolmetscherin & Übersetzerin", description: "für Unternehmen und Organisationen wie:" },
+    en: { title: "freelance interpreter and translator", description: "for companies and organisations such as:" },
+    es: { title: "intérprete y traductora autónoma", description: "para empresas y organizaciones como:" },
+    pt: { title: "intérprete e tradutora autônoma", description: "para empresas e organizações como:" },
 }
 
-// The client names used to sit in the "seit 2020" Ausbildung entry. They are shown under the timeline instead.
+// The "seit 2020" entry in Dato lists the clients. They are printed under the 2023 entry instead.
 function isClientWork(experience: NonNullable<ExperienceQuery["trainingBlock"]>["experience"][number]) {
     const year = experience.year ?? ""
     const text = experience.event.map((event) => `${event.title ?? ""} ${event.description ?? ""}`).join(" ")
@@ -76,20 +78,20 @@ export default function Experience({
                     </li>
                 )}
                 {timeline?.map((experience) => {
+                    const lead = CLIENT_LEAD[locale] ?? CLIENT_LEAD.de
                     return (
                         <li key={experience.id} className="flex flex-col items-start overflow-visible -m-8 p-8 text-left">
                             <span className="font-bold">{experience.year}</span>
                             {experience.event.map((event) => (
                                 <span key={event.title} className="inline"><b>{event.title}</b> {event.description}</span>
                             ))}
+                            {/2023/.test(experience.year ?? "") && (
+                                <span className="mt-4 inline"><b>{lead.title}</b> {lead.description} {CLIENTS.join(", ")}</span>
+                            )}
                         </li>
                     )
                 })}
             </ul>
-            <div className="mt-12 max-w-3xl text-left md:mt-20">
-                <p>{CLIENT_LEAD[locale] ?? CLIENT_LEAD.de}</p>
-                <p className="mt-3">{CLIENTS.join(", ")}</p>
-            </div>
         </section>
     )
 }

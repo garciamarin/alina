@@ -228,24 +228,9 @@ audio {
   animation-delay: -0.9s;
 }
 
-@keyframes headset-hello {
-  0% { transform: translateY(2.5rem) rotate(0deg); }
-  18% { transform: translateY(2.5rem) rotate(-8deg); }
-  46% { transform: translateY(2.5rem) rotate(14deg); }
-  70% { transform: translateY(2.5rem) rotate(4deg); }
-  100% { transform: translateY(2.5rem) rotate(8deg); }
-}
-
-.animate-headset-hello {
-  transform: translateY(2.5rem) rotate(8deg);
-  transform-origin: 50% 22%;
-  animation: headset-hello 0.8s ease-in-out 0.40s both;
-}
-
 @media (prefers-reduced-motion: reduce) {
   .animate-bubble-wave,
-  .animate-hat-wiggle,
-  .animate-headset-hello {
+  .animate-hat-wiggle {
     animation: none;
   }
 }

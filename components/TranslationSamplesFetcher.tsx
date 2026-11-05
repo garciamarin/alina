@@ -6,10 +6,6 @@ export default async function TranslationSamplesFetcher({ locale }: { locale: st
     const { translationSamplesBlock } = await getDato(TranslationSamplesDocument, { locale })
 
     return (
-        <TranslationSamples
-            locale={locale}
-            title={translationSamplesBlock?.title}
-            samples={translationSamplesBlock?.samples}
-        />
+        <TranslationSamples locale={locale} title={translationSamplesBlock?.title} />
     )
 }

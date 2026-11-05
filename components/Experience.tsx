@@ -3,46 +3,19 @@ import type { ExperienceQuery } from "@/.graphql/datoTypes"
 import Image from "next/image"
 import { AnimatedSvg } from "./AnimateSvg"
 
-const HAT_BOX = "animate-hat-wiggle pointer-events-none absolute left-[48%] -top-[15%] h-[28%] w-[38%]"
-
-const CLIENTS = [
-    "UNESCO",
-    "Rosa-Luxemburg-Stiftung",
-    "EU-LAC",
-    "LUSH GmbH",
-    "Caritas",
-    "Diakonie",
-    "Frauen für Frauen",
-    "DOK Leipzig Filmfestival",
-    "Fusion Festival",
-    "Konzeptwerk Neue Ökonomie",
-]
-
-const CLIENT_LEAD: Record<string, { title: string; description: string }> = {
-    de: { title: "freiberufliche Dolmetscherin & Übersetzerin", description: "für Unternehmen und Organisationen wie:" },
-    en: { title: "freelance interpreter and translator", description: "for companies and organisations such as:" },
-    es: { title: "intérprete y traductora autónoma", description: "para empresas y organizaciones como:" },
-    pt: { title: "intérprete e tradutora autônoma", description: "para empresas e organizações como:" },
-}
-
-// The "seit 2020" entry in Dato lists the clients. They are printed under the 2023 entry instead.
-function isClientWork(experience: NonNullable<ExperienceQuery["trainingBlock"]>["experience"][number]) {
-    const year = experience.year ?? ""
-    const text = experience.event.map((event) => `${event.title ?? ""} ${event.description ?? ""}`).join(" ")
-    return /2020/.test(year) && /unesco/i.test(`${year} ${text}`)
-}
+const HAT_BOX = "pointer-events-none absolute left-[48%] -top-[15%] h-[28%] w-[38%]"
 
 export default function Experience({
     data,
     hatFrames,
-    locale,
 }: {
     data: ExperienceQuery["trainingBlock"]
     hatFrames: string[]
-    locale: string
 }) {
-    const timeline = data?.experience.filter((experience) => !isClientWork(experience))
-    const bubble = data?.experience.find((experience) => experience.backgroundImage?.url)?.backgroundImage
+    // The first entry only carries the Ausbildung bubble and the freelance/client text. That text is printed under 2023.
+    const [intro, ...timeline] = data?.experience ?? []
+    const bubble = intro?.backgroundImage
+    const clientsAfter = timeline.find((experience) => /2023/.test(experience.year ?? "")) ?? timeline[0]
 
     return (
         <section id="experience" className="section mt-16 md:mt-[440px]">
@@ -77,17 +50,17 @@ export default function Experience({
                         </div>
                     </li>
                 )}
-                {timeline?.map((experience) => {
-                    const lead = CLIENT_LEAD[locale] ?? CLIENT_LEAD.de
+                {timeline.map((experience) => {
                     return (
                         <li key={experience.id} className="flex flex-col items-start overflow-visible -m-8 p-8 text-left">
                             <span className="font-bold">{experience.year}</span>
                             {experience.event.map((event) => (
                                 <span key={event.title} className="inline"><b>{event.title}</b> {event.description}</span>
                             ))}
-                            {/2023/.test(experience.year ?? "") && (
-                                <span className="mt-4 inline"><b>{lead.title}</b> {lead.description} {CLIENTS.join(", ")}</span>
-                            )}
+                            {experience === clientsAfter &&
+                                intro?.event.map((event, index) => (
+                                    <span key={event.title} className={`inline ${index === 0 ? "mt-4" : ""}`}><b>{event.title}</b> {event.description}</span>
+                                ))}
                         </li>
                     )
                 })}
